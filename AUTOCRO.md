@@ -35,6 +35,12 @@ be cheating and would invalidate the POC. Only `sim/sealed/score.py` (end-of-POC
 - **GA4:** property "AutoCRO – Fjeldspor" (ID 561157387), stream Measurement ID G-DDVJJDBD6E. Delivery audit R009: 94% of
   events reach GA4 (purchase 100%, page-level events 91–95%). Our own event log in `data/events` stays the source of truth
   for decisions; GA4 is the mirror/cross-check. NOTE: the property currently sits under the Kevin.Murphy GA account.
+- **Engine room dashboard:** `dashboard/build.py` → `site/engine-room/index.html` (https://crole-gregersen.github.io/autocro/engine-room/).
+  Rebuilt automatically by the traffic workflow after every run (Pages redeploys via `workflow_run`). Claude also rebuilds
+  it after evaluate/ideate/build steps and appends milestones to `docs/timeline.json`. LiveSend wrapper (password-protected,
+  iframe of the live page): https://www.livesend.io/v/j7jk2gtna9 — never needs republishing.
+- **Preview links:** `?ac_preview=EXP003:B_compact_gallery#/p/P001` renders one variant of any experiment (concluded ones
+  use `control_features` for the old control); preview visits are not sent to GA4.
 - **Reading results:** `git pull` (reads work from the sandbox), then run the analysis locally.
 
 ## One optimisation cycle
@@ -46,7 +52,8 @@ be cheating and would invalidate the POC. Only `sim/sealed/score.py` (end-of-POC
    implement a new flag in `site/js/app.js` (default = current behaviour). Keep all `data-ac` hooks.
    Respect R6 (no overlapping features/pages; ≤3 concurrent). QA locally: `python3 -m http.server 8787 -d site` + `node sim/qa.js`.
 5. **Deploy + request traffic**: bump `sim/queue.json` (new run_id R<next>, sessions ~3000–6000, new seed), commit, push.
-6. Next cycle starts when the traffic commit lands. Report to CROle: what was learned, shipped, killed, what is next.
+6. Rebuild the dashboard (`python3 dashboard/build.py`), add a line to `docs/timeline.json`, commit with the cycle.
+7. Next cycle starts when the traffic commit lands. Report to CROle: what was learned, shipped, killed, what is next.
 
 ## Experiment schema
 ```json
