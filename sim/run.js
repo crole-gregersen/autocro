@@ -24,6 +24,7 @@ const UA = {
   desktop: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
 };
 const CATS = ['jackets', 'footwear', 'backpacks', 'accessories'];
+const gaAudit = [];
 const SEARCH_TERMS = ['jacket', 'boot', 'pack', 'socks', 'rain', 'gloves', 'tent', 'merino'];
 
 async function session(browser, idx) {
@@ -35,6 +36,15 @@ async function session(browser, idx) {
     : { viewport: { width: 1366, height: 800 }, userAgent: UA.desktop });
   const page = await ctx.newPage();
   let sid = null;
+  if (args['ga-audit']) {
+    page.on('request', req => {
+      const u = req.url(); if (!/google-analytics\.com\/(g|[a-z0-9-]+)\/collect|\/g\/collect/.test(u)) return;
+      const lines = [u.split('?')[1] || '', ...((req.postData() || '').split('\n'))];
+      const evs = lines.map(l => new URLSearchParams(l).get('en')).filter(Boolean);
+      req.response().then(res => gaAudit.push({ evs, status: res ? res.status() : 'none', bytes: (req.postData() || '').length + u.length })).catch(e => gaAudit.push({ evs, status: 'failed:' + e.message.slice(0, 40) }));
+    });
+    page.on('requestfailed', req => { if (/collect/.test(req.url())) gaAudit.push({ evs: ['?'], status: 'requestfailed:' + (req.failure() || {}).errorText }); });
+  }
   await page.exposeFunction('__acCapture', ev => { sid = ev.session_id; evOut.write(JSON.stringify(Object.assign({ run_id: RUN }, ev)) + '\n'); });
   const seen = { shippingKnownCost: false, freeShippingThresholdSeen: false, socialProofPlp: false };
   const outcome = { purchased: false, exit: null };
@@ -145,5 +155,11 @@ async function session(browser, idx) {
   await Promise.all(Array.from({ length: C }, worker));
   await browser.close();
   await new Promise(r => evOut.end(r)); await new Promise(r => truthOut.end(r));
+  if (args['ga-audit']) {
+    const sent = {}, status = {}; let maxBytes = 0;
+    for (const a of gaAudit) { for (const e of a.evs) sent[e] = (sent[e] || 0) + 1; status[a.status] = (status[a.status] || 0) + 1; maxBytes = Math.max(maxBytes, a.bytes || 0); }
+    fs.mkdirSync(path.join(ROOT, 'reports'), { recursive: true });
+    fs.writeFileSync(path.join(ROOT, 'reports', 'ga-audit-' + RUN + '.json'), JSON.stringify({ requests: gaAudit.length, events_sent: sent, statuses: status, max_request_bytes: maxBytes }, null, 1));
+  }
   console.log(JSON.stringify({ run: RUN, sessions: N, seconds: Math.round((Date.now() - t0) / 1000) }));
 })();

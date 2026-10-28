@@ -57,13 +57,13 @@ jobs:
         if: steps.req.outputs.run_id != '' && steps.req.outputs.sessions != '0'
         run: |
           node sim/run.js --base https://crole-gregersen.github.io/autocro --sessions ${{ steps.req.outputs.sessions }} \
-            --concurrency ${{ steps.req.outputs.concurrency }} --seed ${{ steps.req.outputs.seed }} --run ${{ steps.req.outputs.run_id }}
+            --concurrency ${{ steps.req.outputs.concurrency }} --seed ${{ steps.req.outputs.seed }} --run ${{ steps.req.outputs.run_id }} $( [ "$(jq -r '.ga_audit // false' sim/queue.json)" = true ] && echo '--ga-audit 1' )
           gzip -9f data/events/${{ steps.req.outputs.run_id }}.jsonl sim/sealed/truth/${{ steps.req.outputs.run_id }}.jsonl
       - name: Commit event log
         if: steps.req.outputs.run_id != '' && steps.req.outputs.sessions != '0'
         run: |
           git config user.name "AutoCRO traffic bot"
           git config user.email "actions@github.com"
-          git add data/events sim/sealed/truth
+          git add data/events sim/sealed/truth reports
           git commit -m "Traffic run ${{ steps.req.outputs.run_id }} (${{ steps.req.outputs.sessions }} sessions)"
           for i in 1 2 3; do git pull --rebase -q && git push -q && break; sleep 5; done
