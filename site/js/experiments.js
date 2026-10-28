@@ -18,6 +18,25 @@
       const dev = T.device();
       const features = Object.assign({}, cfg.features, (cfg.device_features || {})[dev] || {});
       let css = cfg.css || '';
+      // Preview mode: ?ac_preview=EXP003:B_compact_gallery shows one variant (any status), other tests off, no GA4.
+      const pv = new URLSearchParams(location.search).get('ac_preview');
+      if (pv) {
+        const [pe, pvar] = pv.split(':');
+        const exp = (reg.experiments || []).find(e => e.id === pe);
+        const v = exp && exp.variants.find(x => x.id === pvar);
+        if (exp && v) {
+          Object.assign(features, v.id === exp.variants[0].id ? (exp.control_features || {}) : (v.features || {}));
+          if (v.css) css += '\n' + v.css;
+          T.preview = true;
+          const bar = document.createElement('div');
+          bar.style.cssText = 'background:#fab219;color:#0b0b0b;text-align:center;font:600 13px system-ui;padding:6px';
+          bar.textContent = 'AutoCRO preview: ' + exp.id + ' · ' + v.id + ' (' + exp.name + ') — not tracked';
+          document.addEventListener('DOMContentLoaded', () => document.body.prepend(bar));
+          if (document.body) document.body.prepend(bar);
+        }
+        if (css) { const st = document.createElement('style'); st.textContent = css; document.head.appendChild(st); }
+        return { cfg, features };
+      }
       for (const exp of reg.experiments || []) {
         if (exp.status !== 'running') continue;
         if (exp.targeting && exp.targeting.device && exp.targeting.device !== 'all' && exp.targeting.device !== dev) continue;

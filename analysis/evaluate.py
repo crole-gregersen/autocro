@@ -117,6 +117,9 @@ if a.apply:
         exp["final_n"] = res["n"]
         if d == "ship":
             v = next(v for v in exp["variants"] if v["id"] == winner)
+            dev0 = (exp.get("targeting") or {}).get("device", "all")
+            base = dict(CFG["features"], **(CFG.get("device_features", {}).get(dev0, {}) if dev0 != "all" else {}))
+            exp["control_features"] = {k: base.get(k) for vv in exp["variants"] for k in vv.get("features", {})}  # for preview links
             dev = (exp.get("targeting") or {}).get("device", "all")
             if dev == "all":
                 CFG["features"].update(v.get("features", {}))

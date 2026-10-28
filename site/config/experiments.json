@@ -39,6 +39,9 @@
       "final_n": {
         "control": 495,
         "B": 485
+      },
+      "control_features": {
+        "checkout_guest": false
       }
     },
     {
@@ -80,6 +83,9 @@
       "final_n": {
         "control": 447,
         "B": 459
+      },
+      "control_features": {
+        "cart_shipping_info": false
       }
     },
     {
@@ -130,6 +136,9 @@
         "control": 752,
         "B_compact_gallery": 732,
         "C_sticky_atc": 741
+      },
+      "control_features": {
+        "pdp_gallery_layout": "tall"
       }
     }
   ]

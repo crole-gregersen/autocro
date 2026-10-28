@@ -20,7 +20,7 @@
     device,
     experiments: {}, // expId -> variantId (set by experiments.js)
     initGA4(measurementId) {
-      if (!measurementId || gtagReady) return;
+      if (!measurementId || gtagReady || T.preview) return;
       const s = document.createElement('script');
       s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + measurementId;
       document.head.appendChild(s);
