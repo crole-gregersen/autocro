@@ -1,0 +1,3 @@
+{"date": "2026-10-28", "experiment": "EXP002", "decision": "ship", "winner": "B", "reason": "R3 B beats control on purchase: +22.3% (p=0.0028, P(beat)=0.998); guardrails OK.", "n": {"control": 447, "B": 459}}
+{"date": "2026-10-28", "experiment": "EXP003", "decision": "ship", "winner": "B_compact_gallery", "reason": "R3 B_compact_gallery beats control on add_to_cart: +53.4% (p=0.0000, P(beat)=1.000); guardrails OK.", "n": {"control": 752, "B_compact_gallery": 732, "C_sticky_atc": 741}}
+{"date": "2026-10-28", "experiment": "EXP001", "decision": "ship", "winner": "B", "reason": "R3 B beats control on purchase: +44.1% (p=0.0000, P(beat)=1.000); guardrails OK.", "n": {"control": 495, "B": 485}}

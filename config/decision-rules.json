@@ -1,0 +1,22 @@
+{
+  "_comment": "AutoCRO ship/kill rules. Evaluated by analysis/evaluate.py after every traffic run.",
+  "min_exposed_per_variant": 400,
+  "max_exposed_per_variant": 4000,
+  "alpha": 0.01,
+  "min_prob_to_beat": 0.95,
+  "min_relative_uplift": 0.0,
+  "srm_p_threshold": 0.001,
+  "guardrail_harm_alpha": 0.1,
+  "guardrail_max_relative_drop": 0.25,
+  "max_concurrent_experiments": 3,
+  "rules": [
+    "R1 Validity: if the sample-ratio-mismatch p-value < srm_p_threshold the test is INVALID \u2014 pause and investigate, never ship.",
+    "R2 Patience: no decision before every variant has min_exposed_per_variant exposed visitors. alpha is 0.01 (not 0.05) because results are checked after every traffic run (sequential peeking).",
+    "R3 Ship: primary metric uplift > min_relative_uplift, two-sided p < alpha AND probability-to-beat-control >= min_prob_to_beat.",
+    "R4 Guardrails: do not ship if any guardrail metric is worse with p < guardrail_harm_alpha, or its point estimate drops more than guardrail_max_relative_drop (sanity cap) \u2014 unless the primary metric IS that guardrail.",
+    "R5 Kill: stop if the primary metric is significantly worse (p < alpha), or max_exposed_per_variant is reached without a ship decision (inconclusive -> keep control: simplest wins).",
+    "R6 Isolation: at most max_concurrent_experiments running, and never two running experiments that change the same feature key or share an exposure page.",
+    "R7 Ship = merge the winning variant's features/css into site/config/site-config.json, log to docs/decision-log.md; the change becomes the new control."
+  ],
+  "_overrides": "An experiment may set rule_overrides (e.g. a higher min_exposed_per_variant from a power calculation)."
+}

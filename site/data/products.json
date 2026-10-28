@@ -1,0 +1,255 @@
+{
+ "currency": "EUR",
+ "shipping": {
+  "flat": 6.95,
+  "free_over": 100
+ },
+ "categories": [
+  "jackets",
+  "footwear",
+  "backpacks",
+  "accessories"
+ ],
+ "products": [
+  {
+   "id": "P001",
+   "name": "Storm Shell Jacket",
+   "category": "jackets",
+   "price": 172.95,
+   "rating": 3.8,
+   "reviews": 53,
+   "color": "#2f5d50",
+   "desc": "The Storm Shell Jacket is built for Nordic conditions: durable, light and made to last season after season."
+  },
+  {
+   "id": "P002",
+   "name": "Ridge Down Jacket",
+   "category": "jackets",
+   "price": 107.95,
+   "rating": 4.3,
+   "reviews": 378,
+   "color": "#2f5d50",
+   "desc": "The Ridge Down Jacket is built for Nordic conditions: durable, light and made to last season after season."
+  },
+  {
+   "id": "P003",
+   "name": "Trail Softshell",
+   "category": "jackets",
+   "price": 240.95,
+   "rating": 4.8,
+   "reviews": 223,
+   "color": "#2f5d50",
+   "desc": "The Trail Softshell is built for Nordic conditions: durable, light and made to last season after season."
+  },
+  {
+   "id": "P004",
+   "name": "Fjord Rain Jacket",
+   "category": "jackets",
+   "price": 98.95,
+   "rating": 4.2,
+   "reviews": 75,
+   "color": "#2f5d50",
+   "desc": "The Fjord Rain Jacket is built for Nordic conditions: durable, light and made to last season after season."
+  },
+  {
+   "id": "P005",
+   "name": "Alpine Insulated Parka",
+   "category": "jackets",
+   "price": 151.95,
+   "rating": 4.3,
+   "reviews": 64,
+   "color": "#2f5d50",
+   "desc": "The Alpine Insulated Parka is built for Nordic conditions: durable, light and made to last season after season."
+  },
+  {
+   "id": "P006",
+   "name": "Breeze Wind Jacket",
+   "category": "jackets",
+   "price": 303.95,
+   "rating": 3.8,
+   "reviews": 232,
+   "color": "#2f5d50",
+   "desc": "The Breeze Wind Jacket is built for Nordic conditions: durable, light and made to last season after season."
+  },
+  {
+   "id": "P007",
+   "name": "Summit GTX Boot",
+   "category": "footwear",
+   "price": 169.95,
+   "rating": 4.4,
+   "reviews": 67,
+   "color": "#7a4b2a",
+   "desc": "The Summit GTX Boot is built for Nordic conditions: durable, light and made to last season after season."
+  },
+  {
+   "id": "P008",
+   "name": "Trailrunner 3",
+   "category": "footwear",
+   "price": 160.95,
+   "rating": 4.1,
+   "reviews": 230,
+   "color": "#7a4b2a",
+   "desc": "The Trailrunner 3 is built for Nordic conditions: durable, light and made to last season after season."
+  },
+  {
+   "id": "P009",
+   "name": "Scree Approach Shoe",
+   "category": "footwear",
+   "price": 75.95,
+   "rating": 4.7,
+   "reviews": 300,
+   "color": "#7a4b2a",
+   "desc": "The Scree Approach Shoe is built for Nordic conditions: durable, light and made to last season after season."
+  },
+  {
+   "id": "P010",
+   "name": "Moss Hiking Boot",
+   "category": "footwear",
+   "price": 135.95,
+   "rating": 4.3,
+   "reviews": 588,
+   "color": "#7a4b2a",
+   "desc": "The Moss Hiking Boot is built for Nordic conditions: durable, light and made to last season after season."
+  },
+  {
+   "id": "P011",
+   "name": "Tundra Winter Boot",
+   "category": "footwear",
+   "price": 117.95,
+   "rating": 4.7,
+   "reviews": 189,
+   "color": "#7a4b2a",
+   "desc": "The Tundra Winter Boot is built for Nordic conditions: durable, light and made to last season after season."
+  },
+  {
+   "id": "P012",
+   "name": "Camp Slip-On",
+   "category": "footwear",
+   "price": 84.95,
+   "rating": 4.3,
+   "reviews": 196,
+   "color": "#7a4b2a",
+   "desc": "The Camp Slip-On is built for Nordic conditions: durable, light and made to last season after season."
+  },
+  {
+   "id": "P013",
+   "name": "Daypack 22",
+   "category": "backpacks",
+   "price": 98.95,
+   "rating": 4.3,
+   "reviews": 68,
+   "color": "#34495e",
+   "desc": "The Daypack 22 is built for Nordic conditions: durable, light and made to last season after season."
+  },
+  {
+   "id": "P014",
+   "name": "Explorer 45",
+   "category": "backpacks",
+   "price": 128.95,
+   "rating": 4.4,
+   "reviews": 512,
+   "color": "#34495e",
+   "desc": "The Explorer 45 is built for Nordic conditions: durable, light and made to last season after season."
+  },
+  {
+   "id": "P015",
+   "name": "Trek 65 Pack",
+   "category": "backpacks",
+   "price": 147.95,
+   "rating": 4.2,
+   "reviews": 325,
+   "color": "#34495e",
+   "desc": "The Trek 65 Pack is built for Nordic conditions: durable, light and made to last season after season."
+  },
+  {
+   "id": "P016",
+   "name": "Commuter 18",
+   "category": "backpacks",
+   "price": 112.95,
+   "rating": 4.8,
+   "reviews": 374,
+   "color": "#34495e",
+   "desc": "The Commuter 18 is built for Nordic conditions: durable, light and made to last season after season."
+  },
+  {
+   "id": "P017",
+   "name": "Hydration Vest 8",
+   "category": "backpacks",
+   "price": 86.95,
+   "rating": 4.6,
+   "reviews": 253,
+   "color": "#34495e",
+   "desc": "The Hydration Vest 8 is built for Nordic conditions: durable, light and made to last season after season."
+  },
+  {
+   "id": "P018",
+   "name": "Duffel 60",
+   "category": "backpacks",
+   "price": 51.95,
+   "rating": 4.0,
+   "reviews": 510,
+   "color": "#34495e",
+   "desc": "The Duffel 60 is built for Nordic conditions: durable, light and made to last season after season."
+  },
+  {
+   "id": "P019",
+   "name": "Merino Beanie",
+   "category": "accessories",
+   "price": 61.95,
+   "rating": 4.5,
+   "reviews": 298,
+   "color": "#8a6d1f",
+   "desc": "The Merino Beanie is built for Nordic conditions: durable, light and made to last season after season."
+  },
+  {
+   "id": "P020",
+   "name": "Trek Poles Pair",
+   "category": "accessories",
+   "price": 46.95,
+   "rating": 3.7,
+   "reviews": 528,
+   "color": "#8a6d1f",
+   "desc": "The Trek Poles Pair is built for Nordic conditions: durable, light and made to last season after season."
+  },
+  {
+   "id": "P021",
+   "name": "Insulated Bottle 1L",
+   "category": "accessories",
+   "price": 35.95,
+   "rating": 4.6,
+   "reviews": 159,
+   "color": "#8a6d1f",
+   "desc": "The Insulated Bottle 1L is built for Nordic conditions: durable, light and made to last season after season."
+  },
+  {
+   "id": "P022",
+   "name": "Headlamp 400",
+   "category": "accessories",
+   "price": 64.95,
+   "rating": 4.1,
+   "reviews": 83,
+   "color": "#8a6d1f",
+   "desc": "The Headlamp 400 is built for Nordic conditions: durable, light and made to last season after season."
+  },
+  {
+   "id": "P023",
+   "name": "Wool Hiking Socks",
+   "category": "accessories",
+   "price": 55.95,
+   "rating": 4.3,
+   "reviews": 325,
+   "color": "#8a6d1f",
+   "desc": "The Wool Hiking Socks is built for Nordic conditions: durable, light and made to last season after season."
+  },
+  {
+   "id": "P024",
+   "name": "Packable Gloves",
+   "category": "accessories",
+   "price": 30.95,
+   "rating": 4.1,
+   "reviews": 512,
+   "color": "#8a6d1f",
+   "desc": "The Packable Gloves is built for Nordic conditions: durable, light and made to last season after season."
+  }
+ ]
+}

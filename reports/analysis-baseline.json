@@ -1,0 +1,127 @@
+{
+ "kpis": {
+  "all": {
+   "sessions": 3000,
+   "bounce": 0.254,
+   "atc_rate": 0.15766666666666668,
+   "cr": 0.06133333333333333,
+   "orders": 184,
+   "aov": 124.17092391304348,
+   "rpv": 7.615816666666667,
+   "revenue": 22847.45
+  },
+  "mobile": {
+   "sessions": 1892,
+   "bounce": 0.27325581395348836,
+   "atc_rate": 0.13107822410147993,
+   "cr": 0.05021141649048626,
+   "orders": 95,
+   "aov": 127.09631578947368,
+   "rpv": 6.381686046511628,
+   "revenue": 12074.15
+  },
+  "desktop": {
+   "sessions": 1108,
+   "bounce": 0.22111913357400723,
+   "atc_rate": 0.20306859205776173,
+   "cr": 0.08032490974729242,
+   "orders": 89,
+   "aov": 121.04831460674157,
+   "rpv": 9.723194945848375,
+   "revenue": 10773.3
+  }
+ },
+ "funnel": {
+  "all": {
+   "session": 3000,
+   "view_item": 2358,
+   "add_to_cart": 473,
+   "view_cart": 473,
+   "begin_checkout": 360,
+   "checkout_step1": 248,
+   "add_shipping_info": 228,
+   "add_payment_info": 217,
+   "purchase": 184
+  },
+  "mobile": {
+   "session": 1892,
+   "view_item": 1446,
+   "add_to_cart": 248,
+   "view_cart": 248,
+   "begin_checkout": 185,
+   "checkout_step1": 123,
+   "add_shipping_info": 115,
+   "add_payment_info": 110,
+   "purchase": 95
+  },
+  "desktop": {
+   "session": 1108,
+   "view_item": 912,
+   "add_to_cart": 225,
+   "view_cart": 225,
+   "begin_checkout": 175,
+   "checkout_step1": 125,
+   "add_shipping_info": 113,
+   "add_payment_info": 107,
+   "purchase": 89
+  }
+ },
+ "pdp": {
+  "cat/accessories": [
+   1067,
+   128
+  ],
+  "cat/backpacks": [
+   972,
+   120
+  ],
+  "cat/footwear": [
+   921,
+   113
+  ],
+  "cat/jackets": [
+   981,
+   135
+  ],
+  "dev/desktop": [
+   1505,
+   239
+  ],
+  "dev/mobile": [
+   2436,
+   257
+  ],
+  "dev\u00d7cat/desktop/accessories": [
+   402,
+   69
+  ],
+  "dev\u00d7cat/desktop/backpacks": [
+   399,
+   57
+  ],
+  "dev\u00d7cat/desktop/footwear": [
+   350,
+   48
+  ],
+  "dev\u00d7cat/desktop/jackets": [
+   354,
+   65
+  ],
+  "dev\u00d7cat/mobile/accessories": [
+   665,
+   59
+  ],
+  "dev\u00d7cat/mobile/backpacks": [
+   573,
+   63
+  ],
+  "dev\u00d7cat/mobile/footwear": [
+   571,
+   65
+  ],
+  "dev\u00d7cat/mobile/jackets": [
+   627,
+   70
+  ]
+ }
+}

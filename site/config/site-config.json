@@ -1,0 +1,52 @@
+{
+  "_comment": "Implemented (shipped) state of the shop. Winning experiment variants are merged in here by the decision engine.",
+  "ga4_measurement_id": "",
+  "features": {
+    "pdp_gallery_layout": "tall",
+    "pdp_shipping_info": false,
+    "cart_shipping_info": true,
+    "free_shipping_bar": false,
+    "checkout_guest": true,
+    "plp_show_ratings": false,
+    "pdp_show_reviews": false,
+    "sticky_atc_mobile": false,
+    "atc_button_text": "Add to bag",
+    "atc_button_color": "dark",
+    "newsletter_popup": false,
+    "home_hero_cta": "Explore the collection"
+  },
+  "css": "",
+  "changelog": [
+    {
+      "date": "2026-10-28",
+      "experiment": "EXP002",
+      "name": "Show shipping cost and free-shipping threshold in cart",
+      "features": {
+        "cart_shipping_info": true
+      }
+    },
+    {
+      "date": "2026-10-28",
+      "experiment": "EXP003",
+      "name": "Mobile PDP: get Add to bag above the fold",
+      "features": {
+        "pdp_gallery_layout": "compact"
+      },
+      "scope": "mobile"
+    },
+    {
+      "date": "2026-10-28",
+      "experiment": "EXP001",
+      "name": "Guest checkout instead of forced account",
+      "features": {
+        "checkout_guest": true
+      },
+      "scope": "all"
+    }
+  ],
+  "device_features": {
+    "mobile": {
+      "pdp_gallery_layout": "compact"
+    }
+  }
+}

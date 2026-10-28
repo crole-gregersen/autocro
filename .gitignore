@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+node_modules/
+data/events/*.jsonl
+sim/sealed/truth/*.jsonl
+.env
