@@ -99,9 +99,12 @@
     const galleryCount = F.pdp_gallery_layout === 'tall' ? 3 : 1;
     app.innerHTML = `<div class="pdp"><div class="gallery ${F.pdp_gallery_layout}">${Array.from({ length: galleryCount }, (_, i) => img(p, 'img', i, i === 0)).join('')}</div>
       <div class="buy"><h1>${p.name}</h1>${F.pdp_show_reviews ? stars(p) : ''}<div class="price">${eur(p.price)}</div>
-      <p>${p.desc}</p>
+      <p>${F.pdp_long_desc && p.long_desc ? p.long_desc.split(/(?<=\.)\s/)[0] : p.desc}</p>
       ${sized(p) ? `<div class="size-row">${sizes.map(s => `<button data-ac="size" data-size="${s}">${s}</button>`).join('')}</div>` : ''}
       <div id="atcMsg"></div>${atc}
+      ${F.pdp_usps && CAT.usps ? `<ul class="usps" data-ac="usps">${CAT.usps.map(u => `<li><span aria-hidden="true">✓</span> ${u}</li>`).join('')}</ul>` : ''}
+      ${F.pdp_long_desc && p.long_desc ? `<div class="pdp-details"><h2>About this product</h2><p>${p.long_desc}</p></div>` : ''}
+      ${F.pdp_specs && p.specs ? `<div class="pdp-details"><h2>Specifications</h2><dl class="specs">${p.specs.map(s => `<dt>${s.label}</dt><dd>${s.value}</dd>`).join('')}</dl></div>` : ''}
       ${F.pdp_shipping_info ? `<div class="note" data-ac="shipping-note">${shipMsg(cart.subtotal() + p.price)}</div>` : ''}
       ${F.pdp_show_reviews ? `<div class="reviews"><strong>What customers say</strong><p>“Exactly as described, kept me dry on a 3-day trek.” — Verified buyer</p></div>` : ''}
       </div></div>

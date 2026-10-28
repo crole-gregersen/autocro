@@ -43,5 +43,10 @@
   "28 Oct",
   "Full AI image set",
   "74 images live (3 per product + 4 banners + hero), 7.9 MB WebP. QA caught real-brand logos in 3 generated images; those were regenerated. Layout and shopper perception unchanged."
+ ],
+ [
+  "29 Oct",
+  "Editorial PDP update",
+  "Product copy, specs and USPs on all 24 product pages (manual change, logged in changelog). Fresh baseline run R010 queued."
  ]
 ]

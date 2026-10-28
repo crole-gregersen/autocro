@@ -75,3 +75,9 @@ main{max-width:1100px;margin:0 auto;padding:24px}
 @media (max-width:767px){.hero.has-photo{min-height:260px}.hero-bg{object-position:72% center}.cat-banner{height:140px}}
 .photo.packshot{background:#E9E6DE}.photo.packshot img{object-fit:contain}
 .photo.lifestyle{background:#2a2f2c}
+.usps{list-style:none;padding:0;margin:14px 0 4px;font-size:14px;color:#2b3a33}
+.usps li{padding:4px 0}.usps li span{color:#2e7d4f;font-weight:700;margin-right:6px}
+.pdp-details{margin-top:20px;border-top:1px solid #e3e1da;padding-top:14px}
+.pdp-details h2{font-size:16px;margin:0 0 8px}.pdp-details p{margin:0;line-height:1.55;color:#3a403d}
+.specs{display:grid;grid-template-columns:max-content 1fr;gap:6px 18px;margin:0;font-size:14px}
+.specs dt{color:#6b6f6c}.specs dd{margin:0}

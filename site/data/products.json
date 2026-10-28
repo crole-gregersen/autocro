@@ -37,6 +37,29 @@
      "alt": "Storm Shell Jacket chest zip and taped seams with raindrops",
      "kind": "lifestyle"
     }
+   ],
+   "long_desc": "Our most trusted shell for wet, wild days. Three-layer waterproof fabric with fully taped seams keeps sideways rain out, while pit zips dump heat on steep climbs. The helmet-compatible hood adjusts in three places and moves with your head.",
+   "specs": [
+    {
+     "label": "Weight",
+     "value": "420 g (size M)"
+    },
+    {
+     "label": "Fabric",
+     "value": "3-layer recycled nylon, 20,000 mm waterproof"
+    },
+    {
+     "label": "Fit",
+     "value": "Regular, room for a midlayer"
+    },
+    {
+     "label": "Sizes",
+     "value": "XS–XL"
+    },
+    {
+     "label": "Features",
+     "value": "Pit zips, 2 chest pockets, adjustable hood"
+    }
    ]
   },
   {
@@ -64,6 +87,29 @@
      "src": "img/P002-3.webp",
      "alt": "Ridge Down Jacket baffles and zip with frost",
      "kind": "lifestyle"
+    }
+   ],
+   "long_desc": "Warmth without the bulk for cold mornings and long belays. Responsibly sourced 700-fill down sits in stitched baffles, and the water-repellent shell shrugs off light snow. It packs into its own pocket when the sun comes out.",
+   "specs": [
+    {
+     "label": "Weight",
+     "value": "480 g (size M)"
+    },
+    {
+     "label": "Insulation",
+     "value": "700-fill responsibly sourced down"
+    },
+    {
+     "label": "Shell",
+     "value": "Recycled nylon ripstop, water-repellent"
+    },
+    {
+     "label": "Sizes",
+     "value": "XS–XL"
+    },
+    {
+     "label": "Features",
+     "value": "Insulated hood, packs into hand pocket"
     }
    ]
   },
@@ -93,6 +139,29 @@
      "alt": "Trail Softshell collar, zip and chest pocket",
      "kind": "lifestyle"
     }
+   ],
+   "long_desc": "A stretchy, breathable layer for days that can't decide what they want to be. The softshell blocks wind and light showers while moving with you on scrambles. Clean styling means it works just as well in town.",
+   "specs": [
+    {
+     "label": "Weight",
+     "value": "390 g (size M)"
+    },
+    {
+     "label": "Fabric",
+     "value": "4-way stretch softshell, brushed inner face"
+    },
+    {
+     "label": "Fit",
+     "value": "Athletic"
+    },
+    {
+     "label": "Sizes",
+     "value": "XS–XL"
+    },
+    {
+     "label": "Features",
+     "value": "Chest pocket, 2 hand pockets, stand-up collar"
+    }
    ]
   },
   {
@@ -120,6 +189,29 @@
      "src": "img/P004-3.webp",
      "alt": "Fjord Rain Jacket flap pocket and snap button in the rain",
      "kind": "lifestyle"
+    }
+   ],
+   "long_desc": "A classic rain jacket built for fjord-side weather. The coated fabric is fully waterproof, the peaked hood keeps rain off your face, and big flap pockets hold maps and gloves. Simple, tough and made to be worn for years.",
+   "specs": [
+    {
+     "label": "Weight",
+     "value": "510 g (size M)"
+    },
+    {
+     "label": "Fabric",
+     "value": "PU-coated recycled polyester, 10,000 mm waterproof"
+    },
+    {
+     "label": "Fit",
+     "value": "Relaxed, hip length"
+    },
+    {
+     "label": "Sizes",
+     "value": "XS–XL"
+    },
+    {
+     "label": "Features",
+     "value": "Storm flap, 2 flap pockets, drawcord hem"
     }
    ]
   },
@@ -149,6 +241,29 @@
      "alt": "Alpine Insulated Parka fleece-lined hood and storm flap",
      "kind": "lifestyle"
     }
+   ],
+   "long_desc": "Our warmest jacket for real Nordic winters. A thigh-length cut, synthetic insulation that stays warm when damp and a fleece-lined hood keep the cold out on long, dark days. Comfortable down to around -25°C when active.",
+   "specs": [
+    {
+     "label": "Weight",
+     "value": "1,150 g (size M)"
+    },
+    {
+     "label": "Insulation",
+     "value": "200 g/m² recycled synthetic fill"
+    },
+    {
+     "label": "Shell",
+     "value": "Water-repellent recycled polyester"
+    },
+    {
+     "label": "Sizes",
+     "value": "XS–XL"
+    },
+    {
+     "label": "Features",
+     "value": "Two-way zip, 4 pockets, adjustable waist"
+    }
    ]
   },
   {
@@ -176,6 +291,29 @@
      "src": "img/P006-3.webp",
      "alt": "Breeze Wind Jacket packed into its pouch in an open hand",
      "kind": "lifestyle"
+    }
+   ],
+   "long_desc": "An ultralight windbreaker you'll forget is in your pack until you need it. The thin ripstop cuts the wind on exposed ridges and coastal paths, and the whole jacket stuffs into its own chest pocket. Ideal for running and fast hiking.",
+   "specs": [
+    {
+     "label": "Weight",
+     "value": "110 g (size M)"
+    },
+    {
+     "label": "Fabric",
+     "value": "Ultralight 20D recycled nylon ripstop"
+    },
+    {
+     "label": "Fit",
+     "value": "Regular, half-zip anorak"
+    },
+    {
+     "label": "Sizes",
+     "value": "XS–XL"
+    },
+    {
+     "label": "Features",
+     "value": "Packs into kangaroo pocket, clip loop"
     }
    ]
   },
@@ -206,6 +344,29 @@
      "kind": "packshot",
      "bg": "#e3e0d5"
     }
+   ],
+   "long_desc": "A proper mountain boot for rough trails and heavy packs. Waxed nubuck leather and a waterproof membrane keep feet dry, while the stiff lugged sole grips on wet rock and scree. Built to be resoled, not replaced.",
+   "specs": [
+    {
+     "label": "Weight",
+     "value": "1,380 g per pair (EU 42)"
+    },
+    {
+     "label": "Upper",
+     "value": "Waxed nubuck leather, rubber rand"
+    },
+    {
+     "label": "Lining",
+     "value": "Waterproof, breathable membrane"
+    },
+    {
+     "label": "Sizes",
+     "value": "EU 40–45"
+    },
+    {
+     "label": "Sole",
+     "value": "Deep-lug rubber, resoleable"
+    }
    ]
   },
   {
@@ -234,6 +395,29 @@
      "alt": "Trailrunner 3 lugged outsole",
      "kind": "packshot",
      "bg": "#dedcd6"
+    }
+   ],
+   "long_desc": "A grippy, cushioned trail shoe for fast days in the hills. Aggressive 5 mm lugs bite into mud and loose ground, the breathable mesh dries quickly, and quick-pull laces mean no stopping to re-tie. Light enough for long runs.",
+   "specs": [
+    {
+     "label": "Weight",
+     "value": "290 g per shoe (EU 42)"
+    },
+    {
+     "label": "Upper",
+     "value": "Engineered mesh with TPU overlays"
+    },
+    {
+     "label": "Drop",
+     "value": "8 mm"
+    },
+    {
+     "label": "Sizes",
+     "value": "EU 40–45"
+    },
+    {
+     "label": "Sole",
+     "value": "5 mm multidirectional lugs"
     }
    ]
   },
@@ -264,6 +448,29 @@
      "kind": "packshot",
      "bg": "#e0ddd5"
     }
+   ],
+   "long_desc": "Made for the walk-in and the scramble. A sticky rubber toe and climbing-zone sole give confidence on slabs, while lace-to-toe lacing locks the fit for technical moves. Durable suede handles sharp granite.",
+   "specs": [
+    {
+     "label": "Weight",
+     "value": "380 g per shoe (EU 42)"
+    },
+    {
+     "label": "Upper",
+     "value": "Suede with rubber toe cap"
+    },
+    {
+     "label": "Sole",
+     "value": "Sticky rubber with climbing zone"
+    },
+    {
+     "label": "Sizes",
+     "value": "EU 40–45"
+    },
+    {
+     "label": "Lacing",
+     "value": "Lace-to-toe for precise fit"
+    }
    ]
   },
   {
@@ -292,6 +499,29 @@
      "alt": "Moss Hiking Boot eyelets, collar and heel reinforcement",
      "kind": "packshot",
      "bg": "#d0cdc2"
+    }
+   ],
+   "long_desc": "An all-round hiking boot that feels broken in from day one. The suede and textile upper breathes on warm days, the waterproof lining handles boggy trails, and the cushioned midsole keeps long days comfortable.",
+   "specs": [
+    {
+     "label": "Weight",
+     "value": "1,120 g per pair (EU 42)"
+    },
+    {
+     "label": "Upper",
+     "value": "Suede and recycled textile"
+    },
+    {
+     "label": "Lining",
+     "value": "Waterproof, breathable membrane"
+    },
+    {
+     "label": "Sizes",
+     "value": "EU 40–45"
+    },
+    {
+     "label": "Sole",
+     "value": "Medium-lug rubber, EVA midsole"
     }
    ]
   },
@@ -322,6 +552,29 @@
      "kind": "packshot",
      "bg": "#cfcac0"
     }
+   ],
+   "long_desc": "Keeps feet warm in deep snow and slush. A waterproof leather upper, rubber lower shell and wool-lined cuff seal out cold, while the deep winter outsole grips on packed snow. Comfortable down to around -30°C.",
+   "specs": [
+    {
+     "label": "Weight",
+     "value": "1,640 g per pair (EU 42)"
+    },
+    {
+     "label": "Upper",
+     "value": "Waterproof leather, rubber shell"
+    },
+    {
+     "label": "Lining",
+     "value": "Felted wool, 200 g insulation"
+    },
+    {
+     "label": "Sizes",
+     "value": "EU 40–45"
+    },
+    {
+     "label": "Sole",
+     "value": "Deep-lug winter rubber"
+    }
    ]
   },
   {
@@ -351,6 +604,29 @@
      "kind": "packshot",
      "bg": "#ccc5b6"
     }
+   ],
+   "long_desc": "Warm, quilted camp shoes for evenings by the fire. Fold the heel down to slip them on and off at the tent, or wear them up for a short walk to the lake. They pack flat into their own stuff sack.",
+   "specs": [
+    {
+     "label": "Weight",
+     "value": "260 g per pair (EU 42)"
+    },
+    {
+     "label": "Upper",
+     "value": "Quilted ripstop nylon"
+    },
+    {
+     "label": "Lining",
+     "value": "Recycled fleece"
+    },
+    {
+     "label": "Sizes",
+     "value": "EU 40–45"
+    },
+    {
+     "label": "Sole",
+     "value": "Thin rubber, packs flat"
+    }
    ]
   },
   {
@@ -378,6 +654,29 @@
      "src": "img/P013-3.webp",
      "alt": "Daypack 22 opened to show the sleeve and organiser pocket",
      "kind": "lifestyle"
+    }
+   ],
+   "long_desc": "A daypack that does everything well. The curved zip opens wide, a padded sleeve takes a laptop or water bladder, and a stretch mesh front pocket holds a wet layer. Comfortable from office commute to summit lunch.",
+   "specs": [
+    {
+     "label": "Volume",
+     "value": "22 litres"
+    },
+    {
+     "label": "Weight",
+     "value": "720 g"
+    },
+    {
+     "label": "Fabric",
+     "value": "Recycled ripstop, water-repellent"
+    },
+    {
+     "label": "Dimensions",
+     "value": "48 × 30 × 20 cm"
+    },
+    {
+     "label": "Features",
+     "value": "Laptop/bladder sleeve, 2 bottle pockets"
     }
    ]
   },
@@ -408,6 +707,29 @@
      "kind": "packshot",
      "bg": "#dddad2"
     }
+   ],
+   "long_desc": "A versatile trekking pack for long weekends and hut-to-hut trips. The ventilated back panel keeps you cool, the padded hip belt carries the load, and the top lid keeps essentials close. Plenty of attachment points for poles and axe.",
+   "specs": [
+    {
+     "label": "Volume",
+     "value": "45 litres"
+    },
+    {
+     "label": "Weight",
+     "value": "1,450 g"
+    },
+    {
+     "label": "Fabric",
+     "value": "Recycled ripstop nylon"
+    },
+    {
+     "label": "Dimensions",
+     "value": "68 × 32 × 26 cm"
+    },
+    {
+     "label": "Features",
+     "value": "Ventilated back, hip-belt pockets, ice-axe loop"
+    }
    ]
   },
   {
@@ -435,6 +757,29 @@
      "src": "img/P015-3.webp",
      "alt": "Trek 65 Pack front panel open with gear packed inside",
      "kind": "lifestyle"
+    }
+   ],
+   "long_desc": "Our expedition pack for multi-day treks above the treeline. A floating lid, front U-zip access and a separate sleeping-bag compartment make packing simple, and the adjustable harness carries heavy loads comfortably.",
+   "specs": [
+    {
+     "label": "Volume",
+     "value": "65 litres"
+    },
+    {
+     "label": "Weight",
+     "value": "2,100 g"
+    },
+    {
+     "label": "Fabric",
+     "value": "Heavy-duty recycled ripstop"
+    },
+    {
+     "label": "Dimensions",
+     "value": "78 × 35 × 30 cm"
+    },
+    {
+     "label": "Features",
+     "value": "Front U-zip, sleeping-bag compartment, adjustable back"
     }
    ]
   },
@@ -464,6 +809,29 @@
      "alt": "Commuter 18 leather strap and brass buckle on waxed canvas",
      "kind": "lifestyle"
     }
+   ],
+   "long_desc": "A clean, roll-top backpack for city days and short trips. Waxed canvas ages beautifully and keeps the rain off, the leather strap and brass buckle close the top securely, and a slim padded sleeve protects your laptop.",
+   "specs": [
+    {
+     "label": "Volume",
+     "value": "18 litres (expandable)"
+    },
+    {
+     "label": "Weight",
+     "value": "890 g"
+    },
+    {
+     "label": "Fabric",
+     "value": "Waxed cotton canvas, leather trim"
+    },
+    {
+     "label": "Dimensions",
+     "value": "45 × 29 × 12 cm"
+    },
+    {
+     "label": "Features",
+     "value": "Roll-top, 15\" laptop sleeve"
+    }
    ]
   },
   {
@@ -491,6 +859,29 @@
      "src": "img/P017-3.webp",
      "alt": "Hydration Vest 8 flat-lay with flasks and running kit",
      "kind": "lifestyle"
+    }
+   ],
+   "long_desc": "A close-fitting running vest that carries everything without bouncing. Two soft flasks sit in easy reach on your chest, stretch pockets hold gels and a phone, and the back pocket swallows a jacket. Comfortable for hours on the trail.",
+   "specs": [
+    {
+     "label": "Volume",
+     "value": "8 litres"
+    },
+    {
+     "label": "Weight",
+     "value": "240 g (without flasks)"
+    },
+    {
+     "label": "Fabric",
+     "value": "Stretch mesh, recycled"
+    },
+    {
+     "label": "Sizes",
+     "value": "S/M, L/XL"
+    },
+    {
+     "label": "Includes",
+     "value": "2 × 500 ml soft flasks"
     }
    ]
   },
@@ -521,6 +912,29 @@
      "kind": "packshot",
      "bg": "#dcd9cc"
     }
+   ],
+   "long_desc": "A tough, weatherproof duffel for car trips, boats and base camps. The coated fabric shrugs off rain and dirt, the wide D-zip makes packing easy, and the padded strap turns it into a carry bag when needed.",
+   "specs": [
+    {
+     "label": "Volume",
+     "value": "60 litres"
+    },
+    {
+     "label": "Weight",
+     "value": "1,250 g"
+    },
+    {
+     "label": "Fabric",
+     "value": "TPU-coated recycled polyester"
+    },
+    {
+     "label": "Dimensions",
+     "value": "65 × 36 × 32 cm"
+    },
+    {
+     "label": "Features",
+     "value": "D-zip lid, removable strap, end pocket"
+    }
    ]
   },
   {
@@ -548,6 +962,29 @@
      "src": "img/P019-3.webp",
      "alt": "Merino Beanie rib knit close-up on a wooden bench",
      "kind": "lifestyle"
+    }
+   ],
+   "long_desc": "A soft merino beanie that stays warm and doesn't itch. The fine rib knit stretches to fit, and the folded cuff gives double warmth over the ears. Naturally odour-resistant, so it works for multi-day trips.",
+   "specs": [
+    {
+     "label": "Weight",
+     "value": "65 g"
+    },
+    {
+     "label": "Material",
+     "value": "100% merino wool, 18.5 micron"
+    },
+    {
+     "label": "Size",
+     "value": "One size"
+    },
+    {
+     "label": "Care",
+     "value": "Hand wash cold"
+    },
+    {
+     "label": "Fit",
+     "value": "Slightly slouchy, folded cuff"
     }
    ]
   },
@@ -578,6 +1015,29 @@
      "kind": "packshot",
      "bg": "#ccc6bb"
     }
+   ],
+   "long_desc": "Light, stiff carbon poles that save your knees on long descents. The natural cork grips mould to your hands, the flick-lock clamps adjust in seconds with gloves on, and they pack down small for travel.",
+   "specs": [
+    {
+     "label": "Weight",
+     "value": "460 g per pair"
+    },
+    {
+     "label": "Material",
+     "value": "Carbon fibre shafts, cork grips"
+    },
+    {
+     "label": "Length",
+     "value": "62–135 cm adjustable"
+    },
+    {
+     "label": "Packed length",
+     "value": "62 cm"
+    },
+    {
+     "label": "Includes",
+     "value": "Trekking and snow baskets"
+    }
    ]
   },
   {
@@ -607,6 +1067,29 @@
      "kind": "packshot",
      "bg": "#dcd8ce"
     }
+   ],
+   "long_desc": "Keeps coffee hot through a cold day, or water cold through a hot one. Double-wall vacuum insulation, a leak-proof cap and a carry loop that clips onto a pack. The tough powder coat doesn't mind being dropped.",
+   "specs": [
+    {
+     "label": "Capacity",
+     "value": "1 litre"
+    },
+    {
+     "label": "Weight",
+     "value": "480 g"
+    },
+    {
+     "label": "Material",
+     "value": "18/8 stainless steel, powder-coated"
+    },
+    {
+     "label": "Insulation",
+     "value": "Hot 24 h, cold 48 h"
+    },
+    {
+     "label": "Dimensions",
+     "value": "Ø 9 × 27 cm"
+    }
    ]
   },
   {
@@ -634,6 +1117,29 @@
      "src": "img/P022-3.webp",
      "alt": "Headlamp 400 with main beam and red LED lit at dusk",
      "kind": "lifestyle"
+    }
+   ],
+   "long_desc": "A bright, compact headlamp for camp, early starts and night trails. The main beam reaches far down the path, the red mode keeps your night vision, and the rechargeable battery lasts all weekend on low.",
+   "specs": [
+    {
+     "label": "Output",
+     "value": "Up to 400 lumens"
+    },
+    {
+     "label": "Weight",
+     "value": "78 g"
+    },
+    {
+     "label": "Battery",
+     "value": "Rechargeable, USB-C"
+    },
+    {
+     "label": "Burn time",
+     "value": "5 h high, 60 h low"
+    },
+    {
+     "label": "Water resistance",
+     "value": "IPX4"
     }
    ]
   },
@@ -664,6 +1170,29 @@
      "kind": "packshot",
      "bg": "#d4d0c9"
     }
+   ],
+   "long_desc": "Merino socks with cushioning exactly where you need it. The terry-loop footbed softens long descents, the reinforced heel and toe last for seasons, and the wool keeps feet warm when wet and fresh for days.",
+   "specs": [
+    {
+     "label": "Material",
+     "value": "68% merino, 30% nylon, 2% elastane"
+    },
+    {
+     "label": "Height",
+     "value": "Mid-calf"
+    },
+    {
+     "label": "Cushioning",
+     "value": "Full terry footbed"
+    },
+    {
+     "label": "Sizes",
+     "value": "S (36–38), M (39–42), L (43–46)"
+    },
+    {
+     "label": "Weight",
+     "value": "Medium"
+    }
    ]
   },
   {
@@ -693,6 +1222,29 @@
      "kind": "packshot",
      "bg": "#e5e1da"
     }
+   ],
+   "long_desc": "Light, windproof gloves for shoulder seasons and high-output days. The grippy palm holds poles and rock, touchscreen fingertips let you check the map without taking them off, and they pack into a jacket pocket.",
+   "specs": [
+    {
+     "label": "Weight",
+     "value": "55 g per pair"
+    },
+    {
+     "label": "Material",
+     "value": "Stretch softshell, silicone grip palm"
+    },
+    {
+     "label": "Sizes",
+     "value": "XS–XL"
+    },
+    {
+     "label": "Features",
+     "value": "Touchscreen fingertips, pull loop"
+    },
+    {
+     "label": "Use",
+     "value": "Windproof, water-repellent"
+    }
    ]
   }
  ],
@@ -717,5 +1269,10 @@
  "hero_image": {
   "src": "img/hero-v2.webp",
   "alt": "Hiker in a green shell jacket above a misty fjord"
- }
+ },
+ "usps": [
+  "Free shipping on orders over €100",
+  "30-day free returns",
+  "Fast delivery: 1–2 working days"
+ ]
 }

@@ -13,7 +13,10 @@
     "atc_button_text": "Add to bag",
     "atc_button_color": "dark",
     "newsletter_popup": false,
-    "home_hero_cta": "Explore the collection"
+    "home_hero_cta": "Explore the collection",
+    "pdp_long_desc": true,
+    "pdp_specs": true,
+    "pdp_usps": true
   },
   "css": "",
   "changelog": [
@@ -40,6 +43,17 @@
       "name": "Guest checkout instead of forced account",
       "features": {
         "checkout_guest": true
+      },
+      "scope": "all"
+    },
+    {
+      "date": "2026-10-29",
+      "experiment": "manual",
+      "name": "Editorial: product copy, specs and USPs on PDP (CROle request)",
+      "features": {
+        "pdp_long_desc": true,
+        "pdp_specs": true,
+        "pdp_usps": true
       },
       "scope": "all"
     }
