@@ -25,6 +25,7 @@ const UA = {
 };
 const CATS = ['jackets', 'footwear', 'backpacks', 'accessories'];
 const gaAudit = [];
+const DWELL = +(args['dwell-ms'] || 0);
 const SEARCH_TERMS = ['jacket', 'boot', 'pack', 'socks', 'rain', 'gloves', 'tent', 'merino'];
 
 async function session(browser, idx) {
@@ -50,6 +51,7 @@ async function session(browser, idx) {
   const outcome = { purchased: false, exit: null };
   const obs = {};
   const look = async () => {
+    if (DWELL) await page.waitForTimeout(Math.round(DWELL * (0.4 + 1.2 * rng())));  // human-like time on page
     const p = await page.evaluate(perceiveFn);
     seen.shippingKnownCost ||= p.shippingKnownCost; seen.freeShippingThresholdSeen ||= p.freeShippingThresholdSeen;
     if (p.route === 'c' && p.socialProof) seen.socialProofPlp = true;
