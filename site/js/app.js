@@ -5,7 +5,7 @@
   const T = window.AC.tracking, E = window.AC.experiments;
   const { cfg, features: F } = await E.load();
   T.initGA4(cfg.ga4_measurement_id);
-  const CAT = await fetch('data/products.json').then(r => r.json());
+  const CAT = await fetch('data/products.json?v=' + Date.now()).then(r => r.json());
   const P = Object.fromEntries(CAT.products.map(p => [p.id, p]));
   const SHIP = CAT.shipping;
   const app = document.getElementById('app');
