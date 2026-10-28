@@ -16,7 +16,7 @@ DECISIONS = [json.loads(l) for l in open(os.path.join(ROOT, "data/decisions.json
 ORIGINAL = {"pdp_gallery_layout": "tall", "pdp_shipping_info": False, "cart_shipping_info": False, "free_shipping_bar": False,
             "checkout_guest": False, "plp_show_ratings": False, "pdp_show_reviews": False, "sticky_atc_mobile": False,
             "atc_button_text": "Add to bag", "atc_button_color": "dark", "newsletter_popup": False, "home_hero_cta": "Explore the collection"}
-LOCAL_RUNS = {"R001", "R002", "R003", "R004"}  # ran in the Claude sandbox before the live setup
+LOCAL_RUNS = set()  # all runs since the fresh start run in GitHub Actions
 
 # ---------------- data ----------------
 evs = load_events()
@@ -50,11 +50,12 @@ for rid in sorted(by_run):
 
 total_sessions = sum(r["n"] for r in runs); total_events = sum(r["events"] for r in runs)
 total_orders = sum(r["orders"] for r in runs)
-base_runs = [r for r in runs if r["id"] in ("R001", "R002")]
-baseline = kpi([s for r in base_runs for s in by_run[r["id"]]])
-full_clean = [r for r in runs if r["kind"] == "baseline" and r["id"] not in ("R001", "R002")]
-latest = full_clean[-1] if full_clean else runs[-1]
-latest_ss = by_run[latest["id"]]
+# baseline = first full baseline run since the fresh start; "now" = latest full baseline run
+full_clean = [r for r in runs if r["kind"] == "baseline"]
+base_runs = full_clean[:1]
+baseline = kpi([s for r in base_runs for s in by_run[r["id"]]]) if base_runs else None
+latest = full_clean[-1] if full_clean else (runs[-1] if runs else None)
+latest_ss = by_run[latest["id"]] if latest else []
 ga_runs = [r for r in runs if r["ga"] is not None]
 ga_latest = ga_runs[-1] if ga_runs else None
 
@@ -64,7 +65,7 @@ def funnel(ss):
     return [sum(st in s["steps"] for s in ss) / n for st in FUNNEL]
 
 
-f_base = funnel([s for r in base_runs for s in by_run[r["id"]]]); f_now = funnel(latest_ss)
+f_base = funnel([s for r in base_runs for s in by_run[r["id"]]]) if base_runs else None; f_now = funnel(latest_ss) if latest_ss else None
 
 
 # experiment stats (same method as analysis/evaluate.py)
@@ -120,6 +121,8 @@ ROUTE_PATH = {"p": "#/p/P001", "cart": "#/cart", "checkout": "#/checkout", "c": 
 
 # ---------------- charts (inline SVG) ----------------
 def cr_chart():
+    if not runs:
+        return '<p class="empty">No traffic yet. The first baseline run (cycle step 1) will appear here.</p>'
     W, H, L, R, T, B = 760, 260, 48, 16, 18, 46
     pts = runs; n = len(pts)
     ymax = max(0.16, max(r["cr"] for r in pts) * 1.15)
@@ -129,16 +132,11 @@ def cr_chart():
     for t in [0, 0.04, 0.08, 0.12, 0.16, 0.20]:
         if t > ymax: break
         g.append(f'<line x1="{L}" x2="{W - R}" y1="{y(t):.1f}" y2="{y(t):.1f}" class="grid"/><text x="{L - 8}" y="{y(t) + 4:.1f}" class="tick" text-anchor="end">{int(t * 100)}%</text>')
-    # ship markers: between last run before decision and first after
-    ships = [d for d in DECISIONS if d["decision"] == "ship"]
-    if ships:
-        i = next((k for k, r in enumerate(pts) if r["id"] == "R005"), None)
-        if i:
-            xm = (x(i - 1) + x(i)) / 2
-            g.append(f'<line x1="{xm:.1f}" x2="{xm:.1f}" y1="{T}" y2="{H - B}" class="marker"/><text x="{xm + 6:.1f}" y="{T + 10}" class="ann">3 tests shipped · EXP001–003</text>')
-        i3 = next((k for k, r in enumerate(pts) if r["id"] == "R003"), None)
-        if i3:
-            g.append(f'<rect x="{x(i3) - 14:.1f}" y="{T}" width="{x(i3 + 1) - x(i3) + 28:.1f}" height="{H - T - B}" class="band"/><text x="{x(i3) - 10:.1f}" y="{H - B - 6}" class="ann">A/B tests running</text>')
+    # shade runs where A/B tests were live
+    for k, r in enumerate(pts):
+        if r["kind"] == "experiment":
+            half = (x(1) - x(0)) / 2 if n > 1 else 20
+            g.append(f'<rect x="{x(k) - half:.1f}" y="{T}" width="{2 * half:.1f}" height="{H - T - B}" class="band"/><text x="{x(k):.1f}" y="{T + 10}" class="ann" text-anchor="middle">{esc(", ".join(r["exps"]))}</text>')
     path = " ".join(f"{'M' if i == 0 else 'L'}{x(i):.1f},{y(r['cr']):.1f}" for i, r in enumerate(pts))
     g.append(f'<path d="{path}" class="line"/>')
     for i, r in enumerate(pts):
@@ -155,11 +153,13 @@ def cr_chart():
 
 
 def funnel_chart():
+    if not f_now:
+        return '<p class="empty">No traffic yet.</p>'
     labels = ["Sessions", "Viewed product", "Added to bag", "Viewed bag", "Began checkout", "Checkout step 1", "Delivery info", "Payment info", "Purchase"]
     W, rowh, L, R, T = 470, 36, 112, 52, 34
     H = T + rowh * len(labels) + 10
     sx = lambda v: (W - L - R) * v
-    g = [f'<g class="legend"><rect x="{L}" y="6" width="12" height="12" rx="3" class="s1"/><text x="{L + 18}" y="16" class="tick">Original (R001–R002)</text>'
+    g = [f'<g class="legend"><rect x="{L}" y="6" width="12" height="12" rx="3" class="s1"/><text x="{L + 18}" y="16" class="tick">Baseline ({base_runs[0]["id"]})</text>'
          f'<rect x="{L + 150}" y="6" width="12" height="12" rx="3" class="s2"/><text x="{L + 168}" y="16" class="tick">Current ({latest["id"]})</text></g>']
     for i, (lab, a, b) in enumerate(zip(labels, f_base, f_now)):
         yy = T + i * rowh
@@ -186,8 +186,14 @@ def ci_bar(row, shipped_winner):
 
 # ---------------- sections ----------------
 def tiles():
-    up = latest["cr"] / baseline["cr"] - 1
-    rpv_up = latest["rpv"] / baseline["rpv"] - 1
+    if not latest:
+        n_exp = len(REG["experiments"])
+        T0 = [("Conversion rate", "–", "no traffic yet", "fresh start"), ("Revenue per visitor", "–", "no traffic yet", "simulated EUR"),
+              ("Experiments", str(n_exp), "registry reset (cycle 0 archived)", "decided by rules R1–R7"), ("Simulated shoppers", "0", "0 traffic runs", ""),
+              ("GA4 delivery", "–", "measured on the next run", "own event log is source of truth")]
+        return "".join(f'<div class="tile"><div class="tl">{a}</div><div class="tv">{b}</div><div class="ts">{c}</div><div class="tm">{d}</div></div>' for a, b, c, d in T0)
+    up = latest["cr"] / baseline["cr"] - 1 if baseline and baseline["cr"] else 0
+    rpv_up = latest["rpv"] / baseline["rpv"] - 1 if baseline and baseline["rpv"] else 0
     n_ship = sum(e["status"] == "shipped" for e in REG["experiments"]); n_run = sum(e["status"] == "running" for e in REG["experiments"])
     n_stop = sum(e["status"] in ("stopped", "invalid") for e in REG["experiments"])
     T = [("Conversion rate now", pc(latest["cr"]), f"was {pc(baseline['cr'])} at baseline · <b class='up'>{sgn(up)}</b>", f"{latest['id']}, {latest['n']:,} sessions"),
@@ -269,9 +275,9 @@ def timeline_html():
 
 rules_kv, rules_list = rules_html()
 running = [e for e in REG["experiments"] if e["status"] == "running"]
-last_run = runs[-1]
+last_run = runs[-1] if runs else None
 queue_txt = f'{QUEUE.get("run_id")} · {QUEUE.get("sessions"):,} sessions' if QUEUE.get("run_id") else "none"
-engine_state = ("Testing: " + ", ".join(e["id"] for e in running)) if running else "Idle — between cycles (next: cycle 2 ideation)"
+engine_state = ("Testing: " + ", ".join(e["id"] for e in running)) if running else "Fresh start — step-by-step mode, waiting for CROle to start step 1 (baseline traffic)"
 
 HTML = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>AutoCRO — engine room</title>
@@ -323,13 +329,14 @@ a{{color:var(--s1)}} code{{font-family:ui-monospace,Menlo,monospace;font-size:12
 ol.rules{{font-size:13px;color:var(--ink2);padding-left:18px;margin:8px 0 0}} ol.rules li{{margin:3px 0}}
 ul.tline{{list-style:none;padding:0;margin:0;font-size:13px}} ul.tline li{{display:grid;grid-template-columns:60px 170px 1fr;gap:10px;padding:7px 0;border-bottom:1px solid var(--grid)}} .td{{color:var(--muted)}}
 @media (max-width:700px){{ul.tline li{{grid-template-columns:1fr}}}}
+p.empty{{color:var(--muted);font-size:14px;padding:30px 0;text-align:center}}
 footer{{font-size:12px;color:var(--muted);margin-top:24px}}
 </style></head><body><div class="viz-root"><div class="wrap">
 <header><h1>AutoCRO — engine room<small>Self-optimising webshop proof of concept · Fjeldspor (fictional) · built and operated by Claude for IMPACT Commerce</small></h1>
 <div class="links"><a href="{SITE}" target="_blank" rel="noopener">Live shop ↗</a><a href="{REPO}" target="_blank" rel="noopener">Repo ↗</a><a href="{REPO}/actions" target="_blank" rel="noopener">Traffic runs ↗</a><a href="{GA4}" target="_blank" rel="noopener">GA4 ↗</a></div></header>
 
 <div class="state"><span><span class="dotlive" aria-hidden="true"></span><b>Engine state:</b> {esc(engine_state)}</span>
-<span><b>Last traffic run:</b> {last_run["id"]} · {dt(last_run["end"])}</span><span><b>Last queued:</b> {esc(queue_txt)}</span>
+<span><b>Last traffic run:</b> {(last_run["id"] + " · " + dt(last_run["end"])) if last_run else "none since fresh start"}</span><span><b>Last queued:</b> {esc(queue_txt)}</span>
 <span><b>Tests decided:</b> {sum(e["status"] != "running" for e in REG["experiments"])}</span><span class="muted">Dashboard built {now}</span></div>
 
 <div class="tiles">{tiles()}</div>

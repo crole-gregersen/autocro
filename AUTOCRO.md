@@ -7,8 +7,14 @@ hypotheses, builds A/B test variants, runs them on simulated traffic, and ships 
 ## Communication with CROle
 Replies are short: 3–5 bullets showing what works now (plus a link). No long explanations unless asked; flag only blockers or decisions needed.
 
-## Current mode: BUILD (since 29 Oct)
-CROle is building the baseline shop. Do NOT queue traffic runs (`sim/queue.json`), start experiments or run cycles until CROle explicitly says go. Shop changes are logged as `experiment: manual` in the site-config changelog.
+## Current mode: BUILD + STEP-BY-STEP (since 29 Oct)
+- CROle is building the baseline shop. Do NOT queue traffic runs, start experiments or run cycles until CROle says go.
+- Cycle 0 (EXP001–003, runs R001–R010, decision log, backlog, reports) is archived in `archive/cycle0/`. Its shipped
+  changes (guest checkout, cart shipping info, compact mobile gallery) remain part of the shop. Registry is empty.
+- When cycles run: ONE STEP PER GO from CROle, then stop and show what was collected (3–5 bullets + link), and name the next step:
+  1. Baseline traffic run → 2. Analyse → 3. Hypotheses (backlog) → 4. Build variants + QA (preview links) →
+  5. Test traffic run(s) → 6. Evaluate & decide (ship/stop) → back to 1/2.
+  CROle may later decide to automate some or all steps.
 
 ## Repository map
 | Path | What |
