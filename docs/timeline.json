@@ -68,5 +68,10 @@
   "29 Oct",
   "Fresh start",
   "Cycle 0 tests, runs, decisions and backlog archived to archive/cycle0/. Shipped improvements stay part of the shop. Next cycles run step by step."
+ ],
+ [
+  "29 Oct",
+  "Step 1 · Baseline data",
+  "Reused run R005 (3,000 simulated shoppers on the live shop, 28 Oct) as the baseline for the fresh start. Predates reviews, offers, mini cart and PDP copy."
  ]
 ]
