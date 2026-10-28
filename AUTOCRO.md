@@ -4,6 +4,9 @@ AutoCRO is a proof of concept for a **self-optimising website**, built and opera
 A fictional webshop, **Fjeldspor**, is tracked with GA4-shaped ecommerce events. Claude analyses behaviour, writes
 hypotheses, builds A/B test variants, runs them on simulated traffic, and ships or kills them by fixed rules.
 
+## Communication with CROle
+Replies are short: 3–5 bullets showing what works now (plus a link). No long explanations unless asked; flag only blockers or decisions needed.
+
 ## Repository map
 | Path | What |
 |---|---|
