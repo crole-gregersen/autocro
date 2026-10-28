@@ -61,3 +61,17 @@ main{max-width:1100px;margin:0 auto;padding:24px}
   .hero{padding:36px 20px}
   .hero h1{font-size:26px}
 }
+
+.photo{position:relative;overflow:hidden}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.card .photo img{object-fit:cover}
+.hero{position:relative;overflow:hidden}
+.hero.has-photo{background:#1d3b33;min-height:320px;display:flex;align-items:center}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% center}
+.hero.has-photo::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,20,17,.72) 0%,rgba(10,20,17,.35) 45%,rgba(10,20,17,0) 70%);z-index:1}
+.hero-copy{position:relative;z-index:2;max-width:520px}
+.cat-banner{height:220px;border-radius:8px;overflow:hidden;margin-bottom:18px;background:#d9d6cc}
+.cat-banner img{width:100%;height:100%;object-fit:cover;display:block}
+@media (max-width:767px){.hero.has-photo{min-height:260px}.hero-bg{object-position:72% center}.cat-banner{height:140px}}
+.photo.packshot{background:#E9E6DE}.photo.packshot img{object-fit:contain}
+.photo.lifestyle{background:#2a2f2c}

@@ -25,7 +25,12 @@
   const shipping = sub => (sub >= SHIP.free_over || sub === 0 ? 0 : SHIP.flat);
   cart.set(cart.get());
 
-  const img = (p, cls = 'img') => `<div class="${cls}" style="background:linear-gradient(160deg,${p.color},#111c18)"></div>`;
+  const img = (p, cls = 'img', i = 0, eager = false) => {
+    const im = (p.images || [])[i % Math.max((p.images || []).length, 1)];
+    return im
+      ? `<div class="${cls} photo ${im.kind || ''}"><img src="${im.src}" alt="${im.alt}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async"></div>`
+      : `<div class="${cls}" style="background:linear-gradient(160deg,${p.color},#111c18)"></div>`;
+  };
   const stars = p => `<div class="rating">★ ${p.rating} (${p.reviews} reviews)</div>`;
   const btnClass = { dark: 'btn-dark', green: 'btn-green', orange: 'btn-orange' }[F.atc_button_color] || 'btn-dark';
   const shipMsg = sub => sub >= SHIP.free_over ? 'You qualify for free shipping.'
@@ -59,8 +64,8 @@
   // ---- views ----
   function home() {
     T.track('page_view', { page_type: 'home' });
-    app.innerHTML = `<section class="hero"><h1>Gear for the long way round</h1><p>Jackets, boots and packs tested in Nordic weather.</p>
-      <a class="btn btn-light" href="#/c/jackets" data-ac="hero-cta">${F.home_hero_cta}</a></section>
+    app.innerHTML = `<section class="hero${CAT.hero_image ? ' has-photo' : ''}">${CAT.hero_image ? `<img class="hero-bg" src="${CAT.hero_image.src}" alt="${CAT.hero_image.alt}" fetchpriority="high">` : ''}<div class="hero-copy"><h1>Gear for the long way round</h1><p>Jackets, boots and packs tested in Nordic weather.</p>
+      <a class="btn btn-light" href="#/c/jackets" data-ac="hero-cta">${F.home_hero_cta}</a></div></section>
       <div class="cat-tiles">${CAT.categories.map(c => `<a class="cat-tile" data-ac="cat-tile" href="#/c/${c}">${c}</a>`).join('')}</div>
       <h2 style="margin-top:32px">Popular right now</h2>${grid(CAT.products.slice().sort((a, b) => b.reviews - a.reviews).slice(0, 6), 'home_popular')}`;
     T.track('view_item_list', { item_list_id: 'home_popular', items: CAT.products.slice(0, 6).map(p => item(p)) });
@@ -72,7 +77,8 @@
   function plp(cat) {
     const list = CAT.products.filter(p => p.category === cat);
     T.track('page_view', { page_type: 'plp' });
-    app.innerHTML = `<h1 style="text-transform:capitalize">${cat}</h1><p>${list.length} products</p>${grid(list, 'plp_' + cat)}`;
+    const ci = (CAT.category_images || {})[cat];
+    app.innerHTML = `${ci ? `<div class="cat-banner"><img src="${ci.src}" alt="${ci.alt}" fetchpriority="high"></div>` : ''}<h1 style="text-transform:capitalize">${cat}</h1><p>${list.length} products</p>${grid(list, 'plp_' + cat)}`;
     T.track('view_item_list', { item_list_id: 'plp_' + cat, items: list.map(p => item(p)) });
   }
   function search(q) {
@@ -91,7 +97,7 @@
     const sizes = p.category === 'footwear' ? ['40', '41', '42', '43', '44', '45'] : ['XS', 'S', 'M', 'L', 'XL'];
     const atc = `<button class="btn ${btnClass} btn-block" data-ac="add-to-cart">${F.atc_button_text}</button>`;
     const galleryCount = F.pdp_gallery_layout === 'tall' ? 3 : 1;
-    app.innerHTML = `<div class="pdp"><div class="gallery ${F.pdp_gallery_layout}">${Array.from({ length: galleryCount }, () => img(p)).join('')}</div>
+    app.innerHTML = `<div class="pdp"><div class="gallery ${F.pdp_gallery_layout}">${Array.from({ length: galleryCount }, (_, i) => img(p, 'img', i, i === 0)).join('')}</div>
       <div class="buy"><h1>${p.name}</h1>${F.pdp_show_reviews ? stars(p) : ''}<div class="price">${eur(p.price)}</div>
       <p>${p.desc}</p>
       ${sized(p) ? `<div class="size-row">${sizes.map(s => `<button data-ac="size" data-size="${s}">${s}</button>`).join('')}</div>` : ''}

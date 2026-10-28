@@ -19,7 +19,19 @@
    "rating": 3.8,
    "reviews": 53,
    "color": "#2f5d50",
-   "desc": "The Storm Shell Jacket is built for Nordic conditions: durable, light and made to last season after season."
+   "desc": "The Storm Shell Jacket is built for Nordic conditions: durable, light and made to last season after season.",
+   "images": [
+    {
+     "src": "img/P001-1.webp",
+     "alt": "Storm Shell Jacket in forest green, front view",
+     "kind": "packshot"
+    },
+    {
+     "src": "img/P001-2.webp",
+     "alt": "Model wearing the Storm Shell Jacket on a rainy coastline",
+     "kind": "lifestyle"
+    }
+   ]
   },
   {
    "id": "P002",
@@ -79,7 +91,19 @@
    "rating": 4.4,
    "reviews": 67,
    "color": "#7a4b2a",
-   "desc": "The Summit GTX Boot is built for Nordic conditions: durable, light and made to last season after season."
+   "desc": "The Summit GTX Boot is built for Nordic conditions: durable, light and made to last season after season.",
+   "images": [
+    {
+     "src": "img/P007-1.webp",
+     "alt": "Summit GTX Boot in brown leather, side view",
+     "kind": "packshot"
+    },
+    {
+     "src": "img/P007-2.webp",
+     "alt": "Summit GTX Boot on wet mossy granite",
+     "kind": "lifestyle"
+    }
+   ]
   },
   {
    "id": "P008",
@@ -251,5 +275,15 @@
    "color": "#8a6d1f",
    "desc": "The Packable Gloves is built for Nordic conditions: durable, light and made to last season after season."
   }
- ]
+ ],
+ "category_images": {
+  "jackets": {
+   "src": "img/cat-jackets.webp",
+   "alt": "Three outdoor jackets hanging in a Nordic cabin"
+  }
+ },
+ "hero_image": {
+  "src": "img/hero.webp",
+  "alt": "Hiker in a green shell jacket above a misty fjord"
+ }
 }

@@ -41,6 +41,13 @@ be cheating and would invalidate the POC. Only `sim/sealed/score.py` (end-of-POC
   iframe of the live page): https://www.livesend.io/v/j7jk2gtna9 — never needs republishing.
 - **Preview links:** `?ac_preview=EXP003:B_compact_gallery#/p/P001` renders one variant of any experiment (concluded ones
   use `control_features` for the old control); preview visits are not sent to GA4.
+- **AI imagery:** generated in Figma (file "AutoCRO – Fjeldspor imagery", https://www.figma.com/design/cJ2CBRiJQbPQtIov4RCOIV,
+  IMPACT A/S org plan, model gemini-3.1-flash-image; uses Figma AI credits). The sandbox cannot download Figma assets, so
+  add `name: url` to `site/img/fetch-queue.json` and push → `.github/workflows/fetch-assets.yml` downloads, converts to WebP
+  and commits `site/img/<name>.webp`. Products reference images in `site/data/products.json` (`images[]` with src/alt/kind:
+  packshot = contained on #E9E6DE, lifestyle = cover). Images sit inside the existing fixed-size boxes so layout/perception
+  is unchanged. Style sheet: Nordic outdoor, overcast light, moss/slate/stone/sand palette, packshots on #ECEAE4 seamless,
+  fictional models only, no text/logos.
 - **Reading results:** `git pull` (reads work from the sandbox), then run the analysis locally.
 
 ## One optimisation cycle
