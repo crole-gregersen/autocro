@@ -29,7 +29,12 @@ be cheating and would invalidate the POC. Only `sim/sealed/score.py` (end-of-POC
 - **Traffic:** the Claude sandbox cannot reach github.io or Google Analytics, so simulated shoppers run in **GitHub Actions**
   (`.github/workflows/traffic.yml`). Claude requests a run by editing `sim/queue.json` (run_id, sessions, seed) and pushing.
   The workflow waits until the live site serves the committed config, runs `sim/run.js` against the live site (GA4 receives
-  real hits once a Measurement ID is set), gzips the logs and commits them to `data/events/` + `sim/sealed/truth/`.
+  real hits), gzips the logs and commits them to `data/events/` + `sim/sealed/truth/`.
+  Queue fields: run_id, sessions, seed, concurrency (30), dwell_ms (1800 = human-like time per page; needed or GA4's tag
+  throttles bursts), ga_audit (true = log GA4 delivery to `reports/ga-audit-<run>.json`).
+- **GA4:** property "AutoCRO – Fjeldspor" (ID 561157387), stream Measurement ID G-DDVJJDBD6E. Delivery audit R009: 94% of
+  events reach GA4 (purchase 100%, page-level events 91–95%). Our own event log in `data/events` stays the source of truth
+  for decisions; GA4 is the mirror/cross-check. NOTE: the property currently sits under the Kevin.Murphy GA account.
 - **Reading results:** `git pull` (reads work from the sandbox), then run the analysis locally.
 
 ## One optimisation cycle
@@ -58,4 +63,4 @@ be cheating and would invalidate the POC. Only `sim/sealed/score.py` (end-of-POC
 ## Status log
 - 2026-10-28 · Cycle 1: baseline 3,000 sessions (CR 6.1%). EXP001 guest checkout (+44% purchase), EXP002 cart shipping info (+22%), EXP003 mobile compact gallery (+53% mobile ATC) all SHIPPED. Post-cycle run CR 10.3% (EXP001 still at 50% in that run).
 - Next: fresh baseline run on the new control, re-analyse, then backlog #4–#6 (PDP shipping note, free-shipping progress bar, PDP social proof).
-- 2026-10-28 · Online: repo + Pages live; traffic runs in GitHub Actions against the live site. R005 (3,000 sessions, first live run, new control): CR 12.8% (from 6.1% baseline), checkout step-1 now 93%, mobile ATC gap closed. Pending: GA4 Measurement ID.
+- 2026-10-28 · Online: repo + Pages live; traffic runs in GitHub Actions against the live site. R005 (3,000 sessions, first live run, new control): CR 12.8% (from 6.1% baseline), checkout step-1 now 93%, mobile ATC gap closed. GA4 connected (G-DDVJJDBD6E); simulator given dwell time + in-page navigation after an audit showed GA4's tag dropping burst events (delivery 20% → 94%).
