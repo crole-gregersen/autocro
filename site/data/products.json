@@ -16,7 +16,7 @@
    "name": "Storm Shell Jacket",
    "category": "jackets",
    "price": 172.95,
-   "rating": 3.8,
+   "rating": 4.4,
    "reviews": 53,
    "color": "#2f5d50",
    "desc": "The Storm Shell Jacket is built for Nordic conditions: durable, light and made to last season after season.",
@@ -60,6 +60,51 @@
      "label": "Features",
      "value": "Pit zips, 2 chest pockets, adjustable hood"
     }
+   ],
+   "review_list": [
+    {
+     "rating": 5,
+     "title": "Bone dry in a Lofoten storm",
+     "text": "Wore it four days straight on the coast with sideways rain. Not a drop got through and the pit zips made the climbs bearable.",
+     "author": "Ingrid S.",
+     "location": "Tromsø",
+     "date": "2026-10-10",
+     "verified": true
+    },
+    {
+     "rating": 5,
+     "title": "Hood is brilliant",
+     "text": "Fits over my climbing helmet and still turns with my head. Best shell I've owned.",
+     "author": "Mikkel R.",
+     "location": "Aarhus",
+     "date": "2026-09-12",
+     "verified": true
+    },
+    {
+     "rating": 4,
+     "title": "Great jacket, slim arms",
+     "text": "Excellent fabric and build. Size up if you wear a thick fleece underneath.",
+     "author": "Sara L.",
+     "location": "Gothenburg",
+     "date": "2026-08-06",
+     "verified": true
+    },
+    {
+     "rating": 5,
+     "title": "Worth every krone",
+     "text": "Second season now and it still beads water like new.",
+     "author": "Jonas H.",
+     "location": "Bergen",
+     "date": "2026-07-26",
+     "verified": true
+    }
+   ],
+   "rating_dist": [
+    30,
+    20,
+    2,
+    1,
+    0
    ]
   },
   {
@@ -67,7 +112,7 @@
    "name": "Ridge Down Jacket",
    "category": "jackets",
    "price": 107.95,
-   "rating": 4.3,
+   "rating": 4.5,
    "reviews": 378,
    "color": "#2f5d50",
    "desc": "The Ridge Down Jacket is built for Nordic conditions: durable, light and made to last season after season.",
@@ -111,14 +156,52 @@
      "label": "Features",
      "value": "Insulated hood, packs into hand pocket"
     }
-   ]
+   ],
+   "review_list": [
+    {
+     "rating": 5,
+     "title": "Warm without the bulk",
+     "text": "Perfect for cold mornings at the hut and packs down to nothing.",
+     "author": "Anna K.",
+     "location": "Oslo",
+     "date": "2026-10-15",
+     "verified": true
+    },
+    {
+     "rating": 4,
+     "title": "Cosy but not for rain",
+     "text": "Lovely and warm, but put a shell over it when it pours.",
+     "author": "Peter M.",
+     "location": "Copenhagen",
+     "date": "2026-09-18",
+     "verified": true
+    },
+    {
+     "rating": 5,
+     "title": "My winter go-to",
+     "text": "Wear it on the bike and in the mountains. Hood is properly warm.",
+     "author": "Elin J.",
+     "location": "Umeå",
+     "date": "2026-08-07",
+     "verified": true
+    }
+   ],
+   "rating_dist": [
+    243,
+    120,
+    9,
+    4,
+    2
+   ],
+   "sale_pct": 15,
+   "sale_price": 91.95
   },
   {
    "id": "P003",
    "name": "Trail Softshell",
    "category": "jackets",
    "price": 240.95,
-   "rating": 4.8,
+   "rating": 4.5,
    "reviews": 223,
    "color": "#2f5d50",
    "desc": "The Trail Softshell is built for Nordic conditions: durable, light and made to last season after season.",
@@ -162,6 +245,42 @@
      "label": "Features",
      "value": "Chest pocket, 2 hand pockets, stand-up collar"
     }
+   ],
+   "review_list": [
+    {
+     "rating": 4,
+     "title": "Does a bit of everything",
+     "text": "Great on windy ridges and smart enough for the office.",
+     "author": "Lars P.",
+     "location": "Odense",
+     "date": "2026-10-05",
+     "verified": true
+    },
+    {
+     "rating": 5,
+     "title": "Moves with you",
+     "text": "Stretchy and breathable. I scrambled all day without overheating.",
+     "author": "Maja N.",
+     "location": "Stockholm",
+     "date": "2026-09-05",
+     "verified": true
+    },
+    {
+     "rating": 4,
+     "title": "Good fit",
+     "text": "Athletic cut, so order your normal size if you're slim.",
+     "author": "Henrik B.",
+     "location": "Trondheim",
+     "date": "2026-08-03",
+     "verified": true
+    }
+   ],
+   "rating_dist": [
+    144,
+    71,
+    5,
+    2,
+    1
    ]
   },
   {
@@ -169,7 +288,7 @@
    "name": "Fjord Rain Jacket",
    "category": "jackets",
    "price": 98.95,
-   "rating": 4.2,
+   "rating": 4.5,
    "reviews": 75,
    "color": "#2f5d50",
    "desc": "The Fjord Rain Jacket is built for Nordic conditions: durable, light and made to last season after season.",
@@ -213,6 +332,42 @@
      "label": "Features",
      "value": "Storm flap, 2 flap pockets, drawcord hem"
     }
+   ],
+   "review_list": [
+    {
+     "rating": 5,
+     "title": "Classic and tough",
+     "text": "Looks great, keeps the rain off, big pockets fit a map and gloves.",
+     "author": "Karin V.",
+     "location": "Ålesund",
+     "date": "2026-10-15",
+     "verified": true
+    },
+    {
+     "rating": 4,
+     "title": "A bit warm on climbs",
+     "text": "Fully waterproof but not the most breathable when working hard.",
+     "author": "Søren D.",
+     "location": "Aalborg",
+     "date": "2026-09-20",
+     "verified": true
+    },
+    {
+     "rating": 5,
+     "title": "Love the colour",
+     "text": "Easy to spot in grey weather, and the peaked hood actually works.",
+     "author": "Hanna E.",
+     "location": "Malmö",
+     "date": "2026-08-12",
+     "verified": true
+    }
+   ],
+   "rating_dist": [
+    48,
+    24,
+    2,
+    1,
+    0
    ]
   },
   {
@@ -220,7 +375,7 @@
    "name": "Alpine Insulated Parka",
    "category": "jackets",
    "price": 151.95,
-   "rating": 4.3,
+   "rating": 4.5,
    "reviews": 64,
    "color": "#2f5d50",
    "desc": "The Alpine Insulated Parka is built for Nordic conditions: durable, light and made to last season after season.",
@@ -264,6 +419,42 @@
      "label": "Features",
      "value": "Two-way zip, 4 pockets, adjustable waist"
     }
+   ],
+   "review_list": [
+    {
+     "rating": 5,
+     "title": "Survived -22°C",
+     "text": "Kept me warm on a dark January week in Kiruna. The hood is fantastic.",
+     "author": "Frida A.",
+     "location": "Kiruna",
+     "date": "2026-10-27",
+     "verified": true
+    },
+    {
+     "rating": 5,
+     "title": "Finally a warm parka",
+     "text": "Long enough to sit on a cold bench. Pockets everywhere.",
+     "author": "Ole G.",
+     "location": "Roskilde",
+     "date": "2026-09-04",
+     "verified": true
+    },
+    {
+     "rating": 4,
+     "title": "Heavy but worth it",
+     "text": "Not one for the backpack, but unbeatable for winter walks.",
+     "author": "Tove L.",
+     "location": "Luleå",
+     "date": "2026-08-10",
+     "verified": true
+    }
+   ],
+   "rating_dist": [
+    41,
+    20,
+    2,
+    1,
+    0
    ]
   },
   {
@@ -271,8 +462,8 @@
    "name": "Breeze Wind Jacket",
    "category": "jackets",
    "price": 303.95,
-   "rating": 3.8,
-   "reviews": 232,
+   "rating": null,
+   "reviews": 0,
    "color": "#2f5d50",
    "desc": "The Breeze Wind Jacket is built for Nordic conditions: durable, light and made to last season after season.",
    "images": [
@@ -315,6 +506,14 @@
      "label": "Features",
      "value": "Packs into kangaroo pocket, clip loop"
     }
+   ],
+   "review_list": [],
+   "rating_dist": [
+    0,
+    0,
+    0,
+    0,
+    0
    ]
   },
   {
@@ -322,7 +521,7 @@
    "name": "Summit GTX Boot",
    "category": "footwear",
    "price": 169.95,
-   "rating": 4.4,
+   "rating": 4.5,
    "reviews": 67,
    "color": "#7a4b2a",
    "desc": "The Summit GTX Boot is built for Nordic conditions: durable, light and made to last season after season.",
@@ -367,6 +566,51 @@
      "label": "Sole",
      "value": "Deep-lug rubber, resoleable"
     }
+   ],
+   "review_list": [
+    {
+     "rating": 5,
+     "title": "Proper mountain boot",
+     "text": "Stiff enough for scree, comfortable after a short break-in.",
+     "author": "Erik S.",
+     "location": "Bodø",
+     "date": "2026-10-19",
+     "verified": true
+    },
+    {
+     "rating": 5,
+     "title": "Dry feet in bogs",
+     "text": "Walked through wet moorland all day and my socks stayed dry.",
+     "author": "Line F.",
+     "location": "Stavanger",
+     "date": "2026-09-20",
+     "verified": true
+    },
+    {
+     "rating": 3,
+     "title": "Needs breaking in",
+     "text": "Great quality, but give them a week of short walks before a big trip.",
+     "author": "Rasmus K.",
+     "location": "Esbjerg",
+     "date": "2026-08-14",
+     "verified": true
+    },
+    {
+     "rating": 5,
+     "title": "Grip on wet rock",
+     "text": "The sole sticks to wet granite better than my old boots.",
+     "author": "Astrid P.",
+     "location": "Voss",
+     "date": "2026-07-11",
+     "verified": true
+    }
+   ],
+   "rating_dist": [
+    43,
+    21,
+    2,
+    1,
+    0
    ]
   },
   {
@@ -374,7 +618,7 @@
    "name": "Trailrunner 3",
    "category": "footwear",
    "price": 160.95,
-   "rating": 4.1,
+   "rating": 4.4,
    "reviews": 230,
    "color": "#7a4b2a",
    "desc": "The Trailrunner 3 is built for Nordic conditions: durable, light and made to last season after season.",
@@ -419,14 +663,52 @@
      "label": "Sole",
      "value": "5 mm multidirectional lugs"
     }
-   ]
+   ],
+   "review_list": [
+    {
+     "rating": 5,
+     "title": "Grippy and light",
+     "text": "Ran a muddy 25 km trail race in them, no slips at all.",
+     "author": "Nils O.",
+     "location": "Lillehammer",
+     "date": "2026-10-27",
+     "verified": true
+    },
+    {
+     "rating": 4,
+     "title": "Fast but narrow",
+     "text": "Great grip and drainage. Runs a little narrow in the toe box.",
+     "author": "Julie T.",
+     "location": "Copenhagen",
+     "date": "2026-09-08",
+     "verified": true
+    },
+    {
+     "rating": 5,
+     "title": "Quick laces are great",
+     "text": "No more stopping to re-tie. Comfortable from the first run.",
+     "author": "Viktor E.",
+     "location": "Uppsala",
+     "date": "2026-08-06",
+     "verified": true
+    }
+   ],
+   "rating_dist": [
+    132,
+    85,
+    8,
+    3,
+    2
+   ],
+   "sale_pct": 20,
+   "sale_price": 128.95
   },
   {
    "id": "P009",
    "name": "Scree Approach Shoe",
    "category": "footwear",
    "price": 75.95,
-   "rating": 4.7,
+   "rating": 4.6,
    "reviews": 300,
    "color": "#7a4b2a",
    "desc": "The Scree Approach Shoe is built for Nordic conditions: durable, light and made to last season after season.",
@@ -471,6 +753,33 @@
      "label": "Lacing",
      "value": "Lace-to-toe for precise fit"
     }
+   ],
+   "review_list": [
+    {
+     "rating": 5,
+     "title": "Perfect for scrambling",
+     "text": "The sticky toe makes slabs feel easy. Durable suede too.",
+     "author": "Sofie H.",
+     "location": "Narvik",
+     "date": "2026-10-11",
+     "verified": true
+    },
+    {
+     "rating": 4,
+     "title": "Precise fit",
+     "text": "Lace-to-toe gives a really locked-in feel. Firm for long walks.",
+     "author": "Mats J.",
+     "location": "Åre",
+     "date": "2026-09-09",
+     "verified": true
+    }
+   ],
+   "rating_dist": [
+    214,
+    79,
+    4,
+    2,
+    1
    ]
   },
   {
@@ -478,7 +787,7 @@
    "name": "Moss Hiking Boot",
    "category": "footwear",
    "price": 135.95,
-   "rating": 4.3,
+   "rating": 4.5,
    "reviews": 588,
    "color": "#7a4b2a",
    "desc": "The Moss Hiking Boot is built for Nordic conditions: durable, light and made to last season after season.",
@@ -523,6 +832,42 @@
      "label": "Sole",
      "value": "Medium-lug rubber, EVA midsole"
     }
+   ],
+   "review_list": [
+    {
+     "rating": 5,
+     "title": "Comfortable from day one",
+     "text": "No blisters on a 20 km first outing. Breathes well on warm days.",
+     "author": "Camilla R.",
+     "location": "Vejle",
+     "date": "2026-10-03",
+     "verified": true
+    },
+    {
+     "rating": 4,
+     "title": "Great all-rounder",
+     "text": "Light, comfy and waterproof. Laces could be a bit longer.",
+     "author": "Thomas N.",
+     "location": "Göteborg",
+     "date": "2026-09-23",
+     "verified": true
+    },
+    {
+     "rating": 5,
+     "title": "Love these boots",
+     "text": "Second pair. Good for everything except deep snow.",
+     "author": "Ida M.",
+     "location": "Hamar",
+     "date": "2026-08-11",
+     "verified": true
+    }
+   ],
+   "rating_dist": [
+    377,
+    187,
+    14,
+    6,
+    4
    ]
   },
   {
@@ -575,6 +920,42 @@
      "label": "Sole",
      "value": "Deep-lug winter rubber"
     }
+   ],
+   "review_list": [
+    {
+     "rating": 5,
+     "title": "Toasty in deep snow",
+     "text": "Walked the dog every evening at -18°C, feet always warm.",
+     "author": "Lena B.",
+     "location": "Rovaniemi",
+     "date": "2026-10-11",
+     "verified": true
+    },
+    {
+     "rating": 4,
+     "title": "Warm, a bit chunky",
+     "text": "Very warm and grippy on packed snow. Not for long hikes.",
+     "author": "Gustav W.",
+     "location": "Östersund",
+     "date": "2026-09-09",
+     "verified": true
+    },
+    {
+     "rating": 5,
+     "title": "Best winter boots",
+     "text": "Wool cuff is lovely and they keep slush out completely.",
+     "author": "Mette J.",
+     "location": "Herning",
+     "date": "2026-08-08",
+     "verified": true
+    }
+   ],
+   "rating_dist": [
+    149,
+    40,
+    0,
+    0,
+    0
    ]
   },
   {
@@ -582,8 +963,8 @@
    "name": "Camp Slip-On",
    "category": "footwear",
    "price": 84.95,
-   "rating": 4.3,
-   "reviews": 196,
+   "rating": null,
+   "reviews": 0,
    "color": "#7a4b2a",
    "desc": "The Camp Slip-On is built for Nordic conditions: durable, light and made to last season after season.",
    "images": [
@@ -627,6 +1008,14 @@
      "label": "Sole",
      "value": "Thin rubber, packs flat"
     }
+   ],
+   "review_list": [],
+   "rating_dist": [
+    0,
+    0,
+    0,
+    0,
+    0
    ]
   },
   {
@@ -634,7 +1023,7 @@
    "name": "Daypack 22",
    "category": "backpacks",
    "price": 98.95,
-   "rating": 4.3,
+   "rating": 4.5,
    "reviews": 68,
    "color": "#34495e",
    "desc": "The Daypack 22 is built for Nordic conditions: durable, light and made to last season after season.",
@@ -678,14 +1067,52 @@
      "label": "Features",
      "value": "Laptop/bladder sleeve, 2 bottle pockets"
     }
-   ]
+   ],
+   "review_list": [
+    {
+     "rating": 5,
+     "title": "Does it all",
+     "text": "Commute, day hikes and weekend trips. Laptop sleeve is padded nicely.",
+     "author": "Emil C.",
+     "location": "Aarhus",
+     "date": "2026-10-12",
+     "verified": true
+    },
+    {
+     "rating": 4,
+     "title": "Good size",
+     "text": "Fits a shell, lunch and a flask. Wish the hip belt was padded.",
+     "author": "Nora S.",
+     "location": "Bergen",
+     "date": "2026-09-12",
+     "verified": true
+    },
+    {
+     "rating": 5,
+     "title": "Well made",
+     "text": "Zips run smoothly and the mesh pocket is great for wet layers.",
+     "author": "Oskar L.",
+     "location": "Linköping",
+     "date": "2026-08-23",
+     "verified": true
+    }
+   ],
+   "rating_dist": [
+    43,
+    22,
+    2,
+    1,
+    0
+   ],
+   "sale_pct": 15,
+   "sale_price": 84.95
   },
   {
    "id": "P014",
    "name": "Explorer 45",
    "category": "backpacks",
    "price": 128.95,
-   "rating": 4.4,
+   "rating": 4.6,
    "reviews": 512,
    "color": "#34495e",
    "desc": "The Explorer 45 is built for Nordic conditions: durable, light and made to last season after season.",
@@ -730,6 +1157,42 @@
      "label": "Features",
      "value": "Ventilated back, hip-belt pockets, ice-axe loop"
     }
+   ],
+   "review_list": [
+    {
+     "rating": 5,
+     "title": "Carries really well",
+     "text": "Did four days hut to hut. The ventilated back made a big difference.",
+     "author": "Marie H.",
+     "location": "Innsbruck",
+     "date": "2026-10-26",
+     "verified": true
+    },
+    {
+     "rating": 4,
+     "title": "Great pack",
+     "text": "Comfortable and well organised. Lid pocket could be bigger.",
+     "author": "Anders T.",
+     "location": "Kolding",
+     "date": "2026-09-14",
+     "verified": true
+    },
+    {
+     "rating": 5,
+     "title": "Perfect volume",
+     "text": "45 litres is just right for summer weekends.",
+     "author": "Selma K.",
+     "location": "Tromsø",
+     "date": "2026-08-05",
+     "verified": true
+    }
+   ],
+   "rating_dist": [
+    365,
+    135,
+    7,
+    3,
+    2
    ]
   },
   {
@@ -737,7 +1200,7 @@
    "name": "Trek 65 Pack",
    "category": "backpacks",
    "price": 147.95,
-   "rating": 4.2,
+   "rating": 4.5,
    "reviews": 325,
    "color": "#34495e",
    "desc": "The Trek 65 Pack is built for Nordic conditions: durable, light and made to last season after season.",
@@ -781,6 +1244,42 @@
      "label": "Features",
      "value": "Front U-zip, sleeping-bag compartment, adjustable back"
     }
+   ],
+   "review_list": [
+    {
+     "rating": 5,
+     "title": "Expedition-ready",
+     "text": "Carried 18 kg across Hardangervidda in comfort. The U-zip is a lifesaver.",
+     "author": "Kristian E.",
+     "location": "Oslo",
+     "date": "2026-10-22",
+     "verified": true
+    },
+    {
+     "rating": 4,
+     "title": "Heavy-duty",
+     "text": "Bombproof fabric. A bit heavy empty, but carries big loads well.",
+     "author": "Eva R.",
+     "location": "Kiruna",
+     "date": "2026-09-13",
+     "verified": true
+    },
+    {
+     "rating": 5,
+     "title": "Adjustable back is great",
+     "text": "Took ten minutes to fit perfectly. No sore shoulders.",
+     "author": "Bjørn A.",
+     "location": "Trondheim",
+     "date": "2026-08-24",
+     "verified": true
+    }
+   ],
+   "rating_dist": [
+    209,
+    103,
+    8,
+    3,
+    2
    ]
   },
   {
@@ -788,8 +1287,8 @@
    "name": "Commuter 18",
    "category": "backpacks",
    "price": 112.95,
-   "rating": 4.8,
-   "reviews": 374,
+   "rating": null,
+   "reviews": 0,
    "color": "#34495e",
    "desc": "The Commuter 18 is built for Nordic conditions: durable, light and made to last season after season.",
    "images": [
@@ -832,6 +1331,14 @@
      "label": "Features",
      "value": "Roll-top, 15\" laptop sleeve"
     }
+   ],
+   "review_list": [],
+   "rating_dist": [
+    0,
+    0,
+    0,
+    0,
+    0
    ]
   },
   {
@@ -883,6 +1390,42 @@
      "label": "Includes",
      "value": "2 × 500 ml soft flasks"
     }
+   ],
+   "review_list": [
+    {
+     "rating": 5,
+     "title": "No bounce at all",
+     "text": "Ran a mountain ultra with it. Flasks easy to reach.",
+     "author": "Linnea F.",
+     "location": "Chamonix",
+     "date": "2026-10-15",
+     "verified": true
+    },
+    {
+     "rating": 4,
+     "title": "Comfortable",
+     "text": "Fits snugly. The phone pocket is a little tight for big phones.",
+     "author": "Mads V.",
+     "location": "Copenhagen",
+     "date": "2026-09-19",
+     "verified": true
+    },
+    {
+     "rating": 5,
+     "title": "Love it",
+     "text": "Holds a jacket, food and water for long trail days.",
+     "author": "Sanna O.",
+     "location": "Helsinki",
+     "date": "2026-08-10",
+     "verified": true
+    }
+   ],
+   "rating_dist": [
+    181,
+    67,
+    3,
+    1,
+    1
    ]
   },
   {
@@ -890,7 +1433,7 @@
    "name": "Duffel 60",
    "category": "backpacks",
    "price": 51.95,
-   "rating": 4.0,
+   "rating": 4.4,
    "reviews": 510,
    "color": "#34495e",
    "desc": "The Duffel 60 is built for Nordic conditions: durable, light and made to last season after season.",
@@ -935,14 +1478,52 @@
      "label": "Features",
      "value": "D-zip lid, removable strap, end pocket"
     }
-   ]
+   ],
+   "review_list": [
+    {
+     "rating": 5,
+     "title": "Tough as nails",
+     "text": "Has been in boats, roof boxes and rain. Still looks great.",
+     "author": "Henrik L.",
+     "location": "Ålesund",
+     "date": "2026-10-08",
+     "verified": true
+    },
+    {
+     "rating": 5,
+     "title": "Great value",
+     "text": "Big, waterproof and easy to pack thanks to the wide zip.",
+     "author": "Pia N.",
+     "location": "Odense",
+     "date": "2026-09-10",
+     "verified": true
+    },
+    {
+     "rating": 4,
+     "title": "Good duffel",
+     "text": "Strap is comfy. Wish it had a separate shoe compartment.",
+     "author": "Johan K.",
+     "location": "Malmö",
+     "date": "2026-08-18",
+     "verified": true
+    }
+   ],
+   "rating_dist": [
+    292,
+    189,
+    17,
+    7,
+    5
+   ],
+   "sale_pct": 25,
+   "sale_price": 38.95
   },
   {
    "id": "P019",
    "name": "Merino Beanie",
    "category": "accessories",
    "price": 61.95,
-   "rating": 4.5,
+   "rating": 4.6,
    "reviews": 298,
    "color": "#8a6d1f",
    "desc": "The Merino Beanie is built for Nordic conditions: durable, light and made to last season after season.",
@@ -986,6 +1567,42 @@
      "label": "Fit",
      "value": "Slightly slouchy, folded cuff"
     }
+   ],
+   "review_list": [
+    {
+     "rating": 5,
+     "title": "Soft and warm",
+     "text": "Not itchy at all. Wear it every day from October to April.",
+     "author": "Freja D.",
+     "location": "Aalborg",
+     "date": "2026-10-11",
+     "verified": true
+    },
+    {
+     "rating": 5,
+     "title": "Perfect fit",
+     "text": "Double cuff keeps my ears warm on windy days.",
+     "author": "Lukas P.",
+     "location": "Stockholm",
+     "date": "2026-09-05",
+     "verified": true
+    },
+    {
+     "rating": 4,
+     "title": "Lovely beanie",
+     "text": "Great quality. Slightly slouchy, as described.",
+     "author": "Elsa M.",
+     "location": "Oslo",
+     "date": "2026-08-20",
+     "verified": true
+    }
+   ],
+   "rating_dist": [
+    212,
+    79,
+    4,
+    2,
+    1
    ]
   },
   {
@@ -993,7 +1610,7 @@
    "name": "Trek Poles Pair",
    "category": "accessories",
    "price": 46.95,
-   "rating": 3.7,
+   "rating": 4.3,
    "reviews": 528,
    "color": "#8a6d1f",
    "desc": "The Trek Poles Pair is built for Nordic conditions: durable, light and made to last season after season.",
@@ -1038,6 +1655,42 @@
      "label": "Includes",
      "value": "Trekking and snow baskets"
     }
+   ],
+   "review_list": [
+    {
+     "rating": 5,
+     "title": "Saved my knees",
+     "text": "Long descents are so much easier. Cork grips are lovely.",
+     "author": "Gunnar H.",
+     "location": "Lom",
+     "date": "2026-10-12",
+     "verified": true
+    },
+    {
+     "rating": 4,
+     "title": "Light and stiff",
+     "text": "Quick to adjust with gloves on. Baskets a bit fiddly.",
+     "author": "Kaja S.",
+     "location": "Bergen",
+     "date": "2026-09-03",
+     "verified": true
+    },
+    {
+     "rating": 5,
+     "title": "Pack down small",
+     "text": "Fit inside my suitcase for a hiking holiday.",
+     "author": "Morten J.",
+     "location": "Aarhus",
+     "date": "2026-08-12",
+     "verified": true
+    }
+   ],
+   "rating_dist": [
+    264,
+    224,
+    24,
+    10,
+    6
    ]
   },
   {
@@ -1090,15 +1743,53 @@
      "label": "Dimensions",
      "value": "Ø 9 × 27 cm"
     }
-   ]
+   ],
+   "review_list": [
+    {
+     "rating": 5,
+     "title": "Still hot at lunch",
+     "text": "Tea poured at 7 am was still hot at 3 pm on the mountain.",
+     "author": "Ingeborg T.",
+     "location": "Voss",
+     "date": "2026-10-21",
+     "verified": true
+    },
+    {
+     "rating": 4,
+     "title": "Solid bottle",
+     "text": "Keeps cold water cold all day. A little heavy when full.",
+     "author": "Daniel S.",
+     "location": "Copenhagen",
+     "date": "2026-09-25",
+     "verified": true
+    },
+    {
+     "rating": 5,
+     "title": "Clip loop is handy",
+     "text": "Hangs off my pack with a carabiner. No leaks so far.",
+     "author": "Alma R.",
+     "location": "Uppsala",
+     "date": "2026-08-12",
+     "verified": true
+    }
+   ],
+   "rating_dist": [
+    113,
+    42,
+    2,
+    1,
+    1
+   ],
+   "sale_pct": 15,
+   "sale_price": 30.95
   },
   {
    "id": "P022",
    "name": "Headlamp 400",
    "category": "accessories",
    "price": 64.95,
-   "rating": 4.1,
-   "reviews": 83,
+   "rating": null,
+   "reviews": 0,
    "color": "#8a6d1f",
    "desc": "The Headlamp 400 is built for Nordic conditions: durable, light and made to last season after season.",
    "images": [
@@ -1141,6 +1832,14 @@
      "label": "Water resistance",
      "value": "IPX4"
     }
+   ],
+   "review_list": [],
+   "rating_dist": [
+    0,
+    0,
+    0,
+    0,
+    0
    ]
   },
   {
@@ -1148,7 +1847,7 @@
    "name": "Wool Hiking Socks",
    "category": "accessories",
    "price": 55.95,
-   "rating": 4.3,
+   "rating": 4.5,
    "reviews": 325,
    "color": "#8a6d1f",
    "desc": "The Wool Hiking Socks is built for Nordic conditions: durable, light and made to last season after season.",
@@ -1193,6 +1892,42 @@
      "label": "Weight",
      "value": "Medium"
     }
+   ],
+   "review_list": [
+    {
+     "rating": 5,
+     "title": "Best hiking socks",
+     "text": "Cushioned where it matters and no blisters over three days.",
+     "author": "Signe K.",
+     "location": "Tromsø",
+     "date": "2026-10-27",
+     "verified": true
+    },
+    {
+     "rating": 5,
+     "title": "Warm when wet",
+     "text": "Crossed a stream and my feet stayed warm. Impressive.",
+     "author": "Jakob N.",
+     "location": "Vejle",
+     "date": "2026-09-19",
+     "verified": true
+    },
+    {
+     "rating": 4,
+     "title": "Comfy",
+     "text": "Very comfortable. Size chart runs a touch small.",
+     "author": "Wilma A.",
+     "location": "Gothenburg",
+     "date": "2026-08-09",
+     "verified": true
+    }
+   ],
+   "rating_dist": [
+    209,
+    103,
+    8,
+    3,
+    2
    ]
   },
   {
@@ -1200,7 +1935,7 @@
    "name": "Packable Gloves",
    "category": "accessories",
    "price": 30.95,
-   "rating": 4.1,
+   "rating": 4.3,
    "reviews": 512,
    "color": "#8a6d1f",
    "desc": "The Packable Gloves is built for Nordic conditions: durable, light and made to last season after season.",
@@ -1245,6 +1980,33 @@
      "label": "Use",
      "value": "Windproof, water-repellent"
     }
+   ],
+   "review_list": [
+    {
+     "rating": 4,
+     "title": "Good shoulder-season gloves",
+     "text": "Windproof and grippy. Not for real winter cold.",
+     "author": "Fredrik O.",
+     "location": "Bergen",
+     "date": "2026-10-16",
+     "verified": true
+    },
+    {
+     "rating": 5,
+     "title": "Touchscreen works",
+     "text": "Can use my phone map without taking them off.",
+     "author": "Liv H.",
+     "location": "Oslo",
+     "date": "2026-09-16",
+     "verified": true
+    }
+   ],
+   "rating_dist": [
+    256,
+    218,
+    23,
+    9,
+    6
    ]
   }
  ],

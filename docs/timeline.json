@@ -53,5 +53,10 @@
   "29 Oct",
   "Add-to-bag slide-in",
   "Confirmation panel slides in from the right for 4 s (pauses on hover) with product, size, price, View bag / Continue shopping."
+ ],
+ [
+  "29 Oct",
+  "Ratings, reviews, offers",
+  "Stars on PLP + PDP, reviews section + slide-in review drawer (20 of 24 products), offers on 5 products (15–25% off). Build mode: no test runs until CROle says go."
  ]
 ]

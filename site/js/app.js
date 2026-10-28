@@ -6,12 +6,13 @@
   const { cfg, features: F } = await E.load();
   T.initGA4(cfg.ga4_measurement_id);
   const CAT = await fetch('data/products.json?v=' + Date.now()).then(r => r.json());
+  if (F.sale_prices !== false) CAT.products.forEach(p => { if (p.sale_price) { p.list_price = p.price; p.price = p.sale_price; } });
   const P = Object.fromEntries(CAT.products.map(p => [p.id, p]));
   const SHIP = CAT.shipping;
   const app = document.getElementById('app');
   const eur = n => '€' + n.toFixed(2);
   const sized = p => p.category === 'jackets' || p.category === 'footwear';
-  const item = (p, extra = {}) => Object.assign({ item_id: p.id, item_name: p.name, item_category: p.category, price: p.price }, extra);
+  const item = (p, extra = {}) => Object.assign({ item_id: p.id, item_name: p.name, item_category: p.category, price: p.price }, p.list_price ? { discount: +(p.list_price - p.price).toFixed(2), promotion_name: p.sale_pct + '% off' } : {}, extra);
 
   // ---- cart ----
   const cart = {
@@ -31,7 +32,11 @@
       ? `<div class="${cls} photo ${im.kind || ''}"${im.bg ? ` style="background:${im.bg}"` : ''}><img src="${im.src}" alt="${im.alt}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async"></div>`
       : `<div class="${cls}" style="background:linear-gradient(160deg,${p.color},#111c18)"></div>`;
   };
-  const stars = p => `<div class="rating">★ ${p.rating} (${p.reviews} reviews)</div>`;
+  const starbar = r => `<span class="starbar" aria-hidden="true"><span style="width:${(r / 5) * 100}%"></span></span>`;
+  const stars = p => p.rating ? `<div class="rating" aria-label="Rated ${p.rating} out of 5 by ${p.reviews} customers">${starbar(p.rating)} <b>${p.rating}</b> <span>(${p.reviews})</span></div>` : '';
+  const priceHtml = (p, cls = 'price') => p.list_price
+    ? `<div class="price-row"><span class="${cls} sale">${eur(p.price)}</span> <s class="old-price">${eur(p.list_price)}</s>${cls === 'price' ? ` <span class="save">Save ${eur(p.list_price - p.price)} (−${p.sale_pct}%)</span>` : ''}</div>`
+    : `<div class="${cls}">${eur(p.price)}</div>`;
   const btnClass = { dark: 'btn-dark', green: 'btn-green', orange: 'btn-orange' }[F.atc_button_color] || 'btn-dark';
   const shipMsg = sub => sub >= SHIP.free_over ? 'You qualify for free shipping.'
     : `Shipping ${eur(SHIP.flat)} — free shipping on orders over ${eur(SHIP.free_over)}.`;
@@ -82,6 +87,41 @@
     t.classList.remove('show'); void t.offsetWidth; t.classList.add('show'); arm();
   }
 
+  // ---- reviews ----
+  const fmtDate = d => new Date(d + 'T12:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+  const reviewCard = r => `<article class="review"><div class="review-top">${starbar(r.rating)}<b>${r.title}</b></div>
+    <p>${r.text}</p><div class="review-meta">${r.author} · ${r.location} · ${fmtDate(r.date)}${r.verified ? ' · <span class="verified">✓ Verified buyer</span>' : ''}</div></article>`;
+  const distBars = p => [5, 4, 3, 2, 1].map((s, i) => { const n = p.rating_dist[i], w = p.reviews ? n / p.reviews * 100 : 0;
+    return `<div class="dist"><span>${s} ★</span><span class="dist-bar"><span style="width:${w.toFixed(1)}%"></span></span><span>${n}</span></div>`; }).join('');
+  function reviewsSection(p) {
+    if (!p.rating) return `<div class="pdp-details" id="reviews"><h2>Reviews</h2><p class="muted">No reviews yet. Be the first to review the ${p.name}.</p></div>`;
+    return `<div class="pdp-details" id="reviews"><h2>Reviews</h2>
+      <div class="rev-summary"><div class="rev-score"><div class="big">${p.rating}</div>${starbar(p.rating)}<div class="muted">${p.reviews} reviews</div></div><div class="rev-dist">${distBars(p)}</div></div>
+      ${p.review_list.slice(0, 2).map(reviewCard).join('')}
+      <button class="btn btn-light btn-block" data-ac="open-reviews">Read all ${p.reviews} reviews</button></div>`;
+  }
+  function openReviews(p) {
+    let d = document.getElementById('revDrawer');
+    if (!d) { d = document.createElement('div'); d.id = 'revDrawer'; document.body.appendChild(d); }
+    const render = sort => {
+      const list = p.review_list.slice().sort(sort === 'high' ? (a, b) => b.rating - a.rating : sort === 'low' ? (a, b) => a.rating - b.rating : (a, b) => b.date.localeCompare(a.date));
+      d.querySelector('.drawer-list').innerHTML = list.map(reviewCard).join('');
+    };
+    d.innerHTML = `<div class="drawer-bg" data-close></div><aside class="drawer" role="dialog" aria-modal="true" aria-label="Reviews for ${p.name}">
+      <div class="drawer-head"><div><div class="muted">Reviews</div><h2>${p.name}</h2></div><button class="toast-x" data-close aria-label="Close">×</button></div>
+      <div class="rev-summary">${'<div class="rev-score"><div class="big">' + p.rating + '</div>' + starbar(p.rating) + '<div class="muted">' + p.reviews + ' reviews</div></div>'}<div class="rev-dist">${distBars(p)}</div></div>
+      <div class="drawer-tools"><span class="muted">Showing ${p.review_list.length} of ${p.reviews}</span><select aria-label="Sort reviews"><option value="new">Most recent</option><option value="high">Highest rated</option><option value="low">Lowest rated</option></select></div>
+      <div class="drawer-list"></div><p class="demo-note">Fjeldspor is a fictional demo shop. These reviews are illustrative, not from real customers.</p></aside>`;
+    render('new');
+    d.querySelector('select').onchange = e => render(e.target.value);
+    const close = () => { d.classList.remove('open'); document.removeEventListener('keydown', esc); };
+    const esc = e => { if (e.key === 'Escape') close(); };
+    d.querySelectorAll('[data-close]').forEach(x => x.onclick = close);
+    document.addEventListener('keydown', esc);
+    requestAnimationFrame(() => d.classList.add('open'));
+    T.track('view_reviews', { item_id: p.id, reviews: p.reviews });
+  }
+
   // ---- views ----
   function home() {
     T.track('page_view', { page_type: 'home' });
@@ -93,7 +133,7 @@
   }
   function grid(list, listId) {
     return `<div class="grid">${list.map((p, i) => `<a class="card" data-ac="product-card" data-id="${p.id}" data-list="${listId}" data-index="${i}" href="#/p/${p.id}">
-      ${img(p)}<div class="info"><div class="name">${p.name}</div><div class="price">${eur(p.price)}</div>${F.plp_show_ratings ? stars(p) : ''}</div></a>`).join('')}</div>`;
+      <div class="card-media">${img(p)}${p.list_price ? `<span class="sale-badge">−${p.sale_pct}%</span>` : ''}</div><div class="info"><div class="name">${p.name}</div>${priceHtml(p, 'card-price')}${F.plp_show_ratings ? stars(p) : ''}</div></a>`).join('')}</div>`;
   }
   function plp(cat) {
     const list = CAT.products.filter(p => p.category === cat);
@@ -119,7 +159,7 @@
     const atc = `<button class="btn ${btnClass} btn-block" data-ac="add-to-cart">${F.atc_button_text}</button>`;
     const galleryCount = F.pdp_gallery_layout === 'tall' ? 3 : 1;
     app.innerHTML = `<div class="pdp"><div class="gallery ${F.pdp_gallery_layout}">${Array.from({ length: galleryCount }, (_, i) => img(p, 'img', i, i === 0)).join('')}</div>
-      <div class="buy"><h1>${p.name}</h1>${F.pdp_show_reviews ? stars(p) : ''}<div class="price">${eur(p.price)}</div>
+      <div class="buy">${p.list_price ? `<span class="sale-tag">Offer · −${p.sale_pct}%</span>` : ''}<h1>${p.name}</h1>${F.pdp_show_reviews ? (p.rating ? `<button class="rating-link" data-ac="open-reviews">${stars(p)}<span class="u">Read reviews</span></button>` : '<div class="rating muted">No reviews yet</div>') : ''}${priceHtml(p)}
       <p>${F.pdp_long_desc && p.long_desc ? p.long_desc.split(/(?<=\.)\s/)[0] : p.desc}</p>
       ${sized(p) ? `<div class="size-row">${sizes.map(s => `<button data-ac="size" data-size="${s}">${s}</button>`).join('')}</div>` : ''}
       <div id="atcMsg"></div>${atc}
@@ -127,9 +167,10 @@
       ${F.pdp_long_desc && p.long_desc ? `<div class="pdp-details"><h2>About this product</h2><p>${p.long_desc}</p></div>` : ''}
       ${F.pdp_specs && p.specs ? `<div class="pdp-details"><h2>Specifications</h2><dl class="specs">${p.specs.map(s => `<dt>${s.label}</dt><dd>${s.value}</dd>`).join('')}</dl></div>` : ''}
       ${F.pdp_shipping_info ? `<div class="note" data-ac="shipping-note">${shipMsg(cart.subtotal() + p.price)}</div>` : ''}
-      ${F.pdp_show_reviews ? `<div class="reviews"><strong>What customers say</strong><p>“Exactly as described, kept me dry on a 3-day trek.” — Verified buyer</p></div>` : ''}
+      ${F.pdp_show_reviews ? reviewsSection(p) : ''}
       </div></div>
       ${F.sticky_atc_mobile && T.device() === 'mobile' ? `<div class="sticky-atc"><button class="btn ${btnClass} btn-block" data-ac="add-to-cart">${F.atc_button_text} — ${eur(p.price)}</button></div>` : ''}`;
+    app.querySelectorAll('[data-ac=open-reviews]').forEach(b => b.onclick = () => openReviews(p));
     app.querySelectorAll('[data-ac=size]').forEach(b => b.onclick = () => {
       app.querySelectorAll('[data-ac=size]').forEach(x => x.classList.remove('sel')); b.classList.add('sel'); selSize = b.dataset.size;
       T.track('select_size', { item_id: p.id, size: selSize });
@@ -194,6 +235,7 @@
 
   // ---- router ----
   function route() {
+    const rd = document.getElementById('revDrawer'); if (rd) rd.classList.remove('open');
     const tt = document.getElementById('acToast'); if (tt) tt.classList.remove('show');
     const h = location.hash.replace(/^#\/?/, '');
     const [r, arg] = h.split('/');

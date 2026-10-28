@@ -7,8 +7,8 @@
     "cart_shipping_info": true,
     "free_shipping_bar": false,
     "checkout_guest": true,
-    "plp_show_ratings": false,
-    "pdp_show_reviews": false,
+    "plp_show_ratings": true,
+    "pdp_show_reviews": true,
     "sticky_atc_mobile": false,
     "atc_button_text": "Add to bag",
     "atc_button_color": "dark",
@@ -17,7 +17,8 @@
     "pdp_long_desc": true,
     "pdp_specs": true,
     "pdp_usps": true,
-    "atc_toast": true
+    "atc_toast": true,
+    "sale_prices": true
   },
   "css": "",
   "changelog": [
@@ -64,6 +65,17 @@
       "name": "Editorial: slide-in add-to-bag confirmation (CROle request)",
       "features": {
         "atc_toast": true
+      },
+      "scope": "all"
+    },
+    {
+      "date": "2026-10-29",
+      "experiment": "manual",
+      "name": "Editorial: star ratings (PLP+PDP), reviews + review drawer, offers on 5 products (CROle request)",
+      "features": {
+        "plp_show_ratings": true,
+        "pdp_show_reviews": true,
+        "sale_prices": true
       },
       "scope": "all"
     }

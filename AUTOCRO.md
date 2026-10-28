@@ -7,6 +7,9 @@ hypotheses, builds A/B test variants, runs them on simulated traffic, and ships 
 ## Communication with CROle
 Replies are short: 3–5 bullets showing what works now (plus a link). No long explanations unless asked; flag only blockers or decisions needed.
 
+## Current mode: BUILD (since 29 Oct)
+CROle is building the baseline shop. Do NOT queue traffic runs (`sim/queue.json`), start experiments or run cycles until CROle explicitly says go. Shop changes are logged as `experiment: manual` in the site-config changelog.
+
 ## Repository map
 | Path | What |
 |---|---|
