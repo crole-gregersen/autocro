@@ -58,4 +58,4 @@ be cheating and would invalidate the POC. Only `sim/sealed/score.py` (end-of-POC
 ## Status log
 - 2026-10-28 · Cycle 1: baseline 3,000 sessions (CR 6.1%). EXP001 guest checkout (+44% purchase), EXP002 cart shipping info (+22%), EXP003 mobile compact gallery (+53% mobile ATC) all SHIPPED. Post-cycle run CR 10.3% (EXP001 still at 50% in that run).
 - Next: fresh baseline run on the new control, re-analyse, then backlog #4–#6 (PDP shipping note, free-shipping progress bar, PDP social proof).
-- 2026-10-28 · Online: repo + Pages live; traffic moved to GitHub Actions. Pending: GA4 Measurement ID.
+- 2026-10-28 · Online: repo + Pages live; traffic runs in GitHub Actions against the live site. R005 (3,000 sessions, first live run, new control): CR 12.8% (from 6.1% baseline), checkout step-1 now 93%, mobile ATC gap closed. Pending: GA4 Measurement ID.
