@@ -17,9 +17,10 @@
   // ---- cart ----
   const cart = {
     get() { return JSON.parse(sessionStorage.getItem('ac_cart') || '[]'); },
-    set(c) { sessionStorage.setItem('ac_cart', JSON.stringify(c)); document.getElementById('cartCount').textContent = c.reduce((a, l) => a + l.qty, 0); },
+    set(c) { sessionStorage.setItem('ac_cart', JSON.stringify(c)); const n = c.reduce((a, l) => a + l.qty, 0); const b = document.getElementById('cartCount'); b.textContent = n; b.classList.toggle('empty', !n); },
     add(id, size) { const c = cart.get(); const l = c.find(x => x.id === id && x.size === size); l ? l.qty++ : c.push({ id, size, qty: 1 }); cart.set(c); },
     remove(i) { const c = cart.get(); c.splice(i, 1); cart.set(c); },
+    qty(i, d) { const c = cart.get(); if (!c[i]) return; c[i].qty += d; if (c[i].qty < 1) c.splice(i, 1); cart.set(c); },
     subtotal() { return cart.get().reduce((a, l) => a + P[l.id].price * l.qty, 0); },
     items() { return cart.get().map(l => item(P[l.id], { quantity: l.qty, item_variant: l.size || '' })); }
   };
@@ -66,26 +67,42 @@
     }
   });
 
-  // Slide-in add-to-bag confirmation (right side, 2 s, pauses on hover)
-  let toastTimer = null;
-  function showToast(p, size) {
-    let t = document.getElementById('acToast');
-    if (!t) { t = document.createElement('div'); t.id = 'acToast'; t.className = 'toast'; t.setAttribute('role', 'status'); t.setAttribute('aria-live', 'polite'); document.body.appendChild(t); }
-    const im = (p.images || [])[0];
-    const count = cart.get().reduce((s, l) => s + l.qty, 0);
-    t.innerHTML = `<div class="toast-head"><span class="toast-check" aria-hidden="true">✓</span> Added to your bag<button class="toast-x" aria-label="Close">×</button></div>
-      <div class="toast-body">${im ? `<div class="toast-img" style="background:${im.bg || '#E9E6DE'}"><img src="${im.src}" alt=""></div>` : ''}
-      <div><div class="toast-name">${p.name}</div><div class="toast-meta">${size ? 'Size ' + size + ' · ' : ''}${eur(p.price)}</div></div></div>
-      <div class="toast-actions"><a href="#/cart" class="btn ${btnClass}" data-ac="toast-view-bag">View bag (${count})</a><button class="btn btn-light toast-continue">Continue shopping</button></div>
-      <div class="toast-timer"></div>`;
-    const hide = () => { t.classList.remove('show'); clearTimeout(toastTimer); };
-    const arm = () => { clearTimeout(toastTimer); toastTimer = setTimeout(hide, 4000); };
-    t.querySelector('.toast-x').onclick = hide; t.querySelector('.toast-continue').onclick = hide;
-    t.querySelector('[data-ac=toast-view-bag]').onclick = () => { T.track('toast_view_bag', {}); hide(); };
-    t.onmouseenter = () => { clearTimeout(toastTimer); t.classList.add('paused'); };
-    t.onmouseleave = () => { t.classList.remove('paused'); arm(); };
-    t.classList.remove('show'); void t.offsetWidth; t.classList.add('show'); arm();
+  // ---- mini cart (Shopify-style slide-in) ----
+  function openMiniCart(justAdded) {
+    let d = document.getElementById('miniCart');
+    if (!d) { d = document.createElement('div'); d.id = 'miniCart'; document.body.appendChild(d); }
+    const draw = () => {
+      const c = cart.get(), n = c.reduce((s, l) => s + l.qty, 0), sub = cart.subtotal();
+      d.innerHTML = `<div class="drawer-bg" data-close></div><aside class="drawer mini" role="dialog" aria-modal="true" aria-label="Your bag">
+        <div class="drawer-head"><h2>Your bag <span class="muted">(${n})</span></h2><button class="toast-x" data-close aria-label="Close">×</button></div>
+        ${justAdded && n ? '<div class="mini-added"><span class="toast-check" aria-hidden="true">✓</span> Added to your bag</div>' : ''}
+        <div class="mini-lines">${n ? c.map((l, i) => { const p = P[l.id], im = (p.images || [])[0];
+          return `<div class="mini-line">${im ? `<a href="#/p/${p.id}" class="mini-img" style="background:${im.bg || '#E9E6DE'}"><img src="${im.src}" alt=""></a>` : ''}
+            <div class="mini-info"><a href="#/p/${p.id}" class="mini-name">${p.name}</a><div class="muted">${l.size ? 'Size ' + l.size : '&nbsp;'}</div>
+            <div class="mini-qty"><button data-q="${i}" data-d="-1" aria-label="Decrease quantity">−</button><span>${l.qty}</span><button data-q="${i}" data-d="1" aria-label="Increase quantity">+</button><button class="mini-remove" data-r="${i}">Remove</button></div></div>
+            <div class="mini-price">${p.list_price ? `<s class="old-price">${eur(p.list_price * l.qty)}</s>` : ''}<b>${eur(p.price * l.qty)}</b></div></div>`; }).join('')
+          : '<p class="muted mini-empty">Your bag is empty.</p>'}</div>
+        ${n ? `<div class="mini-foot"><div class="mini-sub"><span>Subtotal</span><b>${eur(sub)}</b></div>
+          <a href="#/checkout" class="btn ${btnClass} btn-block" data-ac="minicart-checkout">Checkout</a>
+          <a href="#/cart" class="btn btn-light btn-block mini-viewcart" data-ac="minicart-view-cart">View cart</a></div>`
+          : '<div class="mini-foot"><button class="btn btn-light btn-block" data-close>Continue shopping</button></div>'}
+      </aside>`;
+      d.querySelectorAll('[data-close]').forEach(x => x.onclick = closeMiniCart);
+      d.querySelectorAll('[data-q]').forEach(b => b.onclick = () => { const i = +b.dataset.q, dd = +b.dataset.d, l = cart.get()[i], p = P[l.id];
+        T.track(dd > 0 ? 'add_to_cart' : 'remove_from_cart', { currency: 'EUR', value: p.price, items: [item(p, { quantity: 1, item_variant: l.size || '' })] }); cart.qty(i, dd); justAdded = false; draw(); });
+      d.querySelectorAll('[data-r]').forEach(b => b.onclick = () => { const i = +b.dataset.r, l = cart.get()[i];
+        T.track('remove_from_cart', { items: [item(P[l.id], { quantity: l.qty })] }); cart.remove(i); justAdded = false; draw(); });
+      d.querySelectorAll('.mini-lines a, .mini-foot a').forEach(x => x.addEventListener('click', closeMiniCart));
+    };
+    draw();
+    document.addEventListener('keydown', miniEsc);
+    cancelAnimationFrame(miniRaf); miniRaf = requestAnimationFrame(() => d.classList.add('open'));
+    T.track('view_minicart', { trigger: justAdded ? 'add_to_cart' : 'header_icon', value: cart.subtotal() });
   }
+  let miniRaf = 0;
+  const miniEsc = e => { if (e.key === 'Escape') closeMiniCart(); };
+  function closeMiniCart() { cancelAnimationFrame(miniRaf); const d = document.getElementById('miniCart'); if (d) d.classList.remove('open'); document.removeEventListener('keydown', miniEsc); }
+  document.querySelector('[data-ac=open-minicart]').onclick = () => openMiniCart(false);
 
   // ---- reviews ----
   const fmtDate = d => new Date(d + 'T12:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
@@ -179,7 +196,7 @@
       if (sized(p) && !selSize) { document.getElementById('atcMsg').innerHTML = '<p style="color:#b00020">Please select a size.</p>'; T.track('atc_error', { reason: 'no_size' }); return; }
       cart.add(p.id, selSize); promo();
       T.track('add_to_cart', { currency: 'EUR', value: p.price, items: [item(p, { quantity: 1, item_variant: selSize || '' })] });
-      if (F.atc_toast) showToast(p, selSize);
+      if (F.minicart) openMiniCart(true);
       else document.getElementById('atcMsg').innerHTML = `<p class="note" data-ac="atc-confirm">Added to your bag. <a href="#/cart" data-ac="go-cart">View bag</a></p>`;
     });
   }
@@ -235,8 +252,8 @@
 
   // ---- router ----
   function route() {
+    closeMiniCart();
     const rd = document.getElementById('revDrawer'); if (rd) rd.classList.remove('open');
-    const tt = document.getElementById('acToast'); if (tt) tt.classList.remove('show');
     const h = location.hash.replace(/^#\/?/, '');
     const [r, arg] = h.split('/');
     E.expose(r || 'home');

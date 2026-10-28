@@ -139,7 +139,8 @@ async function session(browser, idx) {
       if (step === 4) { await page.click('[data-ac=place-order]'); await page.waitForSelector('[data-ac=order-confirmed]', { timeout: 4000 }); outcome.purchased = true; outcome.exit = 'purchase'; }
     }
   } catch (e) {
-    outcome.exit = 'error'; outcome.error = String(e.message).slice(0, 160);
+    outcome.exit = 'error'; outcome.error = String(e.message).slice(0, 600);
+    if (process.env.SIM_DEBUG_SHOTS) { try { await page.screenshot({ path: `${process.env.SIM_DEBUG_SHOTS}/err-${idx}.png` }); } catch (_) {} }
   } finally {
     // let gtag flush queued GA4 hits before the browser context is closed
     try { if (await page.evaluate(() => typeof window.gtag === 'function')) await page.waitForTimeout(3000); } catch (e) {}

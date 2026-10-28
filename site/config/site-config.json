@@ -17,8 +17,8 @@
     "pdp_long_desc": true,
     "pdp_specs": true,
     "pdp_usps": true,
-    "atc_toast": true,
-    "sale_prices": true
+    "sale_prices": true,
+    "minicart": true
   },
   "css": "",
   "changelog": [
@@ -76,6 +76,15 @@
         "plp_show_ratings": true,
         "pdp_show_reviews": true,
         "sale_prices": true
+      },
+      "scope": "all"
+    },
+    {
+      "date": "2026-10-29",
+      "experiment": "manual",
+      "name": "Editorial: header (bag icon + badge, centred search with icon), slide-in mini cart replaces add-to-bag toast (CROle request)",
+      "features": {
+        "minicart": true
       },
       "scope": "all"
     }
