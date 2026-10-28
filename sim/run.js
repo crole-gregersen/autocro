@@ -58,6 +58,7 @@ async function session(browser, idx) {
     return p;
   };
   const go = async (sel, route) => { await page.click(sel, { timeout: 4000 }); await page.waitForFunction(r => document.body.dataset.route === r, route, { timeout: 4000 }); };
+  const nav = async h => { await page.evaluate(x => { location.hash = x.slice(1); }, h); };
   const closePopup = async () => {
     const btn = await page.$('[data-ac=popup-close]');
     if (btn) await page.click(rng() < 0.07 ? '[data-ac=popup-signup]' : '[data-ac=popup-close]');
@@ -91,7 +92,7 @@ async function session(browser, idx) {
     let pdps = 0, added = 0;
     let route = first.route;
     if (route === 'search') {
-      if (await page.$('[data-ac=product-card]')) { /* results */ } else { await page.goto(BASE + '/#/c/' + pick(CATS)); await page.waitForFunction(() => document.body.dataset.route === 'c'); }
+      if (await page.$('[data-ac=product-card]')) { /* results */ } else { await nav('/#/c/' + pick(CATS)); await page.waitForFunction(() => document.body.dataset.route === 'c'); }
     }
     if (route === 'home') {
       if (rng() < 0.55) await go(`[data-ac=cat-tile] >> nth=${Math.floor(rng() * 4)}`, 'c');
@@ -107,21 +108,21 @@ async function session(browser, idx) {
       const did = await pdpFlow();
       if (did) { added++; if (rng() < base.toCart) break; }
       if (rng() > base.browseMore) break;
-      await page.goto(BASE + '/#/c/' + pick(CATS)); await page.waitForFunction(() => document.body.dataset.route === 'c');
+      await nav('/#/c/' + pick(CATS)); await page.waitForFunction(() => document.body.dataset.route === 'c');
       await look();
     }
     if (!added) { outcome.exit = 'no_atc'; return; }
-    await page.goto(BASE + '/#/cart'); await page.waitForFunction(() => document.body.dataset.route === 'cart');
+    await nav('/#/cart'); await page.waitForFunction(() => document.body.dataset.route === 'cart');
     let c = await look();
     // free-shipping top-up
     const sub = await page.evaluate(() => JSON.parse(sessionStorage.getItem('ac_cart') || '[]').length);
     const subtotal = await page.evaluate(() => { const d = [...document.querySelectorAll('.totals div')].find(x => /subtotal/i.test(x.innerText)); return d ? +d.innerText.replace(/[^\d.]/g, '') : 0; });
     if (sub && rng() < M.pTopUp(persona, seen, subtotal, 100)) {
-      await page.goto(BASE + '/#/c/accessories'); await page.waitForFunction(() => document.body.dataset.route === 'c');
+      await nav('/#/c/accessories'); await page.waitForFunction(() => document.body.dataset.route === 'c');
       const cards = await page.$$('[data-ac=product-card]'); await cards[Math.floor(rng() * cards.length)].click();
       await page.waitForFunction(() => document.body.dataset.route === 'p');
       await page.click('[data-ac=add-to-cart] >> nth=0');
-      await page.goto(BASE + '/#/cart'); await page.waitForFunction(() => document.body.dataset.route === 'cart');
+      await nav('/#/cart'); await page.waitForFunction(() => document.body.dataset.route === 'cart');
       c = await look();
     }
     if (rng() > M.pCartToCheckout(persona, { ...seen, cartShipping: c.cartShipping })) { outcome.exit = 'cart'; return; }
@@ -141,7 +142,7 @@ async function session(browser, idx) {
     outcome.exit = 'error'; outcome.error = String(e.message).slice(0, 160);
   } finally {
     // let gtag flush queued GA4 hits before the browser context is closed
-    try { if (await page.evaluate(() => typeof window.gtag === 'function')) await page.waitForTimeout(1500); } catch (e) {}
+    try { if (await page.evaluate(() => typeof window.gtag === 'function')) await page.waitForTimeout(3000); } catch (e) {}
     truthOut.write(JSON.stringify({ run_id: RUN, idx, session_id: sid, persona, outcome, seen: { ...seen, ...obs, overlay: undefined } }) + '\n');
     await ctx.close();
   }
