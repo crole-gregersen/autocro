@@ -16,7 +16,8 @@
     "home_hero_cta": "Explore the collection",
     "pdp_long_desc": true,
     "pdp_specs": true,
-    "pdp_usps": true
+    "pdp_usps": true,
+    "atc_toast": true
   },
   "css": "",
   "changelog": [
@@ -54,6 +55,15 @@
         "pdp_long_desc": true,
         "pdp_specs": true,
         "pdp_usps": true
+      },
+      "scope": "all"
+    },
+    {
+      "date": "2026-10-29",
+      "experiment": "manual",
+      "name": "Editorial: slide-in add-to-bag confirmation (CROle request)",
+      "features": {
+        "atc_toast": true
       },
       "scope": "all"
     }

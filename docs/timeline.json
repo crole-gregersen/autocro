@@ -48,5 +48,10 @@
   "29 Oct",
   "Editorial PDP update",
   "Product copy, specs and USPs on all 24 product pages (manual change, logged in changelog). Fresh baseline run R010 queued."
+ ],
+ [
+  "29 Oct",
+  "Add-to-bag slide-in",
+  "Confirmation panel slides in from the right for 2 s (pauses on hover) with product, size, price, View bag / Continue shopping."
  ]
 ]

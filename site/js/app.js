@@ -61,6 +61,27 @@
     }
   });
 
+  // Slide-in add-to-bag confirmation (right side, 2 s, pauses on hover)
+  let toastTimer = null;
+  function showToast(p, size) {
+    let t = document.getElementById('acToast');
+    if (!t) { t = document.createElement('div'); t.id = 'acToast'; t.className = 'toast'; t.setAttribute('role', 'status'); t.setAttribute('aria-live', 'polite'); document.body.appendChild(t); }
+    const im = (p.images || [])[0];
+    const count = cart.get().reduce((s, l) => s + l.qty, 0);
+    t.innerHTML = `<div class="toast-head"><span class="toast-check" aria-hidden="true">✓</span> Added to your bag<button class="toast-x" aria-label="Close">×</button></div>
+      <div class="toast-body">${im ? `<div class="toast-img" style="background:${im.bg || '#E9E6DE'}"><img src="${im.src}" alt=""></div>` : ''}
+      <div><div class="toast-name">${p.name}</div><div class="toast-meta">${size ? 'Size ' + size + ' · ' : ''}${eur(p.price)}</div></div></div>
+      <div class="toast-actions"><a href="#/cart" class="btn ${btnClass}" data-ac="toast-view-bag">View bag (${count})</a><button class="btn btn-light toast-continue">Continue shopping</button></div>
+      <div class="toast-timer"></div>`;
+    const hide = () => { t.classList.remove('show'); clearTimeout(toastTimer); };
+    const arm = () => { clearTimeout(toastTimer); toastTimer = setTimeout(hide, 2000); };
+    t.querySelector('.toast-x').onclick = hide; t.querySelector('.toast-continue').onclick = hide;
+    t.querySelector('[data-ac=toast-view-bag]').onclick = () => { T.track('toast_view_bag', {}); hide(); };
+    t.onmouseenter = () => { clearTimeout(toastTimer); t.classList.add('paused'); };
+    t.onmouseleave = () => { t.classList.remove('paused'); arm(); };
+    t.classList.remove('show'); void t.offsetWidth; t.classList.add('show'); arm();
+  }
+
   // ---- views ----
   function home() {
     T.track('page_view', { page_type: 'home' });
@@ -117,7 +138,8 @@
       if (sized(p) && !selSize) { document.getElementById('atcMsg').innerHTML = '<p style="color:#b00020">Please select a size.</p>'; T.track('atc_error', { reason: 'no_size' }); return; }
       cart.add(p.id, selSize); promo();
       T.track('add_to_cart', { currency: 'EUR', value: p.price, items: [item(p, { quantity: 1, item_variant: selSize || '' })] });
-      document.getElementById('atcMsg').innerHTML = `<p class="note" data-ac="atc-confirm">Added to your bag. <a href="#/cart" data-ac="go-cart">View bag</a></p>`;
+      if (F.atc_toast) showToast(p, selSize);
+      else document.getElementById('atcMsg').innerHTML = `<p class="note" data-ac="atc-confirm">Added to your bag. <a href="#/cart" data-ac="go-cart">View bag</a></p>`;
     });
   }
   function cartView() {
@@ -172,6 +194,7 @@
 
   // ---- router ----
   function route() {
+    const tt = document.getElementById('acToast'); if (tt) tt.classList.remove('show');
     const h = location.hash.replace(/^#\/?/, '');
     const [r, arg] = h.split('/');
     E.expose(r || 'home');
