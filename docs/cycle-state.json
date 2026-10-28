@@ -1,0 +1,7 @@
+{
+  "_comment": "Step-by-step cycle state shown in the engine room. Claude updates this after every step.",
+  "cycle": 1,
+  "steps": ["Baseline traffic", "Analyse", "Hypotheses", "Build & QA variants", "Test traffic", "Evaluate & decide"],
+  "completed": 1,
+  "note": "Step 1 done: reused run R005 as baseline data."
+}

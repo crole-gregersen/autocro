@@ -15,6 +15,7 @@ Replies are short: 3–5 bullets showing what works now (plus a link). No long e
   1. Baseline traffic run → 2. Analyse → 3. Hypotheses (backlog) → 4. Build variants + QA (preview links) →
   5. Test traffic run(s) → 6. Evaluate & decide (ship/stop) → back to 1/2.
   CROle may later decide to automate some or all steps.
+  After each step update `docs/cycle-state.json` (completed = number of steps done) and rebuild the dashboard.
 
 ## Repository map
 | Path | What |

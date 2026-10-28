@@ -277,7 +277,13 @@ rules_kv, rules_list = rules_html()
 running = [e for e in REG["experiments"] if e["status"] == "running"]
 last_run = runs[-1] if runs else None
 queue_txt = f'{QUEUE.get("run_id")} · {QUEUE.get("sessions"):,} sessions' if QUEUE.get("run_id") else "none"
-engine_state = ("Testing: " + ", ".join(e["id"] for e in running)) if running else "Fresh start — step-by-step mode, waiting for CROle to start step 1 (baseline traffic)"
+CS = J("docs/cycle-state.json") if os.path.exists(os.path.join(ROOT, "docs/cycle-state.json")) else None
+if CS:
+    k = CS["completed"]; nxt = CS["steps"][k] if k < len(CS["steps"]) else None
+    engine_state = f'Cycle {CS["cycle"]} · step {k} of {len(CS["steps"])} done ({CS["steps"][k-1]})' if k else f'Cycle {CS["cycle"]} not started'
+    engine_state += f' · waiting for go on step {k+1}: {nxt}' if nxt else ' · cycle complete'
+else:
+    engine_state = ("Testing: " + ", ".join(e["id"] for e in running)) if running else "Idle"
 
 HTML = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>AutoCRO — engine room</title>
