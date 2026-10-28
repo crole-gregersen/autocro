@@ -11,11 +11,16 @@ Replies are short: 3–5 bullets showing what works now (plus a link). No long e
 - CROle is building the baseline shop. Do NOT queue traffic runs, start experiments or run cycles until CROle says go.
 - Cycle 0 (EXP001–003, runs R001–R010, decision log, backlog, reports) is archived in `archive/cycle0/`. Its shipped
   changes (guest checkout, cart shipping info, compact mobile gallery) remain part of the shop. Registry is empty.
-- When cycles run: ONE STEP PER GO from CROle, then stop and show what was collected (3–5 bullets + link), and name the next step:
-  1. Baseline traffic run → 2. Analyse → 3. Hypotheses (backlog) → 4. Build variants + QA (preview links) →
-  5. Test traffic run(s) → 6. Evaluate & decide (ship/stop) → back to 1/2.
-  CROle may later decide to automate some or all steps.
+- When cycles run: ONE STEP PER GO from CROle, then stop and show what was collected (3–5 bullets + link), and name the next step.
+  Mindset: "we came across this site and want to start testing". Steps (since 29 Oct):
+  1. **Analyse vs benchmarks** (`analysis/benchmark.py` on the latest baseline run; public benchmarks in `config/benchmarks.json`)
+  2. **Hypothesise** (~5 hypotheses in `docs/hypotheses.json`: benchmark gaps + best practice, ICE-scored)
+  3. **Design variants** (static control/variant screenshots → `site/engine-room/designs/` + `docs/designs.json`; kept forever)
+  4. **Build & QA** (feature flags + preview links) → 5. **Test traffic** → 6. **Evaluate & decide** (ship/stop).
+  Baseline traffic data is an input to step 1 (a run on the current shop), not a step itself.
   After each step update `docs/cycle-state.json` (completed = number of steps done) and rebuild the dashboard.
+- Simulator calibrated 29 Oct to realistic D2C ranges (rounded/anonymised, operator-side only: `sim/sealed/calibrate.py`).
+  Never publish client data in this public repo; analyst-side benchmarks come from public sources only.
 
 ## Repository map
 | Path | What |

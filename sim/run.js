@@ -88,6 +88,11 @@ async function session(browser, idx) {
     obs.overlayOnLanding = first.overlayBlocking;
     if (rng() < M.pBounce(persona, first)) { outcome.exit = 'bounce'; return; }
     await closePopup();
+    if (M.pBrowseOnly && rng() < M.pBrowseOnly(persona)) {   // browse category pages only, then leave
+      const k = 1 + Math.floor(rng() * 2);
+      for (let i = 0; i < k; i++) { await nav('/#/c/' + pick(CATS)); await page.waitForFunction(() => document.body.dataset.route === 'c'); await look(); }
+      outcome.exit = 'browse_only'; return;
+    }
     const base = M.BASE[persona.intent];
     let pdps = 0, added = 0;
     let route = first.route;

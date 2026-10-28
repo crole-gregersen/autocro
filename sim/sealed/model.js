@@ -10,7 +10,7 @@ function samplePersona(rng) {
   const r = rng();
   return {
     device: rng() < 0.62 ? 'mobile' : 'desktop',
-    intent: r < 0.14 ? 'buyer' : r < 0.44 ? 'considerer' : 'browser',
+    intent: r < 0.05 ? 'buyer' : r < 0.27 ? 'considerer' : 'browser',   // calibrated to realistic D2C mix (29 Oct)
     priceSensitive: rng() < 0.4,
     sceptical: rng() < 0.35,
     entry: (x => x < 0.65 ? 'home' : x < 0.85 ? 'plp' : x < 0.93 ? 'pdp' : 'search')(rng()),
@@ -18,9 +18,9 @@ function samplePersona(rng) {
 }
 
 const BASE = {
-  buyer: { atc: 0.62, browseMore: 0.35, toCart: 0.85, toCheckout: 0.9, pdpViews: 3 },
-  considerer: { atc: 0.24, browseMore: 0.55, toCart: 0.7, toCheckout: 0.72, pdpViews: 4 },
-  browser: { atc: 0.05, browseMore: 0.5, toCart: 0.5, toCheckout: 0.45, pdpViews: 3 },
+  buyer: { atc: 0.46, browseMore: 0.6, toCart: 0.4, toCheckout: 0.85, pdpViews: 4, browseOnly: 0.02 },
+  considerer: { atc: 0.115, browseMore: 0.62, toCart: 0.45, toCheckout: 0.62, pdpViews: 4, browseOnly: 0.15 },
+  browser: { atc: 0.03, browseMore: 0.5, toCart: 0.6, toCheckout: 0.45, pdpViews: 3, browseOnly: 0.45 },
 };
 
 // Probability of bouncing at landing / on a page.
@@ -31,8 +31,12 @@ function pBounce(persona, seen) {
 }
 
 // Probability of adding to cart on a PDP.
+// Engaged browsers who only look at category pages and leave (keeps the selection index realistic).
+function pBrowseOnly(persona) { return BASE[persona.intent].browseOnly; }
+
 function pAddToCart(persona, seen, product) {
   let p = BASE[persona.intent].atc;
+  if (persona.device === 'mobile') p *= 0.55;                          // real-world mobile gap (calibration)
   if (persona.device === 'mobile' && !seen.atcAboveFold) p *= 0.62;   // H1: ATC below fold on mobile
   if (persona.sceptical && !seen.socialProofPdp) p *= 0.68;           // H2: no social proof
   if (persona.sceptical && seen.socialProofPlp) p *= 1.06;
@@ -51,6 +55,7 @@ function pTopUp(persona, seen, subtotal, threshold) {
 
 function pCartToCheckout(persona, seen) {
   let p = BASE[persona.intent].toCheckout;
+  if (persona.device === 'mobile') p *= 0.68;                          // mobile cart commitment is much lower (calibration)
   if (seen.shippingKnownCost && seen.cartShipping > 0 && persona.priceSensitive) p *= 0.94; // some leave early, honestly informed
   return p;
 }
@@ -72,4 +77,4 @@ function pCheckoutStep(persona, seen, step) {
   return p;
 }
 
-module.exports = { samplePersona, BASE, pBounce, pAddToCart, pTopUp, pCartToCheckout, pCheckoutStep };
+module.exports = { samplePersona, BASE, pBounce, pBrowseOnly, pAddToCart, pTopUp, pCartToCheckout, pCheckoutStep };

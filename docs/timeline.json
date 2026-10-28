@@ -73,5 +73,15 @@
   "29 Oct",
   "Step 1 · Baseline data",
   "Reused run R005 (3,000 simulated shoppers on the live shop, 28 Oct) as the baseline for the fresh start. Predates reviews, offers, mini cart and PDP copy."
+ ],
+ [
+  "29 Oct",
+  "Simulator calibrated",
+  "Shopper behaviour tuned to realistic D2C ranges; new baseline run R011 (3,000 shoppers, 3.7% conversion) replaces R005."
+ ],
+ [
+  "29 Oct",
+  "Cycle 1 · steps 1–2",
+  "Analysis vs public benchmarks and 5 ICE-ranked hypotheses published. Next: step 3, designs."
  ]
 ]

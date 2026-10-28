@@ -1,0 +1,16 @@
+{
+  "_comment": "Public e-commerce benchmarks used in cycle step 1 (Analyse). Rates use sessions as denominator; our 'engaged sessions' proxy is >=2 page views or an add-to-cart.",
+  "sources": [
+    {"name": "Dynamic Yield e-commerce benchmarks", "url": "https://marketing.dynamicyield.com/benchmarks/", "note": "Industry ranges, past 12 months (page partly unavailable 29 Oct 2026)"},
+    {"name": "Videowise: Ecommerce conversion funnel benchmarks (Aug 2026)", "url": "https://videowise.com/conversion-optimization/ecommerce-conversion-funnel-benchmarks-for-shopify-brands", "note": "Cites Dynamic Yield, IRP Commerce, Littledata"}
+  ],
+  "metrics": {
+    "cvr":            {"label": "Conversion rate", "def": "transactions / engaged sessions", "low": 0.0266, "good": 0.032, "top": 0.047, "note": "DY global 2.66%; top 20% >3.2%; top 10% 4.7%+; Fashion & Apparel 1.4–2.9%"},
+    "atc_rate":       {"label": "Add-to-cart rate", "def": "add_to_cart events / engaged sessions", "low": 0.06, "good": 0.075, "top": 0.096, "note": "Global ~6%; top Shopify stores 7.5–9.6%; DY industry range 3.2–11.1%"},
+    "selection":      {"label": "Selection index", "def": "sessions viewing a product / engaged sessions", "low": 0.60, "good": 0.65, "top": 0.75, "note": "No public benchmark; typical healthy range used by CRO teams"},
+    "checkout_conv":  {"label": "Checkout conversion", "def": "transactions / sessions beginning checkout", "low": 0.45, "good": 0.59, "top": 0.66, "note": "Average 45%; top 20% 59%; top 10% 66%"},
+    "cart_abandon":   {"label": "Cart abandonment", "def": "1 − transactions / add-to-cart sessions (lower is better)", "low": 0.78, "good": 0.70, "top": 0.566, "lower_is_better": true, "note": "Typical 70–78%; best DY industry 56.6%"},
+    "units":          {"label": "Units per transaction", "def": "items purchased / transactions", "low": 2.0, "good": 2.91, "top": 3.5, "note": "DY: Fashion, Accessories & Apparel 2.91 (lowest industry)"},
+    "mob_desk_ratio": {"label": "Mobile ÷ desktop conversion", "def": "mobile CVR / desktop CVR", "low": 0.35, "good": 0.6, "top": 0.93, "note": "Videowise: desktop ~3.0% vs mobile ~2.8%; older Adobe data: desktop ~3× smartphone"}
+  }
+}

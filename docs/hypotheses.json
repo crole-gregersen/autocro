@@ -1,0 +1,115 @@
+{
+ "_comment": "Cycle 1 step 2. Basis: 'Benchmark gap' or 'Best practice'. Analyst-side only (no sealed data used).",
+ "cycle": 1,
+ "created": "2026-10-29",
+ "hypotheses": [
+  {
+   "id": "H2",
+   "title": "Free-shipping progress bar in the bag",
+   "basis": "Benchmark gap",
+   "page": "Slide-in bag + cart",
+   "devices": "all",
+   "observation": "1.24 items per order (benchmark 2.9). 41% of orders pay shipping and 20% fall just under the €100 free-shipping threshold.",
+   "hypothesis": "Because many baskets end just below €100, we believe showing progress towards free shipping ('€18 to free shipping') in the bag will make shoppers add another item, raising items per order and revenue per visitor.",
+   "change": "Progress bar with the remaining amount at the top of the slide-in bag and cart; turns green with 'Free shipping unlocked' at €100.",
+   "primary_metric": "revenue per visitor (cart visitors)",
+   "guardrails": [
+    "purchase"
+   ],
+   "ice": {
+    "impact": 7,
+    "confidence": 7,
+    "ease": 9
+   },
+   "status": "proposed",
+   "ice_score": 441
+  },
+  {
+   "id": "H1",
+   "title": "Mobile bag: make checkout the obvious next step",
+   "basis": "Benchmark gap",
+   "page": "Slide-in bag (mobile)",
+   "devices": "mobile",
+   "observation": "Only 35% of mobile shoppers with a full bag start checkout vs 64% on desktop; mobile cart abandonment is 70%.",
+   "hypothesis": "Because mobile shoppers see a long bag with the Checkout button pushed down and no reassurance, we believe a sticky Checkout button with delivery and returns reassurance in the bag will raise mobile checkout starts.",
+   "change": "Sticky footer in the slide-in bag on mobile: subtotal, prominent Checkout button, and a line with '30-day free returns · delivery in 1–2 days'.",
+   "primary_metric": "begin_checkout (mobile sessions with add-to-cart)",
+   "guardrails": [
+    "purchase",
+    "rpv"
+   ],
+   "ice": {
+    "impact": 8,
+    "confidence": 6,
+    "ease": 8
+   },
+   "status": "proposed",
+   "ice_score": 384
+  },
+  {
+   "id": "H4",
+   "title": "Sticky Add to bag on mobile product pages",
+   "basis": "Best practice",
+   "page": "Product page (mobile)",
+   "devices": "mobile",
+   "observation": "Mobile product pages convert views to add-to-bag at 5–7.5% vs 7.6–13.9% on desktop, in every category. Product pages are now long (copy, specs, reviews).",
+   "hypothesis": "Because mobile shoppers scroll into copy, specs and reviews and lose the Add to bag button, we believe a sticky Add to bag bar (price + button) that appears once the main button scrolls away will raise mobile add-to-bag rate.",
+   "change": "Bottom sticky bar on mobile PDPs with product name, price and Add to bag, shown when the main button is out of view; asks for size if none selected.",
+   "primary_metric": "add_to_cart (mobile PDP visitors)",
+   "guardrails": [
+    "purchase",
+    "rpv"
+   ],
+   "ice": {
+    "impact": 6,
+    "confidence": 5,
+    "ease": 8
+   },
+   "status": "proposed",
+   "ice_score": 240
+  },
+  {
+   "id": "H3",
+   "title": "'Complete your kit' on product pages",
+   "basis": "Benchmark gap",
+   "page": "Product page",
+   "devices": "all",
+   "observation": "Baskets are small (1.24 items) and accessories are cheap add-ons (€31–65) that rarely get added alongside jackets, boots and packs.",
+   "hypothesis": "Because shoppers buying a main item are not shown matching accessories, we believe a 'Complete your kit' row with quick add will raise items per order.",
+   "change": "Row of 3 matching accessories under Add to bag, each with image, price, stars and a quick '+ Add' button.",
+   "primary_metric": "items per order / revenue per visitor",
+   "guardrails": [
+    "add_to_cart",
+    "purchase"
+   ],
+   "ice": {
+    "impact": 7,
+    "confidence": 5,
+    "ease": 6
+   },
+   "status": "proposed",
+   "ice_score": 210
+  },
+  {
+   "id": "H5",
+   "title": "Helpful zero-result search page",
+   "basis": "Best practice",
+   "page": "Search results",
+   "devices": "all",
+   "observation": "15% of searches return nothing (all for 'tent'), and those sessions end with a dead-end 'No products found'.",
+   "hypothesis": "Because a dead-end search page gives shoppers nowhere to go, we believe suggesting related categories and popular products on zero-result searches will keep them browsing and raise product views from search.",
+   "change": "Zero-result page with 'We don't sell tents yet', links to related categories (Backpacks, Accessories) and a row of 4 bestsellers.",
+   "primary_metric": "view_item (search sessions)",
+   "guardrails": [
+    "purchase"
+   ],
+   "ice": {
+    "impact": 3,
+    "confidence": 8,
+    "ease": 8
+   },
+   "status": "proposed",
+   "ice_score": 192
+  }
+ ]
+}

@@ -16,7 +16,7 @@ DECISIONS = [json.loads(l) for l in open(os.path.join(ROOT, "data/decisions.json
 ORIGINAL = {"pdp_gallery_layout": "tall", "pdp_shipping_info": False, "cart_shipping_info": False, "free_shipping_bar": False,
             "checkout_guest": False, "plp_show_ratings": False, "pdp_show_reviews": False, "sticky_atc_mobile": False,
             "atc_button_text": "Add to bag", "atc_button_color": "dark", "newsletter_popup": False, "home_hero_cta": "Explore the collection"}
-LOCAL_RUNS = set()  # all runs since the fresh start run in GitHub Actions
+LOCAL_RUNS = {"R011"}  # calibrated baseline generated in the sandbox (no GA4 hits)
 
 # ---------------- data ----------------
 evs = load_events()
@@ -185,6 +185,11 @@ def ci_bar(row, shipped_winner):
 
 
 # ---------------- sections ----------------
+def engaged_kpi(ss):
+    E = [s for s in ss if len(s["page_types"]) >= 2 or "add_to_cart" in s["steps"]]; n = len(E) or 1
+    return dict(cr=sum(s["orders"] > 0 for s in E) / n, rpv=sum(s["revenue"] for s in E) / n)
+
+
 def tiles():
     if not latest:
         n_exp = len(REG["experiments"])
@@ -196,11 +201,13 @@ def tiles():
     rpv_up = latest["rpv"] / baseline["rpv"] - 1 if baseline and baseline["rpv"] else 0
     n_ship = sum(e["status"] == "shipped" for e in REG["experiments"]); n_run = sum(e["status"] == "running" for e in REG["experiments"])
     n_stop = sum(e["status"] in ("stopped", "invalid") for e in REG["experiments"])
-    T = [("Conversion rate now", pc(latest["cr"]), f"was {pc(baseline['cr'])} at baseline · <b class='up'>{sgn(up)}</b>", f"{latest['id']}, {latest['n']:,} sessions"),
-         ("Revenue per visitor", eur(latest["rpv"]), f"was {eur(baseline['rpv'])} · <b class='up'>{sgn(rpv_up)}</b>", "simulated EUR"),
+    eng_now = engaged_kpi(latest_ss); eng_base = engaged_kpi([s for r in base_runs for s in by_run[r["id"]]]) if base_runs else eng_now
+    up = eng_now["cr"] / eng_base["cr"] - 1 if eng_base["cr"] else 0; rpv_up = eng_now["rpv"] / eng_base["rpv"] - 1 if eng_base["rpv"] else 0
+    T = [("Conversion rate", pc(eng_now["cr"]), f"baseline {pc(eng_base['cr'])} · <b class='up'>{sgn(up)}</b>", f"per engaged session · {latest['id']}"),
+         ("Revenue per engaged session", eur(eng_now["rpv"]), f"baseline {eur(eng_base['rpv'])} · <b class='up'>{sgn(rpv_up)}</b>", "simulated EUR"),
          ("Experiments", f"{len(REG['experiments'])}", f"{n_ship} shipped · {n_run} running · {n_stop} stopped", "decided by rules R1–R7"),
          ("Simulated shoppers", f"{total_sessions:,}", f"{len(runs)} traffic runs · {total_events:,} events", f"{total_orders:,} simulated orders"),
-         ("GA4 delivery", pc(ga_latest["ga"], 0) if ga_latest else "–", f"of events reach GA4 ({ga_latest['id'] if ga_latest else ''})", "own event log is source of truth")]
+         ("GA4 delivery", pc(ga_latest["ga"], 0) if ga_latest else "–", (f"of events reach GA4 ({ga_latest['id']})" if ga_latest else "not measured: latest run was local (no GA4)"), "own event log is source of truth")]
     return "".join(f'<div class="tile"><div class="tl">{a}</div><div class="tv">{b}</div><div class="ts">{c}</div><div class="tm">{d}</div></div>' for a, b, c, d in T)
 
 
@@ -273,6 +280,91 @@ def timeline_html():
     return "".join(f'<li><span class="td">{esc(a)}</span><b>{esc(b)}</b><span>{esc(c)}</span></li>' for a, b, c in items)
 
 
+
+# ---------- step-by-step cycle: stepper, analysis, hypotheses, design gallery ----------
+BENCH = sorted(glob.glob(os.path.join(ROOT, "reports/benchmark-*.json")), key=os.path.getmtime)
+BENCH = json.load(open(BENCH[-1])) if BENCH else None
+HYP = J("docs/hypotheses.json") if os.path.exists(os.path.join(ROOT, "docs/hypotheses.json")) else {"hypotheses": []}
+DESIGNS = J("docs/designs.json") if os.path.exists(os.path.join(ROOT, "docs/designs.json")) else {"designs": []}
+
+
+def stepper_html():
+    if not CS:
+        return ""
+    out = []
+    for i, s in enumerate(CS["steps"]):
+        st = "done" if i < CS["completed"] else "next" if i == CS["completed"] else "todo"
+        icon = "✓" if st == "done" else str(i + 1)
+        out.append(f'<li class="st-{st}"><span class="dot">{icon}</span><span>{esc(s)}</span></li>')
+    return f'<ol class="stepper">{"".join(out)}</ol>'
+
+
+def bfmt(key, v):
+    if v is None:
+        return "–"
+    return f"{v:.2f}" if key == "units" else f"{v:.0%}" if key == "mob_desk_ratio" else f"{v:.1%}"
+
+
+def analysis_html():
+    if not BENCH:
+        return '<p class="empty">Analysis appears here after step 1.</p>'
+    lab = {"top": ("Top 10%", "good"), "good": ("Good", "good"), "ok": ("Average", "neutral"), "below": ("Below", "bad")}
+    trs = []
+    for r in BENCH["rows"]:
+        t, cls = lab[r["status"]]
+        trs.append(f'<tr><td><b>{esc(r["label"])}</b><div class="feat">{esc(r["def_"])}</div></td><td class="num"><b>{bfmt(r["key"], r["value"])}</b></td>'
+                   f'<td class="num">{bfmt(r["key"], r["mobile"])}</td><td class="num">{bfmt(r["key"], r["desktop"])}</td>'
+                   f'<td class="muted">{esc(r["bench"]["note"])}</td><td><span class="pill2 {cls}">{t}</span></td></tr>')
+    src = " · ".join(f'<a href="{esc(s["url"])}" target="_blank" rel="noopener">{esc(s["name"])}</a>' for s in BENCH["sources"])
+    k = BENCH["kpis"]["all"]
+    notes = "".join(f"<li>{esc(n)}</li>" for n in BENCH.get("findings", []))
+    return (f'<p class="sub">Run {esc(BENCH["runs"])}: {k["sessions"]:,} simulated shoppers, {k["engaged"]:,} engaged sessions (2+ page views or an add-to-cart). '
+            f'AOV €{k["aov"]:.2f} · revenue per engaged session €{k["arpu"]:.2f}.</p>'
+            f'<div class="scroll"><table><thead><tr><th>Metric</th><th class="num">Fjeldspor</th><th class="num">Mobile</th><th class="num">Desktop</th><th>Benchmark</th><th>vs benchmark</th></tr></thead><tbody>{"".join(trs)}</tbody></table></div>'
+            + (f'<h3 class="h3">Key findings</h3><ul class="findings">{notes}</ul>' if notes else "")
+            + f'<p class="sub" style="margin-top:10px">Sources: {src}</p>')
+
+
+def hypotheses_html():
+    H = HYP.get("hypotheses", [])
+    if not H:
+        return '<p class="empty">Hypotheses appear here after step 2.</p>'
+    cards = []
+    for h in H:
+        ice = h["ice"]
+        score = ice["impact"] * ice["confidence"] * ice["ease"]
+        basis_cls = "neutral" if h["basis"] == "Best practice" else "bad"
+        cards.append(
+            f'<article class="hyp-card"><div class="hyp-top"><span class="eid">{esc(h["id"])}</span><span class="pill2 {basis_cls}">{esc(h["basis"])}</span>'
+            f'<span class="ice">ICE {ice["impact"]}·{ice["confidence"]}·{ice["ease"]} = <b>{score}</b></span></div>'
+            f'<h3>{esc(h["title"])}</h3><p><b>Observation.</b> {esc(h["observation"])}</p><p><b>Hypothesis.</b> {esc(h["hypothesis"])}</p>'
+            f'<p><b>Change.</b> {esc(h["change"])}</p><div class="hyp-meta"><span>Page: {esc(h["page"])}</span><span>Devices: {esc(h["devices"])}</span>'
+            f'<span>Primary: {esc(h["primary_metric"])}</span><span>Guardrails: {esc(", ".join(h["guardrails"]))}</span><span>Status: {esc(h["status"])}</span></div></article>')
+    return f'<div class="hyp-grid">{"".join(cards)}</div>'
+
+
+DESIGN_CSS = """body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:#f9f9f7;color:#0b0b0b}.wrap{max-width:1180px;margin:0 auto;padding:28px clamp(14px,3vw,40px) 60px}
+h1{font-size:26px;margin:0 0 4px}.sub{color:#52514e;font-size:13px}a{color:#2a78d6}.muted{color:#898781;font-size:12px}.eid{font-weight:800}
+.hyp-top{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.design{background:#fcfcfb;border:1px solid rgba(11,11,11,.1);border-radius:8px;padding:18px;margin:16px 0}
+.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}figure{margin:0}figure img{width:100%;border:1px solid #e1e0d9;border-radius:6px;display:block}
+figcaption{font-size:12px;color:#52514e;margin-top:6px}.empty{color:#898781;text-align:center;padding:40px 0}"""
+
+
+def designs_page():
+    D = DESIGNS.get("designs", [])
+    body = []
+    if not D:
+        body.append('<p class="empty">No designs yet. Variant designs for each hypothesis appear here in step 3, and stay here after tests finish and the shop changes.</p>')
+    for d in D:
+        shots = "".join(f'<figure><img src="{esc(s["src"])}" alt="{esc(s["label"])}" loading="lazy"><figcaption>{esc(s["label"])}</figcaption></figure>' for s in d["shots"])
+        body.append(f'<section class="design"><div class="hyp-top"><span class="eid">{esc(d["hypothesis"])}</span><b>{esc(d["title"])}</b><span class="muted">{esc(d.get("date", ""))}</span></div>'
+                    f'<p class="sub">{esc(d.get("description", ""))}</p><div class="shots">{shots}</div></section>')
+    return ('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">'
+            '<title>AutoCRO — test designs</title><style>' + DESIGN_CSS + '</style></head><body><div class="wrap"><a href="../">← Engine room</a><h1>Test designs</h1>'
+            '<p class="sub">Control and variant designs for every hypothesis. Static screenshots, so they stay as a record after a test ends and the shop changes.</p>'
+            + "".join(body) + '</div></body></html>')
+
+
 rules_kv, rules_list = rules_html()
 running = [e for e in REG["experiments"] if e["status"] == "running"]
 last_run = runs[-1] if runs else None
@@ -336,38 +428,44 @@ ol.rules{{font-size:13px;color:var(--ink2);padding-left:18px;margin:8px 0 0}} ol
 ul.tline{{list-style:none;padding:0;margin:0;font-size:13px}} ul.tline li{{display:grid;grid-template-columns:60px 170px 1fr;gap:10px;padding:7px 0;border-bottom:1px solid var(--grid)}} .td{{color:var(--muted)}}
 @media (max-width:700px){{ul.tline li{{grid-template-columns:1fr}}}}
 p.empty{{color:var(--muted);font-size:14px;padding:30px 0;text-align:center}}
+.stepper{{list-style:none;display:grid;grid-template-columns:repeat(6,1fr);gap:8px;padding:0;margin:6px 0 0}}
+.stepper li{{display:flex;align-items:center;gap:8px;font-size:13px;padding:10px;border:1px solid var(--border);border-radius:8px}}
+.stepper .dot{{flex:none;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;background:var(--grid);color:var(--ink2)}}
+.stepper .st-done .dot{{background:var(--good);color:#fff}}.stepper .st-next{{border-color:var(--s1);box-shadow:0 0 0 1px var(--s1)}}.stepper .st-next .dot{{background:var(--s1);color:#fff}}
+@media (max-width:900px){{.stepper{{grid-template-columns:repeat(2,1fr)}}}}
+.pill2{{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;white-space:nowrap}}.pill2.good{{background:var(--good);color:#fff}}.pill2.bad{{background:var(--crit);color:#fff}}.pill2.neutral{{background:var(--grid);color:var(--ink)}}
+.hyp-grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:12px}}
+.hyp-card{{border:1px solid var(--border);border-radius:8px;padding:14px 16px;font-size:13px;color:var(--ink2)}}.hyp-card h3{{color:var(--ink);font-size:15px;margin:8px 0}}.hyp-card p{{margin:6px 0}}
+.hyp-top{{display:flex;gap:8px;align-items:center;flex-wrap:wrap}}.ice{{margin-left:auto;font-size:12px}}.hyp-meta{{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px;color:var(--muted);margin-top:8px}}
+.h3{{font-size:14px;margin:14px 0 4px}}.findings{{font-size:13px;color:var(--ink2);padding-left:18px;margin:4px 0}}.findings li{{margin:4px 0}}
 footer{{font-size:12px;color:var(--muted);margin-top:24px}}
 </style></head><body><div class="viz-root"><div class="wrap">
 <header><h1>AutoCRO — engine room<small>Self-optimising webshop proof of concept · Fjeldspor (fictional) · built and operated by Claude for IMPACT Commerce</small></h1>
-<div class="links"><a href="{SITE}" target="_blank" rel="noopener">Live shop ↗</a><a href="{REPO}" target="_blank" rel="noopener">Repo ↗</a><a href="{REPO}/actions" target="_blank" rel="noopener">Traffic runs ↗</a><a href="{GA4}" target="_blank" rel="noopener">GA4 ↗</a></div></header>
+<div class="links"><a href="{SITE}" target="_blank" rel="noopener">Live shop ↗</a><a href="{REPO}" target="_blank" rel="noopener">Repo ↗</a><a href="{REPO}/actions" target="_blank" rel="noopener">Traffic runs ↗</a><a href="designs/">Test designs ↗</a><a href="{GA4}" target="_blank" rel="noopener">GA4 ↗</a></div></header>
 
 <div class="state"><span><span class="dotlive" aria-hidden="true"></span><b>Engine state:</b> {esc(engine_state)}</span>
-<span><b>Last traffic run:</b> {(last_run["id"] + " · " + dt(last_run["end"])) if last_run else "none since fresh start"}</span><span><b>Last queued:</b> {esc(queue_txt)}</span>
+<span><b>Last traffic run:</b> {(last_run["id"] + " · " + dt(last_run["end"])) if last_run else "none since fresh start"}</span>
 <span><b>Tests decided:</b> {sum(e["status"] != "running" for e in REG["experiments"])}</span><span class="muted">Dashboard built {now}</span></div>
 
 <div class="tiles">{tiles()}</div>
+
+<div class="card"><h2>Cycle {CS["cycle"] if CS else ""} · steps</h2><p class="sub">One step per go: analyse against benchmarks, hypothesise, design, build &amp; QA, test, evaluate.</p>{stepper_html()}</div>
+
+<div class="card"><h2>Step 1 · Analysis vs benchmarks</h2>{analysis_html()}</div>
+
+<div class="card"><h2>Step 2 · Test hypotheses</h2><p class="sub">Ranked by ICE (Impact · Confidence · Ease, 1–10). Basis: a gap against benchmarks, or established best practice. Designs per hypothesis: <a href="designs/">Test designs</a>.</p>{hypotheses_html()}</div>
 
 <div class="card"><h2>Conversion rate per traffic run</h2><p class="sub">Share of simulated sessions that purchased. One point per run; hover for details.</p>{cr_chart()}</div>
 
 <div class="grid2">
 <div class="card"><h2>Funnel: original vs current shop</h2><p class="sub">Share of all sessions reaching each step.</p>{funnel_chart()}</div>
-<div class="card"><h2>How a cycle works</h2><p class="sub">Every step is run by Claude; traffic runs in GitHub Actions against the live site.</p>
-<div class="pipe">
-<div class="step"><b>Traffic</b>Simulated shoppers browse the live shop; events go to GA4 and our log.</div>
-<div class="step"><b>Evaluate</b>Running tests checked against rules R1–R7: ship, stop or continue.</div>
-<div class="step"><b>Analyse</b>Funnel, device, page and price-band cuts from the event log.</div>
-<div class="step"><b>Hypothesise</b>Observation → hypothesis → change → metric, scored ICE.</div>
-<div class="step"><b>Build &amp; QA</b>Variant coded behind a feature flag, rendered and checked.</div>
-<div class="step"><b>Deploy</b>Commit → GitHub Pages; next traffic run queued.</div>
-</div>
-<h2 style="margin-top:18px">Timeline</h2><ul class="tline">{timeline_html()}</ul></div>
+<div class="card"><h2>Timeline</h2><ul class="tline">{timeline_html()}</ul></div>
 </div>
 
 <div class="card"><h2>Experiments</h2><p class="sub">Primary-metric results per variant among exposed visitors. "Preview" opens the live shop in that variant (not tracked). Green = significant win at α = {RULES["alpha"]}.</p>
 {experiments_html()}</div>
 
-<div class="card"><h2>Hypothesis backlog</h2><p class="sub">What the engine plans to test next, ranked by ICE (Impact · Confidence · Ease).</p>
-<div class="scroll"><table><thead><tr><th class="num">#</th><th>Observation</th><th>Change</th><th>Primary metric</th><th class="num">ICE</th><th>Status</th></tr></thead><tbody>{backlog_html()}</tbody></table></div></div>
+
 
 <div class="grid2">
 <div class="card"><h2>Decision rules</h2><p class="sub">Fixed in advance; the engine cannot ship a change that fails them.</p><div class="kvs">{rules_kv}</div><ol class="rules">{rules_list}</ol></div>
@@ -389,6 +487,8 @@ var x=e.clientX+14,y=e.clientY+14;if(x+300>innerWidth)x=e.clientX-310;t.style.le
 g.addEventListener('mouseleave',function(){{t.style.opacity=0}})}})}})();
 </script></body></html>'''
 
+os.makedirs(os.path.join(ROOT, "site/engine-room/designs"), exist_ok=True)
+open(os.path.join(ROOT, "site/engine-room/designs/index.html"), "w").write(designs_page())
 os.makedirs(os.path.join(ROOT, "dashboard/dist"), exist_ok=True)
 out = os.path.join(ROOT, "dashboard/dist/autocro-dashboard.html")
 open(out, "w").write(HTML)
