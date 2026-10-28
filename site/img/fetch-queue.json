@@ -1,0 +1,11 @@
+{
+  "_comment": "Pushing a change here makes GitHub Actions download each URL, convert to WebP (max 1600px) and commit to site/img/<name>.webp. Source: Figma file 'AutoCRO – Fjeldspor imagery' (cJ2CBRiJQbPQtIov4RCOIV), model gemini-3.1-flash-image.",
+  "assets": {
+    "hero": "https://www.figma.com/api/mcp/asset/53d1d9e4-4136-46d0-9ceb-11a0c0cb1642.png",
+    "cat-jackets": "https://www.figma.com/api/mcp/asset/69425a23-580c-46ba-bde6-da486f8fbe51.png",
+    "P001-1": "https://www.figma.com/api/mcp/asset/b4662d37-b915-4c17-939e-3d0545c17ed5.png",
+    "P001-2": "https://www.figma.com/api/mcp/asset/30e29708-91a5-480f-8980-8b3b43ee29c6.png",
+    "P007-1": "https://www.figma.com/api/mcp/asset/7e3a7d4e-6afc-4aa0-bc5f-be3bacf8639e.png",
+    "P007-2": "https://www.figma.com/api/mcp/asset/8fe05f47-2fdb-44fc-932f-2e5f77667669.png"
+  }
+}

@@ -1,0 +1,37 @@
+name: Fetch AI imagery
+on:
+  push:
+    branches: [main]
+    paths: ["site/img/fetch-queue.json"]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and convert to WebP
+        run: |
+          sudo apt-get install -y -qq webp >/dev/null
+          mkdir -p /tmp/raw
+          for name in $(jq -r '.assets | keys[]' site/img/fetch-queue.json); do
+            url=$(jq -r --arg n "$name" '.assets[$n]' site/img/fetch-queue.json)
+            if [ -f "site/img/$name.webp" ]; then echo "skip $name (exists)"; continue; fi
+            curl -fsSL -o "/tmp/raw/$name.png" "$url" || { echo "FAILED $name"; continue; }
+            cwebp -quiet -q 80 -resize 1600 0 "/tmp/raw/$name.png" -o "site/img/$name.webp" 2>/dev/null || cwebp -quiet -q 80 "/tmp/raw/$name.png" -o "site/img/$name.webp"
+            # downscale only if wider than 1600 (cwebp -resize upsizes too, so redo for small sources)
+            w=$(webpinfo "site/img/$name.webp" 2>/dev/null | awk '/Width/{print $2; exit}')
+            src_w=$(python3 -c "import struct;f=open('/tmp/raw/$name.png','rb');f.read(16);print(struct.unpack('>I',f.read(4))[0])")
+            if [ "$src_w" -le 1600 ]; then cwebp -quiet -q 80 "/tmp/raw/$name.png" -o "site/img/$name.webp"; fi
+            echo "ok $name $(stat -c%s site/img/$name.webp) bytes"
+          done
+      - name: Commit
+        run: |
+          git config user.name "AutoCRO asset bot"; git config user.email "actions@github.com"
+          git add site/img
+          git diff --cached --quiet && exit 0
+          git commit -m "Add AI imagery (WebP) from Figma"
+          for i in 1 2 3; do git pull --rebase -q && git push -q && break; sleep 5; done
+      - name: Trigger Pages deploy
+        run: echo "Pages deploy is triggered by workflow_run"
