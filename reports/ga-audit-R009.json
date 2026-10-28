@@ -1,0 +1,25 @@
+{
+ "requests": 838,
+ "events_sent": {
+  "session_start_ac": 150,
+  "?": 419,
+  "page_view": 518,
+  "view_item": 200,
+  "view_item_list": 260,
+  "select_item": 185,
+  "select_size": 7,
+  "add_to_cart": 33,
+  "view_search_results": 6,
+  "view_cart": 33,
+  "begin_checkout": 19,
+  "checkout_contact": 17,
+  "add_shipping_info": 17,
+  "add_payment_info": 17,
+  "purchase": 17
+ },
+ "statuses": {
+  "204": 419,
+  "requestfailed:net::ERR_ABORTED": 419
+ },
+ "max_request_bytes": 3449
+}
