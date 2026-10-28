@@ -92,7 +92,7 @@ main{max-width:1100px;margin:0 auto;padding:24px}
 .toast-actions{display:flex;gap:8px;padding:0 14px 14px}.toast-actions .btn{flex:1;padding:10px 8px;font-size:13px;text-align:center}
 .toast-actions .btn-light{border:1px solid #d8d5cc}
 .toast-timer{height:3px;background:#2e7d4f;transform-origin:left;transform:scaleX(0)}
-.toast.show .toast-timer{animation:toastbar 2s linear forwards}.toast.paused .toast-timer{animation-play-state:paused}
+.toast.show .toast-timer{animation:toastbar 4s linear forwards}.toast.paused .toast-timer{animation-play-state:paused}
 @keyframes toastbar{from{transform:scaleX(1)}to{transform:scaleX(0)}}
 @media (max-width:767px){.toast{top:64px;right:8px;width:calc(100vw - 16px)}}
 @media (prefers-reduced-motion:reduce){.toast{transition:none}}

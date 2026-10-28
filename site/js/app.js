@@ -74,7 +74,7 @@
       <div class="toast-actions"><a href="#/cart" class="btn ${btnClass}" data-ac="toast-view-bag">View bag (${count})</a><button class="btn btn-light toast-continue">Continue shopping</button></div>
       <div class="toast-timer"></div>`;
     const hide = () => { t.classList.remove('show'); clearTimeout(toastTimer); };
-    const arm = () => { clearTimeout(toastTimer); toastTimer = setTimeout(hide, 2000); };
+    const arm = () => { clearTimeout(toastTimer); toastTimer = setTimeout(hide, 4000); };
     t.querySelector('.toast-x').onclick = hide; t.querySelector('.toast-continue').onclick = hide;
     t.querySelector('[data-ac=toast-view-bag]').onclick = () => { T.track('toast_view_bag', {}); hide(); };
     t.onmouseenter = () => { clearTimeout(toastTimer); t.classList.add('paused'); };
