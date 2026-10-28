@@ -38,5 +38,10 @@
   "28 Oct",
   "AI imagery pilot",
   "6 images generated in Figma (Gemini image model): hero, Jackets banner, 2 packshots, 2 lifestyle shots. Layout unchanged, so test results stay comparable."
+ ],
+ [
+  "28 Oct",
+  "Full AI image set",
+  "74 images live (3 per product + 4 banners + hero), 7.9 MB WebP. QA caught real-brand logos in 3 generated images; those were regenerated. Layout and shopper perception unchanged."
  ]
 ]

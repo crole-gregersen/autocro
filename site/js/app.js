@@ -28,7 +28,7 @@
   const img = (p, cls = 'img', i = 0, eager = false) => {
     const im = (p.images || [])[i % Math.max((p.images || []).length, 1)];
     return im
-      ? `<div class="${cls} photo ${im.kind || ''}"><img src="${im.src}" alt="${im.alt}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async"></div>`
+      ? `<div class="${cls} photo ${im.kind || ''}"${im.bg ? ` style="background:${im.bg}"` : ''}><img src="${im.src}" alt="${im.alt}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async"></div>`
       : `<div class="${cls}" style="background:linear-gradient(160deg,${p.color},#111c18)"></div>`;
   };
   const stars = p => `<div class="rating">★ ${p.rating} (${p.reviews} reviews)</div>`;

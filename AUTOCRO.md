@@ -47,7 +47,9 @@ be cheating and would invalidate the POC. Only `sim/sealed/score.py` (end-of-POC
   and commits `site/img/<name>.webp`. Products reference images in `site/data/products.json` (`images[]` with src/alt/kind:
   packshot = contained on #E9E6DE, lifestyle = cover). Images sit inside the existing fixed-size boxes so layout/perception
   is unchanged. Style sheet: Nordic outdoor, overcast light, moss/slate/stone/sand palette, packshots on #ECEAE4 seamless,
-  fictional models only, no text/logos.
+  fictional models only, no text/logos. Full set live (28 Oct): 3 images per product (1 packshot, 2 lifestyle/detail), 4
+  category banners, hero. `docs/image-ledger.tsv` maps every image to its Figma asset + alt text. ALWAYS QA new images at
+  full resolution for real-brand logos (the model added real brand logos to 3 of 77 despite the prompt).
 - **Reading results:** `git pull` (reads work from the sandbox), then run the analysis locally.
 
 ## One optimisation cycle

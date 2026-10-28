@@ -24,7 +24,8 @@
     {
      "src": "img/P001-1.webp",
      "alt": "Storm Shell Jacket in forest green, front view",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#e7e5db"
     },
     {
      "src": "img/P001-2.webp",
@@ -51,7 +52,8 @@
     {
      "src": "img/P002-1.webp",
      "alt": "Ridge Down Jacket in slate blue, front view",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#e5e2d7"
     },
     {
      "src": "img/P002-2.webp",
@@ -78,7 +80,8 @@
     {
      "src": "img/P003-1.webp",
      "alt": "Trail Softshell in sand, front view",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#e6e3da"
     },
     {
      "src": "img/P003-2.webp",
@@ -105,7 +108,8 @@
     {
      "src": "img/P004-1.webp",
      "alt": "Fjord Rain Jacket in mustard yellow, front view",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#e7e4dd"
     },
     {
      "src": "img/P004-2.webp",
@@ -132,7 +136,8 @@
     {
      "src": "img/P005-1.webp",
      "alt": "Alpine Insulated Parka in charcoal, front view",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#e6e3d7"
     },
     {
      "src": "img/P005-2.webp",
@@ -159,7 +164,8 @@
     {
      "src": "img/P006-1.webp",
      "alt": "Breeze Wind Jacket in pale grey-blue with its packing pouch",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#dbd7cf"
     },
     {
      "src": "img/P006-2.webp",
@@ -186,7 +192,8 @@
     {
      "src": "img/P007-1.webp",
      "alt": "Summit GTX Boot in brown leather, side view",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#e6e3d9"
     },
     {
      "src": "img/P007-2.webp",
@@ -196,7 +203,8 @@
     {
      "src": "img/P007-3.webp",
      "alt": "Summit GTX Boot lugged outsole",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#e3e0d5"
     }
    ]
   },
@@ -213,7 +221,8 @@
     {
      "src": "img/P008-1.webp",
      "alt": "Trailrunner 3 in moss green, side view",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#e4e1d7"
     },
     {
      "src": "img/P008-2.webp",
@@ -223,7 +232,8 @@
     {
      "src": "img/P008-3.webp",
      "alt": "Trailrunner 3 lugged outsole",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#dedcd6"
     }
    ]
   },
@@ -240,7 +250,8 @@
     {
      "src": "img/P009-1.webp",
      "alt": "Scree Approach Shoe in stone-grey suede, side view",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#e3e2dc"
     },
     {
      "src": "img/P009-2.webp",
@@ -250,7 +261,8 @@
     {
      "src": "img/P009-3.webp",
      "alt": "Scree Approach Shoe rubber toe cap and lace-to-toe lacing",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#e0ddd5"
     }
    ]
   },
@@ -267,7 +279,8 @@
     {
      "src": "img/P010-1.webp",
      "alt": "Moss Hiking Boot in olive suede, side view",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#e3dfd5"
     },
     {
      "src": "img/P010-2.webp",
@@ -277,7 +290,8 @@
     {
      "src": "img/P010-3.webp",
      "alt": "Moss Hiking Boot eyelets, collar and heel reinforcement",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#d0cdc2"
     }
    ]
   },
@@ -294,7 +308,8 @@
     {
      "src": "img/P011-1.webp",
      "alt": "Tundra Winter Boot in dark brown with wool cuff, side view",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#e5e2d8"
     },
     {
      "src": "img/P011-2.webp",
@@ -304,7 +319,8 @@
     {
      "src": "img/P011-3.webp",
      "alt": "Tundra Winter Boot wool cuff and speed hooks",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#cfcac0"
     }
    ]
   },
@@ -321,7 +337,8 @@
     {
      "src": "img/P012-1.webp",
      "alt": "Pair of Camp Slip-On shoes in slate grey quilting",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#e5e2d7"
     },
     {
      "src": "img/P012-2.webp",
@@ -331,7 +348,8 @@
     {
      "src": "img/P012-3.webp",
      "alt": "Camp Slip-On diamond quilting and fleece lining",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#ccc5b6"
     }
    ]
   },
@@ -348,7 +366,8 @@
     {
      "src": "img/P013-1.webp",
      "alt": "Daypack 22 in slate blue, three-quarter view",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#dfdcd4"
     },
     {
      "src": "img/P013-2.webp",
@@ -375,7 +394,8 @@
     {
      "src": "img/P014-1.webp",
      "alt": "Explorer 45 trekking pack in forest green, three-quarter view",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#e4e1d7"
     },
     {
      "src": "img/P014-2.webp",
@@ -385,7 +405,8 @@
     {
      "src": "img/P014-3.webp",
      "alt": "Explorer 45 back panel, harness and hip belt",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#dddad2"
     }
    ]
   },
@@ -402,7 +423,8 @@
     {
      "src": "img/P015-1.webp",
      "alt": "Trek 65 Pack in charcoal, three-quarter view",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#dbd8cc"
     },
     {
      "src": "img/P015-2.webp",
@@ -429,7 +451,8 @@
     {
      "src": "img/P016-1.webp",
      "alt": "Commuter 18 roll-top in sand waxed canvas, three-quarter view",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#e3e0d5"
     },
     {
      "src": "img/P016-2.webp",
@@ -456,7 +479,8 @@
     {
      "src": "img/P017-1.webp",
      "alt": "Hydration Vest 8 in black and moss green with soft flasks",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#e9e5dc"
     },
     {
      "src": "img/P017-2.webp",
@@ -483,7 +507,8 @@
     {
      "src": "img/P018-1.webp",
      "alt": "Duffel 60 in rust orange, three-quarter view",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#e6e3d9"
     },
     {
      "src": "img/P018-2.webp",
@@ -493,7 +518,8 @@
     {
      "src": "img/P018-3.webp",
      "alt": "Duffel 60 opened with packed clothes and boots",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#dcd9cc"
     }
    ]
   },
@@ -510,7 +536,8 @@
     {
      "src": "img/P019-1.webp",
      "alt": "Merino Beanie in oatmeal rib knit",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#dcd8d0"
     },
     {
      "src": "img/P019-2.webp",
@@ -537,7 +564,8 @@
     {
      "src": "img/P020-1.webp",
      "alt": "Trek Poles Pair with cork grips, standing upright",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#ddddd5"
     },
     {
      "src": "img/P020-2.webp",
@@ -547,7 +575,8 @@
     {
      "src": "img/P020-3.webp",
      "alt": "Trek Poles cork grip, wrist strap and flick-lock clamp",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#ccc6bb"
     }
    ]
   },
@@ -564,7 +593,8 @@
     {
      "src": "img/P021-1.webp",
      "alt": "Insulated Bottle 1L in matte moss green",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#e2ded6"
     },
     {
      "src": "img/P021-2.webp",
@@ -574,7 +604,8 @@
     {
      "src": "img/P021-3.webp",
      "alt": "Insulated Bottle 1L cap, carry loop and carabiner",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#dcd8ce"
     }
    ]
   },
@@ -591,7 +622,8 @@
     {
      "src": "img/P022-1.webp",
      "alt": "Headlamp 400 in charcoal with grey headband",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#e6e3d8"
     },
     {
      "src": "img/P022-2.webp",
@@ -618,7 +650,8 @@
     {
      "src": "img/P023-1.webp",
      "alt": "Wool Hiking Sock in stone grey with rust heel and toe",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#d0ccc5"
     },
     {
      "src": "img/P023-2.webp",
@@ -628,7 +661,8 @@
     {
      "src": "img/P023-3.webp",
      "alt": "Wool Hiking Sock cushioned terry footbed",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#d4d0c9"
     }
    ]
   },
@@ -645,7 +679,8 @@
     {
      "src": "img/P024-1.webp",
      "alt": "Packable Gloves in black softshell, palm and back",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#e6e3d8"
     },
     {
      "src": "img/P024-2.webp",
@@ -655,7 +690,8 @@
     {
      "src": "img/P024-3.webp",
      "alt": "Packable Gloves touchscreen fingertip on a phone",
-     "kind": "packshot"
+     "kind": "packshot",
+     "bg": "#e5e1da"
     }
    ]
   }
@@ -670,16 +706,16 @@
    "alt": "Four pairs of outdoor shoes on a wet cabin porch"
   },
   "backpacks": {
-   "src": "img/cat-backpacks.webp",
-   "alt": "Three backpacks on a granite boulder by a mountain lake"
+   "src": "img/cat-backpacks-v2.webp",
+   "alt": "Three unbranded backpacks on a granite boulder by a mountain lake"
   },
   "accessories": {
-   "src": "img/cat-accessories.webp",
-   "alt": "Flat-lay of beanie, poles, bottle, headlamp, socks and gloves"
+   "src": "img/cat-accessories-v2.webp",
+   "alt": "Flat-lay of beanie, poles, bottle, headlamp, socks and gloves on a cabin table"
   }
  },
  "hero_image": {
-  "src": "img/hero.webp",
+  "src": "img/hero-v2.webp",
   "alt": "Hiker in a green shell jacket above a misty fjord"
  }
 }
