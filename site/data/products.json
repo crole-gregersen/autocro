@@ -30,6 +30,11 @@
      "src": "img/P001-2.webp",
      "alt": "Model wearing the Storm Shell Jacket on a rainy coastline",
      "kind": "lifestyle"
+    },
+    {
+     "src": "img/P001-3.webp",
+     "alt": "Storm Shell Jacket chest zip and taped seams with raindrops",
+     "kind": "lifestyle"
     }
    ]
   },
@@ -41,7 +46,24 @@
    "rating": 4.3,
    "reviews": 378,
    "color": "#2f5d50",
-   "desc": "The Ridge Down Jacket is built for Nordic conditions: durable, light and made to last season after season."
+   "desc": "The Ridge Down Jacket is built for Nordic conditions: durable, light and made to last season after season.",
+   "images": [
+    {
+     "src": "img/P002-1.webp",
+     "alt": "Ridge Down Jacket in slate blue, front view",
+     "kind": "packshot"
+    },
+    {
+     "src": "img/P002-2.webp",
+     "alt": "Man in the Ridge Down Jacket outside a mountain hut on a frosty morning",
+     "kind": "lifestyle"
+    },
+    {
+     "src": "img/P002-3.webp",
+     "alt": "Ridge Down Jacket baffles and zip with frost",
+     "kind": "lifestyle"
+    }
+   ]
   },
   {
    "id": "P003",
@@ -51,7 +73,24 @@
    "rating": 4.8,
    "reviews": 223,
    "color": "#2f5d50",
-   "desc": "The Trail Softshell is built for Nordic conditions: durable, light and made to last season after season."
+   "desc": "The Trail Softshell is built for Nordic conditions: durable, light and made to last season after season.",
+   "images": [
+    {
+     "src": "img/P003-1.webp",
+     "alt": "Trail Softshell in sand, front view",
+     "kind": "packshot"
+    },
+    {
+     "src": "img/P003-2.webp",
+     "alt": "Woman hiking a heather trail in the Trail Softshell",
+     "kind": "lifestyle"
+    },
+    {
+     "src": "img/P003-3.webp",
+     "alt": "Trail Softshell collar, zip and chest pocket",
+     "kind": "lifestyle"
+    }
+   ]
   },
   {
    "id": "P004",
@@ -61,7 +100,24 @@
    "rating": 4.2,
    "reviews": 75,
    "color": "#2f5d50",
-   "desc": "The Fjord Rain Jacket is built for Nordic conditions: durable, light and made to last season after season."
+   "desc": "The Fjord Rain Jacket is built for Nordic conditions: durable, light and made to last season after season.",
+   "images": [
+    {
+     "src": "img/P004-1.webp",
+     "alt": "Fjord Rain Jacket in mustard yellow, front view",
+     "kind": "packshot"
+    },
+    {
+     "src": "img/P004-2.webp",
+     "alt": "Man in the Fjord Rain Jacket on a jetty in the rain",
+     "kind": "lifestyle"
+    },
+    {
+     "src": "img/P004-3.webp",
+     "alt": "Fjord Rain Jacket flap pocket and snap button in the rain",
+     "kind": "lifestyle"
+    }
+   ]
   },
   {
    "id": "P005",
@@ -71,7 +127,24 @@
    "rating": 4.3,
    "reviews": 64,
    "color": "#2f5d50",
-   "desc": "The Alpine Insulated Parka is built for Nordic conditions: durable, light and made to last season after season."
+   "desc": "The Alpine Insulated Parka is built for Nordic conditions: durable, light and made to last season after season.",
+   "images": [
+    {
+     "src": "img/P005-1.webp",
+     "alt": "Alpine Insulated Parka in charcoal, front view",
+     "kind": "packshot"
+    },
+    {
+     "src": "img/P005-2.webp",
+     "alt": "Woman in the Alpine Insulated Parka walking through a snowy forest",
+     "kind": "lifestyle"
+    },
+    {
+     "src": "img/P005-3.webp",
+     "alt": "Alpine Insulated Parka fleece-lined hood and storm flap",
+     "kind": "lifestyle"
+    }
+   ]
   },
   {
    "id": "P006",
@@ -81,7 +154,24 @@
    "rating": 3.8,
    "reviews": 232,
    "color": "#2f5d50",
-   "desc": "The Breeze Wind Jacket is built for Nordic conditions: durable, light and made to last season after season."
+   "desc": "The Breeze Wind Jacket is built for Nordic conditions: durable, light and made to last season after season.",
+   "images": [
+    {
+     "src": "img/P006-1.webp",
+     "alt": "Breeze Wind Jacket in pale grey-blue with its packing pouch",
+     "kind": "packshot"
+    },
+    {
+     "src": "img/P006-2.webp",
+     "alt": "Runner on a windy coastal path in the Breeze Wind Jacket",
+     "kind": "lifestyle"
+    },
+    {
+     "src": "img/P006-3.webp",
+     "alt": "Breeze Wind Jacket packed into its pouch in an open hand",
+     "kind": "lifestyle"
+    }
+   ]
   },
   {
    "id": "P007",
@@ -102,6 +192,11 @@
      "src": "img/P007-2.webp",
      "alt": "Summit GTX Boot on wet mossy granite",
      "kind": "lifestyle"
+    },
+    {
+     "src": "img/P007-3.webp",
+     "alt": "Summit GTX Boot lugged outsole",
+     "kind": "packshot"
     }
    ]
   },
@@ -113,7 +208,24 @@
    "rating": 4.1,
    "reviews": 230,
    "color": "#7a4b2a",
-   "desc": "The Trailrunner 3 is built for Nordic conditions: durable, light and made to last season after season."
+   "desc": "The Trailrunner 3 is built for Nordic conditions: durable, light and made to last season after season.",
+   "images": [
+    {
+     "src": "img/P008-1.webp",
+     "alt": "Trailrunner 3 in moss green, side view",
+     "kind": "packshot"
+    },
+    {
+     "src": "img/P008-2.webp",
+     "alt": "Trailrunner 3 landing on a muddy forest trail",
+     "kind": "lifestyle"
+    },
+    {
+     "src": "img/P008-3.webp",
+     "alt": "Trailrunner 3 lugged outsole",
+     "kind": "packshot"
+    }
+   ]
   },
   {
    "id": "P009",
@@ -123,7 +235,24 @@
    "rating": 4.7,
    "reviews": 300,
    "color": "#7a4b2a",
-   "desc": "The Scree Approach Shoe is built for Nordic conditions: durable, light and made to last season after season."
+   "desc": "The Scree Approach Shoe is built for Nordic conditions: durable, light and made to last season after season.",
+   "images": [
+    {
+     "src": "img/P009-1.webp",
+     "alt": "Scree Approach Shoe in stone-grey suede, side view",
+     "kind": "packshot"
+    },
+    {
+     "src": "img/P009-2.webp",
+     "alt": "Scree Approach Shoe on a granite slab during a scramble",
+     "kind": "lifestyle"
+    },
+    {
+     "src": "img/P009-3.webp",
+     "alt": "Scree Approach Shoe rubber toe cap and lace-to-toe lacing",
+     "kind": "packshot"
+    }
+   ]
   },
   {
    "id": "P010",
@@ -133,7 +262,24 @@
    "rating": 4.3,
    "reviews": 588,
    "color": "#7a4b2a",
-   "desc": "The Moss Hiking Boot is built for Nordic conditions: durable, light and made to last season after season."
+   "desc": "The Moss Hiking Boot is built for Nordic conditions: durable, light and made to last season after season.",
+   "images": [
+    {
+     "src": "img/P010-1.webp",
+     "alt": "Moss Hiking Boot in olive suede, side view",
+     "kind": "packshot"
+    },
+    {
+     "src": "img/P010-2.webp",
+     "alt": "Moss Hiking Boots on a boardwalk across an autumn bog",
+     "kind": "lifestyle"
+    },
+    {
+     "src": "img/P010-3.webp",
+     "alt": "Moss Hiking Boot eyelets, collar and heel reinforcement",
+     "kind": "packshot"
+    }
+   ]
   },
   {
    "id": "P011",
@@ -143,7 +289,24 @@
    "rating": 4.7,
    "reviews": 189,
    "color": "#7a4b2a",
-   "desc": "The Tundra Winter Boot is built for Nordic conditions: durable, light and made to last season after season."
+   "desc": "The Tundra Winter Boot is built for Nordic conditions: durable, light and made to last season after season.",
+   "images": [
+    {
+     "src": "img/P011-1.webp",
+     "alt": "Tundra Winter Boot in dark brown with wool cuff, side view",
+     "kind": "packshot"
+    },
+    {
+     "src": "img/P011-2.webp",
+     "alt": "Tundra Winter Boots in deep snow outside a cabin at dusk",
+     "kind": "lifestyle"
+    },
+    {
+     "src": "img/P011-3.webp",
+     "alt": "Tundra Winter Boot wool cuff and speed hooks",
+     "kind": "packshot"
+    }
+   ]
   },
   {
    "id": "P012",
@@ -153,7 +316,24 @@
    "rating": 4.3,
    "reviews": 196,
    "color": "#7a4b2a",
-   "desc": "The Camp Slip-On is built for Nordic conditions: durable, light and made to last season after season."
+   "desc": "The Camp Slip-On is built for Nordic conditions: durable, light and made to last season after season.",
+   "images": [
+    {
+     "src": "img/P012-1.webp",
+     "alt": "Pair of Camp Slip-On shoes in slate grey quilting",
+     "kind": "packshot"
+    },
+    {
+     "src": "img/P012-2.webp",
+     "alt": "Camp Slip-Ons by a campfire at a mountain lake",
+     "kind": "lifestyle"
+    },
+    {
+     "src": "img/P012-3.webp",
+     "alt": "Camp Slip-On diamond quilting and fleece lining",
+     "kind": "packshot"
+    }
+   ]
   },
   {
    "id": "P013",
@@ -163,7 +343,24 @@
    "rating": 4.3,
    "reviews": 68,
    "color": "#34495e",
-   "desc": "The Daypack 22 is built for Nordic conditions: durable, light and made to last season after season."
+   "desc": "The Daypack 22 is built for Nordic conditions: durable, light and made to last season after season.",
+   "images": [
+    {
+     "src": "img/P013-1.webp",
+     "alt": "Daypack 22 in slate blue, three-quarter view",
+     "kind": "packshot"
+    },
+    {
+     "src": "img/P013-2.webp",
+     "alt": "Woman carrying the Daypack 22 on a misty forest path",
+     "kind": "lifestyle"
+    },
+    {
+     "src": "img/P013-3.webp",
+     "alt": "Daypack 22 opened to show the sleeve and organiser pocket",
+     "kind": "lifestyle"
+    }
+   ]
   },
   {
    "id": "P014",
@@ -173,7 +370,24 @@
    "rating": 4.4,
    "reviews": 512,
    "color": "#34495e",
-   "desc": "The Explorer 45 is built for Nordic conditions: durable, light and made to last season after season."
+   "desc": "The Explorer 45 is built for Nordic conditions: durable, light and made to last season after season.",
+   "images": [
+    {
+     "src": "img/P014-1.webp",
+     "alt": "Explorer 45 trekking pack in forest green, three-quarter view",
+     "kind": "packshot"
+    },
+    {
+     "src": "img/P014-2.webp",
+     "alt": "Hiker with the Explorer 45 crossing a mountain stream",
+     "kind": "lifestyle"
+    },
+    {
+     "src": "img/P014-3.webp",
+     "alt": "Explorer 45 back panel, harness and hip belt",
+     "kind": "packshot"
+    }
+   ]
   },
   {
    "id": "P015",
@@ -183,7 +397,24 @@
    "rating": 4.2,
    "reviews": 325,
    "color": "#34495e",
-   "desc": "The Trek 65 Pack is built for Nordic conditions: durable, light and made to last season after season."
+   "desc": "The Trek 65 Pack is built for Nordic conditions: durable, light and made to last season after season.",
+   "images": [
+    {
+     "src": "img/P015-1.webp",
+     "alt": "Trek 65 Pack in charcoal, three-quarter view",
+     "kind": "packshot"
+    },
+    {
+     "src": "img/P015-2.webp",
+     "alt": "Woman with the Trek 65 Pack on an Arctic plateau",
+     "kind": "lifestyle"
+    },
+    {
+     "src": "img/P015-3.webp",
+     "alt": "Trek 65 Pack front panel open with gear packed inside",
+     "kind": "lifestyle"
+    }
+   ]
   },
   {
    "id": "P016",
@@ -193,7 +424,24 @@
    "rating": 4.8,
    "reviews": 374,
    "color": "#34495e",
-   "desc": "The Commuter 18 is built for Nordic conditions: durable, light and made to last season after season."
+   "desc": "The Commuter 18 is built for Nordic conditions: durable, light and made to last season after season.",
+   "images": [
+    {
+     "src": "img/P016-1.webp",
+     "alt": "Commuter 18 roll-top in sand waxed canvas, three-quarter view",
+     "kind": "packshot"
+    },
+    {
+     "src": "img/P016-2.webp",
+     "alt": "Man carrying the Commuter 18 along a rainy harbour street",
+     "kind": "lifestyle"
+    },
+    {
+     "src": "img/P016-3.webp",
+     "alt": "Commuter 18 leather strap and brass buckle on waxed canvas",
+     "kind": "lifestyle"
+    }
+   ]
   },
   {
    "id": "P017",
@@ -203,7 +451,24 @@
    "rating": 4.6,
    "reviews": 253,
    "color": "#34495e",
-   "desc": "The Hydration Vest 8 is built for Nordic conditions: durable, light and made to last season after season."
+   "desc": "The Hydration Vest 8 is built for Nordic conditions: durable, light and made to last season after season.",
+   "images": [
+    {
+     "src": "img/P017-1.webp",
+     "alt": "Hydration Vest 8 in black and moss green with soft flasks",
+     "kind": "packshot"
+    },
+    {
+     "src": "img/P017-2.webp",
+     "alt": "Trail runner wearing the Hydration Vest 8 on a ridge",
+     "kind": "lifestyle"
+    },
+    {
+     "src": "img/P017-3.webp",
+     "alt": "Hydration Vest 8 flat-lay with flasks and running kit",
+     "kind": "lifestyle"
+    }
+   ]
   },
   {
    "id": "P018",
@@ -213,7 +478,24 @@
    "rating": 4.0,
    "reviews": 510,
    "color": "#34495e",
-   "desc": "The Duffel 60 is built for Nordic conditions: durable, light and made to last season after season."
+   "desc": "The Duffel 60 is built for Nordic conditions: durable, light and made to last season after season.",
+   "images": [
+    {
+     "src": "img/P018-1.webp",
+     "alt": "Duffel 60 in rust orange, three-quarter view",
+     "kind": "packshot"
+    },
+    {
+     "src": "img/P018-2.webp",
+     "alt": "Duffel 60 being loaded into a car beside a fjord",
+     "kind": "lifestyle"
+    },
+    {
+     "src": "img/P018-3.webp",
+     "alt": "Duffel 60 opened with packed clothes and boots",
+     "kind": "packshot"
+    }
+   ]
   },
   {
    "id": "P019",
@@ -223,7 +505,24 @@
    "rating": 4.5,
    "reviews": 298,
    "color": "#8a6d1f",
-   "desc": "The Merino Beanie is built for Nordic conditions: durable, light and made to last season after season."
+   "desc": "The Merino Beanie is built for Nordic conditions: durable, light and made to last season after season.",
+   "images": [
+    {
+     "src": "img/P019-1.webp",
+     "alt": "Merino Beanie in oatmeal rib knit",
+     "kind": "packshot"
+    },
+    {
+     "src": "img/P019-2.webp",
+     "alt": "Man wearing the Merino Beanie by a frozen lake",
+     "kind": "lifestyle"
+    },
+    {
+     "src": "img/P019-3.webp",
+     "alt": "Merino Beanie rib knit close-up on a wooden bench",
+     "kind": "lifestyle"
+    }
+   ]
   },
   {
    "id": "P020",
@@ -233,7 +532,24 @@
    "rating": 3.7,
    "reviews": 528,
    "color": "#8a6d1f",
-   "desc": "The Trek Poles Pair is built for Nordic conditions: durable, light and made to last season after season."
+   "desc": "The Trek Poles Pair is built for Nordic conditions: durable, light and made to last season after season.",
+   "images": [
+    {
+     "src": "img/P020-1.webp",
+     "alt": "Trek Poles Pair with cork grips, standing upright",
+     "kind": "packshot"
+    },
+    {
+     "src": "img/P020-2.webp",
+     "alt": "Older hiker climbing a rocky trail with the Trek Poles",
+     "kind": "lifestyle"
+    },
+    {
+     "src": "img/P020-3.webp",
+     "alt": "Trek Poles cork grip, wrist strap and flick-lock clamp",
+     "kind": "packshot"
+    }
+   ]
   },
   {
    "id": "P021",
@@ -243,7 +559,24 @@
    "rating": 4.6,
    "reviews": 159,
    "color": "#8a6d1f",
-   "desc": "The Insulated Bottle 1L is built for Nordic conditions: durable, light and made to last season after season."
+   "desc": "The Insulated Bottle 1L is built for Nordic conditions: durable, light and made to last season after season.",
+   "images": [
+    {
+     "src": "img/P021-1.webp",
+     "alt": "Insulated Bottle 1L in matte moss green",
+     "kind": "packshot"
+    },
+    {
+     "src": "img/P021-2.webp",
+     "alt": "Insulated Bottle 1L on a lakeside rock at sunrise with hot tea",
+     "kind": "lifestyle"
+    },
+    {
+     "src": "img/P021-3.webp",
+     "alt": "Insulated Bottle 1L cap, carry loop and carabiner",
+     "kind": "packshot"
+    }
+   ]
   },
   {
    "id": "P022",
@@ -253,7 +586,24 @@
    "rating": 4.1,
    "reviews": 83,
    "color": "#8a6d1f",
-   "desc": "The Headlamp 400 is built for Nordic conditions: durable, light and made to last season after season."
+   "desc": "The Headlamp 400 is built for Nordic conditions: durable, light and made to last season after season.",
+   "images": [
+    {
+     "src": "img/P022-1.webp",
+     "alt": "Headlamp 400 in charcoal with grey headband",
+     "kind": "packshot"
+    },
+    {
+     "src": "img/P022-2.webp",
+     "alt": "Woman reading a map by headlamp at a tent at night",
+     "kind": "lifestyle"
+    },
+    {
+     "src": "img/P022-3.webp",
+     "alt": "Headlamp 400 with main beam and red LED lit at dusk",
+     "kind": "lifestyle"
+    }
+   ]
   },
   {
    "id": "P023",
@@ -263,7 +613,24 @@
    "rating": 4.3,
    "reviews": 325,
    "color": "#8a6d1f",
-   "desc": "The Wool Hiking Socks is built for Nordic conditions: durable, light and made to last season after season."
+   "desc": "The Wool Hiking Socks is built for Nordic conditions: durable, light and made to last season after season.",
+   "images": [
+    {
+     "src": "img/P023-1.webp",
+     "alt": "Wool Hiking Sock in stone grey with rust heel and toe",
+     "kind": "packshot"
+    },
+    {
+     "src": "img/P023-2.webp",
+     "alt": "Hiker pulling on the Wool Hiking Socks on a mossy rock",
+     "kind": "lifestyle"
+    },
+    {
+     "src": "img/P023-3.webp",
+     "alt": "Wool Hiking Sock cushioned terry footbed",
+     "kind": "packshot"
+    }
+   ]
   },
   {
    "id": "P024",
@@ -273,13 +640,42 @@
    "rating": 4.1,
    "reviews": 512,
    "color": "#8a6d1f",
-   "desc": "The Packable Gloves is built for Nordic conditions: durable, light and made to last season after season."
+   "desc": "The Packable Gloves is built for Nordic conditions: durable, light and made to last season after season.",
+   "images": [
+    {
+     "src": "img/P024-1.webp",
+     "alt": "Packable Gloves in black softshell, palm and back",
+     "kind": "packshot"
+    },
+    {
+     "src": "img/P024-2.webp",
+     "alt": "Gloved hands adjusting a backpack strap on a mountain pass",
+     "kind": "lifestyle"
+    },
+    {
+     "src": "img/P024-3.webp",
+     "alt": "Packable Gloves touchscreen fingertip on a phone",
+     "kind": "packshot"
+    }
+   ]
   }
  ],
  "category_images": {
   "jackets": {
    "src": "img/cat-jackets.webp",
    "alt": "Three outdoor jackets hanging in a Nordic cabin"
+  },
+  "footwear": {
+   "src": "img/cat-footwear.webp",
+   "alt": "Four pairs of outdoor shoes on a wet cabin porch"
+  },
+  "backpacks": {
+   "src": "img/cat-backpacks.webp",
+   "alt": "Three backpacks on a granite boulder by a mountain lake"
+  },
+  "accessories": {
+   "src": "img/cat-accessories.webp",
+   "alt": "Flat-lay of beanie, poles, bottle, headlamp, socks and gloves"
   }
  },
  "hero_image": {

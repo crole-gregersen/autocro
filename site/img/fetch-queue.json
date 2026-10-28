@@ -1,15 +1,12 @@
 {
   "_comment": "Pushing a change here makes GitHub Actions download each URL, convert to WebP (max 1600px) and commit to site/img/<name>.webp. Source: Figma file 'AutoCRO \u2013 Fjeldspor imagery' (cJ2CBRiJQbPQtIov4RCOIV), model gemini-3.1-flash-image.",
   "assets": {
-    "hero": "https://www.figma.com/api/mcp/asset/53d1d9e4-4136-46d0-9ceb-11a0c0cb1642.png",
     "cat-jackets": "https://www.figma.com/api/mcp/asset/69425a23-580c-46ba-bde6-da486f8fbe51.png",
     "P001-1": "https://www.figma.com/api/mcp/asset/b4662d37-b915-4c17-939e-3d0545c17ed5.png",
     "P001-2": "https://www.figma.com/api/mcp/asset/30e29708-91a5-480f-8980-8b3b43ee29c6.png",
     "P007-1": "https://www.figma.com/api/mcp/asset/7e3a7d4e-6afc-4aa0-bc5f-be3bacf8639e.png",
     "P007-2": "https://www.figma.com/api/mcp/asset/8fe05f47-2fdb-44fc-932f-2e5f77667669.png",
     "cat-footwear": "https://www.figma.com/api/mcp/asset/271a40c9-f9ce-4c91-a167-d285f9578656.png",
-    "cat-backpacks": "https://www.figma.com/api/mcp/asset/80d4b84f-cd4f-463e-8a3f-36510a71f9a0.png",
-    "cat-accessories": "https://www.figma.com/api/mcp/asset/d3fa28b3-2505-4a62-b4f6-0fbda557cf48.png",
     "P001-3": "https://www.figma.com/api/mcp/asset/417f66f4-6396-4379-9d62-4f5cdc11ce41.png",
     "P007-3": "https://www.figma.com/api/mcp/asset/654f1984-4cc0-4589-8c62-fab755b9f551.png",
     "P002-1": "https://www.figma.com/api/mcp/asset/d9c427ad-c416-419c-87a7-5513b451c228.png",
@@ -77,6 +74,9 @@
     "P023-3": "https://www.figma.com/api/mcp/asset/eafe2b0b-1317-4a81-8cd1-7bea617a857c.png",
     "P024-1": "https://www.figma.com/api/mcp/asset/90571628-0dc0-4137-a26c-54c53f9ed407.png",
     "P024-2": "https://www.figma.com/api/mcp/asset/4b17b7b4-f978-4c86-b5ab-5abb62dda3f9.png",
-    "P024-3": "https://www.figma.com/api/mcp/asset/beeb1525-ffd7-4895-b9ad-91eabce76885.png"
+    "P024-3": "https://www.figma.com/api/mcp/asset/beeb1525-ffd7-4895-b9ad-91eabce76885.png",
+    "cat-backpacks-v2": "https://www.figma.com/api/mcp/asset/182d70b4-b018-4a5f-acee-1916ed009254.png",
+    "cat-accessories-v2": "https://www.figma.com/api/mcp/asset/9ba8811d-4adc-4500-bc4b-dbd6468e9e19.png",
+    "hero-v2": "https://www.figma.com/api/mcp/asset/ee952458-eb7f-440c-9979-fb4ef1848f02.png"
   }
 }
