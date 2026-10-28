@@ -3,6 +3,9 @@ on:
   push:
     branches: [main]
     paths: ["site/**", ".github/workflows/pages.yml"]
+  workflow_run:
+    workflows: ["Simulated traffic run"]
+    types: [completed]
   workflow_dispatch:
 permissions:
   contents: read

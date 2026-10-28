@@ -1,0 +1,37 @@
+[
+ [
+  "28 Oct",
+  "Baseline",
+  "R001–R002: 3,000 simulated sessions on the original shop. Conversion 6.1%."
+ ],
+ [
+  "28 Oct",
+  "Analysis → 3 hypotheses",
+  "Forced account (31% drop), shipping-cost surprise (26% drop at last step), mobile Add-to-bag below the fold."
+ ],
+ [
+  "28 Oct",
+  "A/B tests",
+  "EXP001–EXP003 built and run on R003–R004 (6,500 sessions)."
+ ],
+ [
+  "28 Oct",
+  "Decisions",
+  "All three shipped by rule R3: guest checkout +44%, cart shipping info +22%, compact mobile gallery +53% mobile ATC."
+ ],
+ [
+  "28 Oct",
+  "Went live",
+  "GitHub Pages + GitHub Actions traffic. R005: conversion 12.8% on the new shop."
+ ],
+ [
+  "28 Oct",
+  "GA4 connected",
+  "Delivery audit found GA4's tag dropping burst events (20%); fixed with human-like dwell time (94%)."
+ ],
+ [
+  "28 Oct",
+  "Engine room",
+  "This dashboard; rebuilt automatically after every traffic run."
+ ]
+]

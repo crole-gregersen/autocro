@@ -263,13 +263,8 @@ def rules_html():
 
 
 def timeline_html():
-    items = [("28 Oct", "Baseline", "R001–R002: 3,000 simulated sessions on the original shop. Conversion 6.1%."),
-             ("28 Oct", "Analysis → 3 hypotheses", "Forced account (31% drop), shipping-cost surprise (26% drop at last step), mobile Add-to-bag below the fold."),
-             ("28 Oct", "A/B tests", "EXP001–EXP003 built and run on R003–R004 (6,500 sessions)."),
-             ("28 Oct", "Decisions", "All three shipped by rule R3: guest checkout +44%, cart shipping info +22%, compact mobile gallery +53% mobile ATC."),
-             ("28 Oct", "Went live", "GitHub Pages + GitHub Actions traffic. R005: conversion 12.8% on the new shop."),
-             ("28 Oct", "GA4 connected", "Delivery audit found GA4's tag dropping burst events (20%); fixed with human-like dwell time (94%).")]
-    return "".join(f'<li><span class="td">{a}</span><b>{esc(b)}</b><span>{esc(c)}</span></li>' for a, b, c in items)
+    items = json.load(open(os.path.join(ROOT, "docs/timeline.json")))
+    return "".join(f'<li><span class="td">{esc(a)}</span><b>{esc(b)}</b><span>{esc(c)}</span></li>' for a, b, c in items)
 
 
 rules_kv, rules_list = rules_html()
@@ -335,7 +330,7 @@ footer{{font-size:12px;color:var(--muted);margin-top:24px}}
 
 <div class="state"><span><span class="dotlive" aria-hidden="true"></span><b>Engine state:</b> {esc(engine_state)}</span>
 <span><b>Last traffic run:</b> {last_run["id"]} · {dt(last_run["end"])}</span><span><b>Last queued:</b> {esc(queue_txt)}</span>
-<span><b>Cycle:</b> 2 (cycle 1 complete)</span><span class="muted">Dashboard built {now}</span></div>
+<span><b>Tests decided:</b> {sum(e["status"] != "running" for e in REG["experiments"])}</span><span class="muted">Dashboard built {now}</span></div>
 
 <div class="tiles">{tiles()}</div>
 
@@ -384,4 +379,6 @@ g.addEventListener('mouseleave',function(){{t.style.opacity=0}})}})}})();
 os.makedirs(os.path.join(ROOT, "dashboard/dist"), exist_ok=True)
 out = os.path.join(ROOT, "dashboard/dist/autocro-dashboard.html")
 open(out, "w").write(HTML)
+os.makedirs(os.path.join(ROOT, "site/engine-room"), exist_ok=True)
+open(os.path.join(ROOT, "site/engine-room/index.html"), "w").write(HTML.replace('<head>', '<head><meta name="robots" content="noindex">', 1))
 print(out, len(HTML))
