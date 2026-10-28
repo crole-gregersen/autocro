@@ -23,18 +23,25 @@ Claude plays two roles. As **operator of the simulator** it may run `sim/run.js`
 `data/events`, `reports/`, GA4 and the rendered site. Never read `sim/sealed/*` when forming hypotheses — that would
 be cheating and would invalidate the POC. Only `sim/sealed/score.py` (end-of-POC scoring, run on CROle's request) may.
 
+## Infrastructure
+- **Repo / persistence:** github.com/crole-gregersen/autocro (public). Token for pushes lives only in the session at `~/.autocro/gh_token` (never commit it); push with `~/.autocro/push.sh`.
+- **Hosting:** GitHub Pages via `.github/workflows/pages.yml` (deploys `site/` on every push touching it) → https://crole-gregersen.github.io/autocro/
+- **Traffic:** the Claude sandbox cannot reach github.io or Google Analytics, so simulated shoppers run in **GitHub Actions**
+  (`.github/workflows/traffic.yml`). Claude requests a run by editing `sim/queue.json` (run_id, sessions, seed) and pushing.
+  The workflow waits until the live site serves the committed config, runs `sim/run.js` against the live site (GA4 receives
+  real hits once a Measurement ID is set), gzips the logs and commits them to `data/events/` + `sim/sealed/truth/`.
+- **Reading results:** `git pull` (reads work from the sandbox), then run the analysis locally.
+
 ## One optimisation cycle
-1. **Traffic**: serve the site (`python3 -m http.server 8787 -d site`) and run
-   `node sim/run.js --sessions <n> --concurrency 14 --seed <unique> --run R<next>` (≈ 5–6 sessions/s).
-2. **Evaluate** running experiments: `python3 analysis/evaluate.py --apply`. Shipped variants are merged into site-config.
-3. **Analyse**: `python3 analysis/analyze.py --label <cycle>` (use runs since the last ship for a clean baseline).
-4. **Ideate**: from the report, add/refresh hypotheses in `docs/hypothesis-backlog.md`
-   (format: observation → hypothesis → change → primary metric → expected effect → PIE/ICE score).
-5. **Build**: for the top hypothesis, add a variant to `experiments.json`. Prefer existing feature flags; if none fits,
-   implement a new flag in `site/js/app.js` (default = current behaviour) and use it. Keep all `data-ac` hooks.
-   Respect R6 (no overlapping features/pages; ≤3 concurrent).
-6. **Deploy**: commit + push (GitHub Pages) once hosting is connected.
-7. Repeat. Report to CROle: what was learned, shipped, killed, what's next.
+1. `git pull`. **Evaluate** running experiments: `python3 analysis/evaluate.py --apply`. Shipped variants are merged into site-config.
+2. **Analyse**: `python3 analysis/analyze.py --runs <runs since last change> --label <cycle>`.
+3. **Ideate**: from the report, add/refresh hypotheses in `docs/hypothesis-backlog.md`
+   (format: observation → hypothesis → change → primary metric → expected effect → ICE score).
+4. **Build**: for the top hypotheses, add variants to `experiments.json`. Prefer existing feature flags; if none fits,
+   implement a new flag in `site/js/app.js` (default = current behaviour). Keep all `data-ac` hooks.
+   Respect R6 (no overlapping features/pages; ≤3 concurrent). QA locally: `python3 -m http.server 8787 -d site` + `node sim/qa.js`.
+5. **Deploy + request traffic**: bump `sim/queue.json` (new run_id R<next>, sessions ~3000–6000, new seed), commit, push.
+6. Next cycle starts when the traffic commit lands. Report to CROle: what was learned, shipped, killed, what is next.
 
 ## Experiment schema
 ```json
@@ -51,4 +58,4 @@ be cheating and would invalidate the POC. Only `sim/sealed/score.py` (end-of-POC
 ## Status log
 - 2026-10-28 · Cycle 1: baseline 3,000 sessions (CR 6.1%). EXP001 guest checkout (+44% purchase), EXP002 cart shipping info (+22%), EXP003 mobile compact gallery (+53% mobile ATC) all SHIPPED. Post-cycle run CR 10.3% (EXP001 still at 50% in that run).
 - Next: fresh baseline run on the new control, re-analyse, then backlog #4–#6 (PDP shipping note, free-shipping progress bar, PDP social proof).
-- Not yet online: needs GitHub repo + token (hosting/persistence) and GA4 Measurement ID.
+- 2026-10-28 · Online: repo + Pages live; traffic moved to GitHub Actions. Pending: GA4 Measurement ID.

@@ -1,0 +1,8 @@
+{
+  "name": "autocro",
+  "private": true,
+  "description": "AutoCRO simulator dependencies",
+  "dependencies": {
+    "playwright": "1.63.0"
+  }
+}
