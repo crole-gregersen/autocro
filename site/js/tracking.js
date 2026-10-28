@@ -38,6 +38,7 @@
       window.dataLayer.push(ev);
       if (gtagReady) {
         const p = Object.assign({}, params, { device_category: device(), ac_experiments: exp });
+        if (name === 'page_view') { p.page_location = location.href; p.page_title = document.title + ' | ' + (params.page_type || ''); }
         gtag('event', name, p);
       }
       if (typeof window.__acCapture === 'function') { try { window.__acCapture(ev); } catch (e) {} }

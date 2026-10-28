@@ -1,7 +1,7 @@
 {
   "_comment": "Pushing a change to this file makes GitHub Actions run simulated traffic against the LIVE site. Claude edits this to request a run.",
-  "run_id": "R005",
-  "sessions": 3000,
-  "seed": 15,
+  "run_id": "R006",
+  "sessions": 400,
+  "seed": 16,
   "concurrency": 16
 }

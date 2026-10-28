@@ -1,6 +1,6 @@
 {
   "_comment": "Implemented (shipped) state of the shop. Winning experiment variants are merged in here by the decision engine.",
-  "ga4_measurement_id": "",
+  "ga4_measurement_id": "G-DDVJJDBD6E",
   "features": {
     "pdp_gallery_layout": "tall",
     "pdp_shipping_info": false,

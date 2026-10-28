@@ -128,6 +128,8 @@ async function session(browser, idx) {
   } catch (e) {
     outcome.exit = 'error'; outcome.error = String(e.message).slice(0, 160);
   } finally {
+    // let gtag flush queued GA4 hits before the browser context is closed
+    try { if (await page.evaluate(() => typeof window.gtag === 'function')) await page.waitForTimeout(1500); } catch (e) {}
     truthOut.write(JSON.stringify({ run_id: RUN, idx, session_id: sid, persona, outcome, seen: { ...seen, ...obs, overlay: undefined } }) + '\n');
     await ctx.close();
   }
