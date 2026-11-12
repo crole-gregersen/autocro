@@ -8,9 +8,9 @@ permissions:
   contents: write
 jobs:
   fetch:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Download and convert to WebP
         run: |
           sudo apt-get install -y -qq webp >/dev/null
@@ -32,6 +32,8 @@ jobs:
           git add site/img
           git diff --cached --quiet && exit 0
           git commit -m "Add AI imagery (WebP) from Figma"
-          for i in 1 2 3; do git pull --rebase -q && git push -q && break; sleep 5; done
-      - name: Trigger Pages deploy
-        run: echo "Pages deploy is triggered by workflow_run"
+          for i in 1 2 3 4 5 6; do
+            if git pull --rebase -q origin main && git push -q origin HEAD:main; then echo "saved"; exit 0; fi
+            git rebase --abort 2>/dev/null || true; sleep $((i * 10))
+          done
+          echo "::error::Could not push the images after 6 attempts"; exit 1

@@ -15,10 +15,10 @@ concurrency:
   cancel-in-progress: false
 jobs:
   traffic:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 120
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Read run request
         id: req
         run: |
@@ -33,7 +33,7 @@ jobs:
       - name: Skip empty request
         if: steps.req.outputs.run_id == '' || steps.req.outputs.sessions == '0'
         run: echo "No run requested" && exit 0
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         if: steps.req.outputs.run_id != '' && steps.req.outputs.sessions != '0'
         with: { node-version: 22 }
       - name: Install (packages must be >= 3 days old)
@@ -59,14 +59,28 @@ jobs:
           node sim/run.js --base https://crole-gregersen.github.io/autocro --sessions ${{ steps.req.outputs.sessions }} \
             --concurrency ${{ steps.req.outputs.concurrency }} --seed ${{ steps.req.outputs.seed }} --run ${{ steps.req.outputs.run_id }} --dwell-ms $(jq -r '.dwell_ms // 0' sim/queue.json) $( [ "$(jq -r '.ga_audit // false' sim/queue.json)" = true ] && echo '--ga-audit 1' )
           gzip -9f data/events/${{ steps.req.outputs.run_id }}.jsonl sim/sealed/truth/${{ steps.req.outputs.run_id }}.jsonl
-      - name: Rebuild engine-room dashboard
-        if: steps.req.outputs.run_id != '' && steps.req.outputs.sessions != '0'
-        run: python3 dashboard/build.py
-      - name: Commit event log
+      - name: Save event log (retries; fails loudly if it cannot push)
         if: steps.req.outputs.run_id != '' && steps.req.outputs.sessions != '0'
         run: |
           git config user.name "AutoCRO traffic bot"
           git config user.email "actions@github.com"
-          git add data/events sim/sealed/truth reports site/engine-room dashboard/dist
+          git add data/events sim/sealed/truth reports
           git commit -m "Traffic run ${{ steps.req.outputs.run_id }} (${{ steps.req.outputs.sessions }} sessions)"
-          for i in 1 2 3; do git pull --rebase -q && git push -q && break; sleep 5; done
+          for i in 1 2 3 4 5 6; do
+            if git pull --rebase -q origin main && git push -q origin HEAD:main; then echo "saved"; exit 0; fi
+            git rebase --abort 2>/dev/null || true; sleep $((i * 10))
+          done
+          echo "::error::Could not push the event log after 6 attempts"; exit 1
+      - name: Rebuild engine-room dashboard on latest main
+        if: steps.req.outputs.run_id != '' && steps.req.outputs.sessions != '0'
+        run: |
+          for i in 1 2 3 4 5; do
+            git fetch -q origin main && git reset -q --hard origin/main
+            python3 dashboard/build.py
+            git add site/engine-room dashboard/dist
+            git diff --cached --quiet && { echo "dashboard unchanged"; exit 0; }
+            git commit -qm "Engine room: rebuilt after traffic run ${{ steps.req.outputs.run_id }}"
+            git push -q origin HEAD:main && { echo "dashboard pushed"; exit 0; }
+            sleep $((i * 10))
+          done
+          echo "::warning::Dashboard not pushed; it will be rebuilt on the next commit"
