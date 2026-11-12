@@ -1,7 +1,8 @@
 {
-  "_comment": "Daily live-ish traffic: pulse (anonymous day factors) -> simulator on live site -> GA4 via Measurement Protocol. Set enabled=true only when CROle says go.",
-  "enabled": false,
+  "_comment": "Daily live-ish traffic: pulse (anonymous day factors) -> simulator on live site -> GA4 via Measurement Protocol. Set enabled=true only when CROle says go. run_until (UTC run date, inclusive) stops the schedule automatically.",
+  "enabled": true,
   "base_sessions": 1500,
   "concurrency": 30,
-  "measurement_id": "G-DDVJJDBD6E"
+  "measurement_id": "G-DDVJJDBD6E",
+  "run_until": "2026-11-19"
 }

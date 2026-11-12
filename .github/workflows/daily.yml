@@ -17,7 +17,8 @@ jobs:
       - name: Gate
         id: g
         run: |
-          on=$(jq -r .enabled sim/daily.json)
+          on=$(jq -r .enabled sim/daily.json); until=$(jq -r '.run_until // "9999-12-31"' sim/daily.json)
+          [ "$(date -u +%F)" \> "$until" ] && on=false
           [ "$on" = true ] || [ "${{ inputs.force }}" = true ] && echo "go=1" >> $GITHUB_OUTPUT || echo "Daily traffic is off"
           d="${{ inputs.target_date }}"; [ -n "$d" ] || d=$(date -u -d yesterday +%F)
           echo "date=$d" >> $GITHUB_OUTPUT; echo "run=D$d" >> $GITHUB_OUTPUT
