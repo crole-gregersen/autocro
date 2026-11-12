@@ -6,10 +6,15 @@
 // never to experiment flags, so any implementation that fixes a real friction works.
 // ============================================================================
 
+// Daily pulse (anonymous relative factors around 1.0, see pulse/). Neutral when not set.
+let PULSE = { traffic: 1, mobile_share: 1, atc_rate: 1, checkout_rate: 1, purchase_rate: 1, aov: 1 };
+function setPulse(f) { PULSE = Object.assign({}, PULSE, f || {}); }
+const cap = p => Math.min(p, 0.98);
+
 function samplePersona(rng) {
   const r = rng();
   return {
-    device: rng() < 0.62 ? 'mobile' : 'desktop',
+    device: rng() < Math.min(0.62 * PULSE.mobile_share, 0.9) ? 'mobile' : 'desktop',
     intent: r < 0.05 ? 'buyer' : r < 0.27 ? 'considerer' : 'browser',   // calibrated to realistic D2C mix (29 Oct)
     priceSensitive: rng() < 0.4,
     sceptical: rng() < 0.35,
@@ -42,22 +47,22 @@ function pAddToCart(persona, seen, product) {
   if (persona.sceptical && seen.socialProofPlp) p *= 1.06;
   if (persona.priceSensitive && product.price > 150) p *= 0.72;
   if (persona.priceSensitive && seen.shippingKnownCost && !seen.freeShippingThresholdSeen) p *= 0.97;
-  return Math.min(p, 0.95);
+  return Math.min(p * PULSE.atc_rate, 0.95);
 }
 
 // Free-shipping threshold nudge: shopper below threshold adds another item.
 function pTopUp(persona, seen, subtotal, threshold) {
   if (!seen.freeShippingThresholdSeen || subtotal >= threshold) return 0;
   const gap = threshold - subtotal;
-  if (gap > 60) return 0.04;
-  return persona.priceSensitive ? 0.3 : 0.14;                          // H4: threshold visibility lifts AOV
+  if (gap > 60) return cap(0.04 * PULSE.aov);
+  return cap((persona.priceSensitive ? 0.3 : 0.14) * PULSE.aov);                          // H4: threshold visibility lifts AOV
 }
 
 function pCartToCheckout(persona, seen) {
   let p = BASE[persona.intent].toCheckout;
   if (persona.device === 'mobile') p *= 0.68;                          // mobile cart commitment is much lower (calibration)
   if (seen.shippingKnownCost && seen.cartShipping > 0 && persona.priceSensitive) p *= 0.94; // some leave early, honestly informed
-  return p;
+  return cap(p * PULSE.checkout_rate);
 }
 
 // Checkout step continuation probabilities.
@@ -74,7 +79,7 @@ function pCheckoutStep(persona, seen, step) {
   if (seen.checkoutShipping > 0 && !seen.shippingKnownCost) {                   // H6: shipping-cost surprise
     p *= persona.priceSensitive ? 0.55 : 0.88;
   }
-  return p;
+  return cap(p * PULSE.purchase_rate);
 }
 
-module.exports = { samplePersona, BASE, pBounce, pBrowseOnly, pAddToCart, pTopUp, pCartToCheckout, pCheckoutStep };
+module.exports = { setPulse, samplePersona, BASE, pBounce, pBrowseOnly, pAddToCart, pTopUp, pCartToCheckout, pCheckoutStep };

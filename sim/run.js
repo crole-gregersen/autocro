@@ -26,6 +26,14 @@ const UA = {
 const CATS = ['jackets', 'footwear', 'backpacks', 'accessories'];
 const gaAudit = [];
 const DWELL = +(args['dwell-ms'] || 0);
+// Daily mode: --pulse data/pulse/<date>.json steers the persona model and spreads sessions over that day.
+const PULSE = args.pulse ? JSON.parse(fs.readFileSync(args.pulse, 'utf8')) : null;
+if (PULSE) M.setPulse(PULSE.factors);
+function simStart(idx) {                       // simulated session start (ms) on the pulse day, by hour shape
+  const r = mulberry32(SEED * 7919 + idx); let x = r(), h = 0;
+  for (; h < 23 && x > PULSE.hour_shape[h]; h++) x -= PULSE.hour_shape[h];
+  return Date.parse(PULSE.date + 'T00:00:00Z') + h * 3600e3 + Math.floor(r() * 3600e3);
+}
 const SEARCH_TERMS = ['jacket', 'boot', 'pack', 'socks', 'rain', 'gloves', 'tent', 'merino'];
 
 async function session(browser, idx) {
@@ -36,7 +44,7 @@ async function session(browser, idx) {
     ? { viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, userAgent: UA.mobile }
     : { viewport: { width: 1366, height: 800 }, userAgent: UA.desktop });
   const page = await ctx.newPage();
-  let sid = null;
+  let sid = null, off = null;
   if (args['ga-audit']) {
     page.on('request', req => {
       const u = req.url(); if (!/google-analytics\.com\/(g|[a-z0-9-]+)\/collect|\/g\/collect/.test(u)) return;
@@ -46,7 +54,11 @@ async function session(browser, idx) {
     });
     page.on('requestfailed', req => { if (/collect/.test(req.url())) gaAudit.push({ evs: ['?'], status: 'requestfailed:' + (req.failure() || {}).errorText }); });
   }
-  await page.exposeFunction('__acCapture', ev => { sid = ev.session_id; evOut.write(JSON.stringify(Object.assign({ run_id: RUN }, ev)) + '\n'); });
+  await page.exposeFunction('__acCapture', ev => {
+    sid = ev.session_id;
+    if (PULSE) { if (off === null) off = simStart(idx) - ev.ts; ev = Object.assign({}, ev, { ts: ev.ts + off, ts_real: ev.ts }); }
+    evOut.write(JSON.stringify(Object.assign({ run_id: RUN }, ev)) + '\n');
+  });
   const seen = { shippingKnownCost: false, freeShippingThresholdSeen: false, socialProofPlp: false };
   const outcome = { purchased: false, exit: null };
   const obs = {};

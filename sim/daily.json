@@ -1,0 +1,7 @@
+{
+  "_comment": "Daily live-ish traffic: pulse (anonymous day factors) -> simulator on live site -> GA4 via Measurement Protocol. Set enabled=true only when CROle says go.",
+  "enabled": false,
+  "base_sessions": 1500,
+  "concurrency": 30,
+  "measurement_id": "G-DDVJJDBD6E"
+}

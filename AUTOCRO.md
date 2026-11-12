@@ -22,6 +22,14 @@ Replies are short: 3–5 bullets showing what works now (plus a link). No long e
 - Simulator calibrated 29 Oct to realistic D2C ranges (rounded/anonymised, operator-side only: `sim/sealed/calibrate.py`).
   Never publish client data in this public repo; analyst-side benchmarks come from public sources only.
 
+## Daily traffic (pulse-driven, built 12 Nov)
+- `.github/workflows/daily.yml` (05:15 UTC, off until `sim/daily.json` enabled=true): `pulse/fetch_pulse.py` reads a source GA4
+  property in memory and writes only anonymous day factors (~1.0) to `data/pulse/<date>.json` (90% of real day-to-day movement,
+  whole-week shift, 3% noise). `sim/run.js --pulse` scales sessions, mobile share, funnel and top-up propensity and spreads sessions
+  over that day's hour shape. `pulse/emit_mp.py` sends the day to GA4 via Measurement Protocol. The site's own GA4 tag is off.
+- Run ids: `D<YYYY-MM-DD>`. Secrets: PULSE_SRC_SA_JSON, PULSE_SRC_PROPERTY, PULSE_SHIFT_WEEKS, PULSE_SEED, MP_API_SECRET.
+  Never name the source in the repo.
+
 ## Repository map
 | Path | What |
 |---|---|

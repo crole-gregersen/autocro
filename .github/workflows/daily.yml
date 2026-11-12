@@ -1,0 +1,65 @@
+name: Daily traffic (pulse-driven)
+on:
+  schedule: [{ cron: "15 5 * * *" }]
+  workflow_dispatch:
+    inputs:
+      target_date: { description: "YYYY-MM-DD (default: yesterday)", required: false }
+      force: { description: "Run even if sim/daily.json enabled=false", default: "false" }
+permissions:
+  contents: write
+concurrency: { group: traffic, cancel-in-progress: false }
+jobs:
+  daily:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v7
+      - name: Gate
+        id: g
+        run: |
+          on=$(jq -r .enabled sim/daily.json)
+          [ "$on" = true ] || [ "${{ inputs.force }}" = true ] && echo "go=1" >> $GITHUB_OUTPUT || echo "Daily traffic is off"
+          d="${{ inputs.target_date }}"; [ -n "$d" ] || d=$(date -u -d yesterday +%F)
+          echo "date=$d" >> $GITHUB_OUTPUT; echo "run=D$d" >> $GITHUB_OUTPUT
+      - name: Pulse (source numbers stay in memory; only factors are written)
+        if: steps.g.outputs.go == '1'
+        env:
+          SRC_SA_JSON: ${{ secrets.PULSE_SRC_SA_JSON }}
+          SRC_PROPERTY: ${{ secrets.PULSE_SRC_PROPERTY }}
+          PULSE_SHIFT_WEEKS: ${{ secrets.PULSE_SHIFT_WEEKS }}
+          PULSE_SEED: ${{ secrets.PULSE_SEED }}
+          TARGET_DATE: ${{ steps.g.outputs.date }}
+        run: python3 pulse/fetch_pulse.py
+      - uses: actions/setup-node@v7
+        if: steps.g.outputs.go == '1'
+        with: { node-version: 22 }
+      - name: Install (packages must be >= 3 days old)
+        if: steps.g.outputs.go == '1'
+        run: |
+          npm install --no-audit --no-fund --before="$(date -u -d '3 days ago' +%Y-%m-%dT%H:%M:%SZ)"
+          npx playwright install --with-deps chromium
+      - name: Simulated shoppers, steered by the pulse
+        if: steps.g.outputs.go == '1'
+        run: |
+          P=data/pulse/${{ steps.g.outputs.date }}.json
+          N=$(python3 -c "import json;print(round(json.load(open('sim/daily.json'))['base_sessions']*json.load(open('$P'))['factors']['traffic']))")
+          SEED=$(date -u -d ${{ steps.g.outputs.date }} +%Y%m%d)
+          node sim/run.js --base https://crole-gregersen.github.io/autocro --sessions $N --concurrency $(jq -r .concurrency sim/daily.json) \
+            --seed $SEED --run ${{ steps.g.outputs.run }} --pulse $P
+      - name: Send to GA4 (Measurement Protocol)
+        if: steps.g.outputs.go == '1'
+        env:
+          MP_MEASUREMENT_ID: ${{ vars.MP_MEASUREMENT_ID || 'G-DDVJJDBD6E' }}
+          MP_API_SECRET: ${{ secrets.MP_API_SECRET }}
+        run: |
+          python3 pulse/emit_mp.py data/events/${{ steps.g.outputs.run }}.jsonl | tee reports/mp-${{ steps.g.outputs.run }}.json
+          gzip -9f data/events/${{ steps.g.outputs.run }}.jsonl sim/sealed/truth/${{ steps.g.outputs.run }}.jsonl
+      - name: Save + rebuild dashboard
+        if: steps.g.outputs.go == '1'
+        run: |
+          git config user.name "AutoCRO traffic bot"; git config user.email "actions@github.com"
+          git add data/pulse data/events sim/sealed/truth reports
+          git commit -qm "Daily traffic ${{ steps.g.outputs.run }}"
+          for i in 1 2 3 4 5; do git pull --rebase -q origin main && git push -q origin HEAD:main && break; git rebase --abort 2>/dev/null; sleep $((i*10)); done
+          python3 dashboard/build.py && git add site/engine-room dashboard/dist && \
+            (git diff --cached --quiet || (git commit -qm "Engine room: rebuilt after ${{ steps.g.outputs.run }}" && git pull --rebase -q origin main && git push -q origin HEAD:main)) || echo "::warning::dashboard not pushed"
